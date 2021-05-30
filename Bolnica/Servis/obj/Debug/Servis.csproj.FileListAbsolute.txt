@@ -1,0 +1,12 @@
+C:\Users\Milenko\Desktop\Bolnica\Servis\bin\Debug\Servis.dll.config
+C:\Users\Milenko\Desktop\Bolnica\Servis\bin\Debug\Servis.dll
+C:\Users\Milenko\Desktop\Bolnica\Servis\bin\Debug\Servis.pdb
+C:\Users\Milenko\Desktop\Bolnica\Servis\bin\Debug\EntityFramework.dll
+C:\Users\Milenko\Desktop\Bolnica\Servis\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Milenko\Desktop\Bolnica\Servis\bin\Debug\EntityFramework.xml
+C:\Users\Milenko\Desktop\Bolnica\Servis\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Milenko\Desktop\Bolnica\Servis\obj\Debug\Servis.csprojAssemblyReference.cache
+C:\Users\Milenko\Desktop\Bolnica\Servis\obj\Debug\Servis.csproj.CoreCompileInputs.cache
+C:\Users\Milenko\Desktop\Bolnica\Servis\obj\Debug\Servis.csproj.CopyComplete
+C:\Users\Milenko\Desktop\Bolnica\Servis\obj\Debug\Servis.dll
+C:\Users\Milenko\Desktop\Bolnica\Servis\obj\Debug\Servis.pdb
