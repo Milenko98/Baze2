@@ -17,11 +17,11 @@ namespace Servis.Baza
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Lekar()
         {
-            this.Pregleds = new HashSet<Pregled>();
+            this.Pregledas = new HashSet<Pregleda>();
         }
     
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pregled> Pregleds { get; set; }
+        public virtual ICollection<Pregleda> Pregledas { get; set; }
     }
 }

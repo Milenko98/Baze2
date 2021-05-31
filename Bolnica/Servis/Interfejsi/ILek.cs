@@ -11,6 +11,7 @@ namespace Servis.Interfejsi
     {
         Lek FindById(object id);
         List<Lek> GetAll();
+        int FindByName(string name);
         bool Insert(Lek lek);
         bool Delete(object id);
         bool Update(Lek lek);

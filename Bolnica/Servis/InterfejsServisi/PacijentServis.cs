@@ -14,7 +14,7 @@ namespace Servis.InterfejsServisi
         public PacijentServis() { }
         public virtual bool Delete(object id)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -36,7 +36,7 @@ namespace Servis.InterfejsServisi
         public virtual Pacijent FindById(object id)
         {
 
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Pacijent>().Find(id);
             }
@@ -44,7 +44,7 @@ namespace Servis.InterfejsServisi
 
         public virtual List<Pacijent> GetAll()
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Pacijent>().ToList();
             }
@@ -52,7 +52,7 @@ namespace Servis.InterfejsServisi
 
         public bool Insert(Pacijent entity)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -71,7 +71,7 @@ namespace Servis.InterfejsServisi
 
         public bool Update(Pacijent entityToUpdate)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -90,7 +90,7 @@ namespace Servis.InterfejsServisi
         }
         public Pacijent FindByName(string name)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 var pom = db.Set<Pacijent>().First(f => f.Ime == name);
                 return pom;

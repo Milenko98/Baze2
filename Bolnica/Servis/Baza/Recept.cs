@@ -17,13 +17,13 @@ namespace Servis.Baza
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Recept()
         {
-            this.Uspostavljas = new HashSet<Uspostavlja>();
+            this.Izdajes = new HashSet<Izdaje>();
         }
     
         public int Oznaka_R { get; set; }
         public string Naziv { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Uspostavlja> Uspostavljas { get; set; }
+        public virtual ICollection<Izdaje> Izdajes { get; set; }
     }
 }

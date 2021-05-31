@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800">
+        Title="MainWindow" Height="600" Width="800">
     <Grid>
         <Button Content="Create" Command="{Binding CreateBolnicaCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="21,214,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="Update" Command="{Binding UpdateBolnicaCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="21,239,0,0" VerticalAlignment="Top" Width="75"/>
@@ -758,6 +758,178 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
+
+            <!--Izdaje-->
+            <TabItem Header="Izdaje">
+                <DataGrid  ItemsSource="{Binding Izdaje, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding SelectedIzdaje}" ColumnWidth="*" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Oznaka recepta" TextBlock.TextAlignment="Center" Binding="{Binding ReceptOznaka_R}" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Uspostavka dijagnoza" TextBlock.TextAlignment="Center" Binding="{Binding UspostavljaDijagnozaOznaka_D}" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Uspostavka pregled" TextBlock.TextAlignment="Center" Binding="{Binding UspostavljaPregledBroj_P}" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <!--SeLeci-->
+            <TabItem Header="SeLeci">
+                <DataGrid  ItemsSource="{Binding SeLeci, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding SelectedSeLeci}" ColumnWidth="*" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Lek id" TextBlock.TextAlignment="Center" Binding="{Binding LekId_Leka}" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Dijagnoza oznaka" TextBlock.TextAlignment="Center" Binding="{Binding DijagnozaOznaka_D }" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <!--Sadrzi-->
+            <TabItem Header="Sadrzi">
+                <DataGrid  ItemsSource="{Binding Sadrzi, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding SelectedSadrzi}" ColumnWidth="*" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Lek id" TextBlock.TextAlignment="Center" Binding="{Binding ZdravstveniKartonBroj_K}" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Dijagnoza oznaka" TextBlock.TextAlignment="Center" Binding="{Binding DijagnozaOznaka_D }" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <!--Poseduje-->
+            <TabItem Header="Poseduje">
+                <DataGrid  ItemsSource="{Binding Poseduje, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding SelectedPoseduje}" ColumnWidth="*" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Lek id" TextBlock.TextAlignment="Center" Binding="{Binding ZdravstveniKartonBroj_K}" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Dijagnoza oznaka" TextBlock.TextAlignment="Center" Binding="{Binding TerapijaBroj_T }" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <!--Dolazi-->
+            <TabItem Header="Dolazi">
+                <DataGrid  ItemsSource="{Binding Dolazi, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding SelectedDolazi}" ColumnWidth="*" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Pacijent jmbg" TextBlock.TextAlignment="Center" Binding="{Binding PacijentJmbg}" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Broj pregleda" TextBlock.TextAlignment="Center" Binding="{Binding PregledBroj_P}" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <!--Pregleda-->
+            <TabItem Header="Pregleda">
+                <DataGrid  ItemsSource="{Binding Pregleda, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding SelectedPregleda}" ColumnWidth="*" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Lekar jmbg" TextBlock.TextAlignment="Center" Binding="{Binding LekarJmbg}" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Broj pregleda" TextBlock.TextAlignment="Center" Binding="{Binding PregledBroj_P}" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
         </TabControl>
         <Label Content="Bolnica:" FontWeight="Bold" HorizontalAlignment="Left" Margin="30,183,0,0" VerticalAlignment="Top"/>
         <Button Content="Create" Command="{Binding CreateMestoCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="122,214,0,0" VerticalAlignment="Top" Width="75"/>
@@ -816,5 +988,42 @@
         <Button Content="Update" Command="{Binding UpdateReceptCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="703,354,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="Delete" Command="{Binding DeleteReceptCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="703,379,0,0" VerticalAlignment="Top" Width="75"/>
         <Label Content="Recept:" FontWeight="Bold" HorizontalAlignment="Left" Margin="712,298,0,0" VerticalAlignment="Top"/>
+        <Button Content="Create" Command="{Binding CreateIzdajeCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="21,464,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Update" Command="{Binding UpdateIzdajeCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="21,489,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Delete" Command="{Binding DeleteIzdajeCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="21,514,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Izdaje:" FontWeight="Bold" HorizontalAlignment="Left" Margin="30,433,0,0" VerticalAlignment="Top"/>
+        <Button Content="Create" Command="{Binding CreateSeLeciCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="122,464,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Update" Command="{Binding UpdateSeLeciCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="122,489,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Delete" Command="{Binding DeleteSeLeciCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="122,514,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="SeLeci:" FontWeight="Bold" HorizontalAlignment="Left" Margin="131,433,0,0" VerticalAlignment="Top"/>
+        <Button Content="Create" Command="{Binding CreateSadrziCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="224,464,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Update" Command="{Binding UpdateSadrziCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="224,489,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Delete" Command="{Binding DeleteSadrziCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="224,514,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Sadrzi:" FontWeight="Bold" HorizontalAlignment="Left" Margin="233,433,0,0" VerticalAlignment="Top"/>
+        <Button Content="Create" Command="{Binding CreateSadrziCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="224,464,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Update" Command="{Binding UpdateSadrziCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="224,489,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Delete" Command="{Binding DeleteSadrziCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="224,514,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Sadrzi:" FontWeight="Bold" HorizontalAlignment="Left" Margin="233,433,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+        <Button Content="Create" Command="{Binding CreateSadrziCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="329,464,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Update" Command="{Binding UpdateSadrziCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="329,489,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Delete" Command="{Binding DeleteSadrziCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="329,514,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Create" Command="{Binding CreatePosedujeCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="329,464,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Update" Command="{Binding UpdatePosedujeCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="329,489,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Delete" Command="{Binding DeletePosedujeCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="329,514,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Poseduje:" FontWeight="Bold" HorizontalAlignment="Left" Margin="329,433,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+        <Button Content="Create" Command="{Binding CreateSadrziCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="427,464,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Update" Command="{Binding UpdateSadrziCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="427,489,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Delete" Command="{Binding DeleteSadrziCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="427,514,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Create" Command="{Binding CreateDolaziCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="427,464,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Update" Command="{Binding UpdateDolaziCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="427,489,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Delete" Command="{Binding DeleteDolaziCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="427,514,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Dolazi:" FontWeight="Bold" HorizontalAlignment="Left" Margin="427,433,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+        <Button Content="Create" Command="{Binding CreateSadrziCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="521,464,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Update" Command="{Binding UpdateSadrziCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="521,489,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Delete" Command="{Binding DeleteSadrziCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="521,514,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Create" Command="{Binding CreatePregledaCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="521,464,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Update" Command="{Binding UpdatePregledaCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="521,489,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Delete" Command="{Binding DeletePregledaCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="521,514,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Pregleda:" FontWeight="Bold" HorizontalAlignment="Left" Margin="521,433,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
     </Grid>
 </Window>

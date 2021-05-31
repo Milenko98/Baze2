@@ -17,8 +17,8 @@ namespace Servis.Baza
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ZdravstveniKarton()
         {
-            this.Dijagnozas = new HashSet<Dijagnoza>();
-            this.Terapijas = new HashSet<Terapija>();
+            this.Sadrzis = new HashSet<Sadrzi>();
+            this.Posedujes = new HashSet<Poseduje>();
         }
     
         public int Broj_K { get; set; }
@@ -28,8 +28,8 @@ namespace Servis.Baza
     
         public virtual Pacijent Pacijent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Dijagnoza> Dijagnozas { get; set; }
+        public virtual ICollection<Sadrzi> Sadrzis { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Terapija> Terapijas { get; set; }
+        public virtual ICollection<Poseduje> Posedujes { get; set; }
     }
 }

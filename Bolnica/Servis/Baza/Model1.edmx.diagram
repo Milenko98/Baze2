@@ -4,41 +4,54 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a965c330a2b74c6f887bbcfcabe9ef4f" Name="Diagram1" ZoomLevel="89" >
-        <EntityTypeShape EntityType="Model1.Bolnica" Width="1.5" PointX="2.5" PointY="1.625" />
-        <EntityTypeShape EntityType="Model1.Mesto" Width="1.5" PointX="6.25" PointY="2" />
-        <EntityTypeShape EntityType="Model1.Osoba" Width="1.5" PointX="2.5" PointY="5.25" />
-        <EntityTypeShape EntityType="Model1.Radnik" Width="1.5" PointX="2" PointY="8.75" />
-        <EntityTypeShape EntityType="Model1.Pacijent" Width="1.5" PointX="5" PointY="8.625" />
-        <EntityTypeShape EntityType="Model1.Lekar" Width="1.5" PointX="1" PointY="10.875" />
-        <EntityTypeShape EntityType="Model1.Recepcioner" Width="1.5" PointX="3.625" PointY="10.875" />
-        <EntityTypeShape EntityType="Model1.Obezbedjenje" Width="1.5" PointX="6.375" PointY="11" />
-        <EntityTypeShape EntityType="Model1.ZdravstveniKarton" Width="1.5" PointX="12.375" PointY="3.625" />
-        <EntityTypeShape EntityType="Model1.Dijagnoza" Width="1.5" PointX="17.75" PointY="1" />
-        <EntityTypeShape EntityType="Model1.Lek" Width="1.5" PointX="14.375" PointY="0.5" />
-        <EntityTypeShape EntityType="Model1.Terapija" Width="1.5" PointX="15.125" PointY="7" />
-        <EntityTypeShape EntityType="Model1.Lecenje" Width="1.5" PointX="18.375" PointY="7.375" />
-        <EntityTypeShape EntityType="Model1.Pregled" Width="1.5" PointX="9" PointY="10.25" />
-        <EntityTypeShape EntityType="Model1.Uspostavlja" Width="1.5" PointX="12.875" PointY="9.5" />
-        <EntityTypeShape EntityType="Model1.Recept" Width="1.5" PointX="12.75" PointY="13.25" />
+      <Diagram DiagramId="ff0d0e8677654f5b93674b7964c8b07e" Name="Diagram1" ZoomLevel="89" >
+        <EntityTypeShape EntityType="Model1.Bolnica" Width="1.5" PointX="1.5" PointY="3" />
+        <EntityTypeShape EntityType="Model1.Mesto" Width="1.5" PointX="6.25" PointY="2.875" />
+        <EntityTypeShape EntityType="Model1.Osoba" Width="1.5" PointX="1.375" PointY="6.625" />
+        <EntityTypeShape EntityType="Model1.Radnik" Width="1.5" PointX="1.25" PointY="10" />
+        <EntityTypeShape EntityType="Model1.Pacijent" Width="1.5" PointX="3.75" PointY="10" />
+        <EntityTypeShape EntityType="Model1.Lekar" Width="1.5" PointX="0.5" PointY="12.5" />
+        <EntityTypeShape EntityType="Model1.Recepcioner" Width="1.5" PointX="2.75" PointY="12.5" />
+        <EntityTypeShape EntityType="Model1.Obezbedjenje" Width="1.5" PointX="5.125" PointY="12.5" />
+        <EntityTypeShape EntityType="Model1.ZdravstveniKarton" Width="1.5" PointX="13.125" PointY="4.5" />
+        <EntityTypeShape EntityType="Model1.Dijagnoza" Width="1.5" PointX="18.5" PointY="7.125" />
+        <EntityTypeShape EntityType="Model1.Lek" Width="1.5" PointX="13.125" PointY="2.375" />
+        <EntityTypeShape EntityType="Model1.Terapija" Width="1.5" PointX="16.125" PointY="7.625" />
+        <EntityTypeShape EntityType="Model1.Lecenje" Width="1.5" PointX="16" PointY="10.375" />
+        <EntityTypeShape EntityType="Model1.Pregled" Width="1.5" PointX="9.125" PointY="9.625" />
+        <EntityTypeShape EntityType="Model1.Uspostavlja" Width="1.5" PointX="12.25" PointY="9.75" />
+        <EntityTypeShape EntityType="Model1.Recept" Width="1.5" PointX="12.375" PointY="16.125" />
+        <EntityTypeShape EntityType="Model1.SeLeci" Width="1.5" PointX="17.75" PointY="3.375" />
+        <EntityTypeShape EntityType="Model1.Sadrzi" Width="1.5" PointX="15.625" PointY="4.75" />
+        <EntityTypeShape EntityType="Model1.Poseduje" Width="1.5" PointX="13.5" PointY="7.625" />
+        <EntityTypeShape EntityType="Model1.Izdaje" Width="1.5" PointX="12.25" PointY="13.5" />
+        <EntityTypeShape EntityType="Model1.Dolazi" Width="1.5" PointX="6.625" PointY="9.625" />
+        <EntityTypeShape EntityType="Model1.Pregleda" Width="1.5" PointX="2.75" PointY="14.875" />
         <AssociationConnector Association="Model1.BolnicaOsoba" />
-        <AssociationConnector Association="Model1.PacijentPregled" />
         <AssociationConnector Association="Model1.PacijentZdravstveniKarton" />
-        <AssociationConnector Association="Model1.Pregleda" />
-        <AssociationConnector Association="Model1.ZdravstveniKartonDijagnoza" />
-        <AssociationConnector Association="Model1.LekDijagnoza" />
         <AssociationConnector Association="Model1.DijagnozaLecenje" />
-        <AssociationConnector Association="Model1.ZdravstveniKartonTerapija" />
+        <AssociationConnector Association="Model1.LekSeLeci" />
         <AssociationConnector Association="Model1.TerapijaLecenje" />
-        <AssociationConnector Association="Model1.Izdaje" />
         <AssociationConnector Association="Model1.PregledUspostavlja" />
+        <AssociationConnector Association="Model1.ZdravstveniKartonSadrzi" />
+        <AssociationConnector Association="Model1.ZdravstveniKartonPoseduje" />
+        <InheritanceConnector EntityType="Model1.Radnik" />
+        <InheritanceConnector EntityType="Model1.Pacijent" />
+        <AssociationConnector Association="Model1.UspostavljaLecenje" />
+        <AssociationConnector Association="Model1.SeLeciDijagnoza" />
+        <AssociationConnector Association="Model1.SadrziDijagnoza" />
+        <AssociationConnector Association="Model1.PosedujeTerapija" />
         <InheritanceConnector EntityType="Model1.Lekar" />
         <InheritanceConnector EntityType="Model1.Recepcioner" />
         <InheritanceConnector EntityType="Model1.Obezbedjenje" />
+        <AssociationConnector Association="Model1.LekarPregleda" />
+        <AssociationConnector Association="Model1.PregledaPregled" />
+        <AssociationConnector Association="Model1.IzdajeRecept" />
         <AssociationConnector Association="Model1.UspostavljaDijagnoza" />
         <AssociationConnector Association="Model1.BolnicaMesto" />
-        <InheritanceConnector EntityType="Model1.Radnik" />
-        <InheritanceConnector EntityType="Model1.Pacijent" />
+        <AssociationConnector Association="Model1.PacijentDolazi" />
+        <AssociationConnector Association="Model1.DolaziPregled" />
+        <AssociationConnector Association="Model1.UspostavljaIzdaje" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

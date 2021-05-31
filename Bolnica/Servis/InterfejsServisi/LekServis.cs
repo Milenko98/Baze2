@@ -15,7 +15,7 @@ namespace Servis.InterfejsServisi
         public LekServis() { }
         public virtual bool Delete(object id)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -37,7 +37,7 @@ namespace Servis.InterfejsServisi
         public virtual Lek FindById(object id)
         {
 
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Lek>().Find(id);
             }
@@ -45,7 +45,7 @@ namespace Servis.InterfejsServisi
 
         public virtual List<Lek> GetAll()
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Lek>().ToList();
             }
@@ -53,7 +53,7 @@ namespace Servis.InterfejsServisi
 
         public bool Insert(Lek entity)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -72,7 +72,7 @@ namespace Servis.InterfejsServisi
 
         public bool Update(Lek entityToUpdate)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -87,6 +87,15 @@ namespace Servis.InterfejsServisi
                     return false;
                 }
 
+            }
+        }
+
+        public int FindByName(string name)
+        {
+            using (var db = new Model1Container())
+            {
+                var pom = db.Set<Lek>().First(f => f.Naziv == name);
+                return pom.Id_Leka;
             }
         }
     }

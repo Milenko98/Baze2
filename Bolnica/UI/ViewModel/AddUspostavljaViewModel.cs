@@ -38,6 +38,13 @@ namespace UI.ViewModel
             set { selectedDijagnoza = value; OnPropertyChanged("SelectedDijagnoza"); }
         }
 
+        private string selectedLecenje;
+
+        public string SelectedLecenje
+        {
+            get { return selectedLecenje; }
+            set { selectedLecenje = value; OnPropertyChanged("SelectedLecenje"); }
+        }
         public Uspostavlja CreatedUspostavlja { get; set; }
 
 
@@ -57,6 +64,14 @@ namespace UI.ViewModel
             set { dijagnoze = value; }
         }
 
+        private ObservableCollection<string> lecenja;
+
+        public ObservableCollection<string> Lecenja
+        {
+            get { return lecenja; }
+            set { lecenja = value; }
+        }
+
 
 
         public AddUspostavljaViewModel(Uspostavlja uspostavka)
@@ -64,10 +79,13 @@ namespace UI.ViewModel
             CreatedUspostavlja = uspostavka;
             List<Pregled> pregledii = new List<Pregled>();
             List<Dijagnoza> dijagnozee = new List<Dijagnoza>();
+            List<Lecenje> lecenjaa = new List<Lecenje>();
             ObservableCollection<string> dobavljeniPregledi = new ObservableCollection<string>();
             ObservableCollection<string> dobavljeneDijagnoze = new ObservableCollection<string>();
+            ObservableCollection<string> dobavljenaLecenja = new ObservableCollection<string>();
             Servis.InterfejsServisi.PregledServis ps = new Servis.InterfejsServisi.PregledServis();
             Servis.InterfejsServisi.DijagnozaServis ds = new Servis.InterfejsServisi.DijagnozaServis();
+            Servis.InterfejsServisi.LecenjeServis ls = new Servis.InterfejsServisi.LecenjeServis();
             pregledii = ps.GetAll();
             foreach (var item in pregledii)
             {
@@ -75,7 +93,16 @@ namespace UI.ViewModel
             }
             Pregledi = dobavljeniPregledi;
 
-            selectedPregled = Pregledi[0];
+            if(Pregledi.Count == 0)
+            {
+                MessageBox.Show("Nema pregleda.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                selectedPregled = Pregledi[0];
+            }
+
+            
 
             dijagnozee = ds.GetAll();
             foreach (var item in dijagnozee)
@@ -84,12 +111,37 @@ namespace UI.ViewModel
             }
             Dijagnoze = dobavljeneDijagnoze;
 
-            selectedDijagnoza = Dijagnoze[0];
+            if(Dijagnoze.Count == 0)
+            {
+                MessageBox.Show("Nema dijagnoza.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                selectedDijagnoza = Dijagnoze[0];
+            }
+
+            lecenjaa = ls.GetAll();
+            foreach (var item in lecenjaa)
+            {
+                dobavljenaLecenja.Add(item.TerapijaBroj_T+","+item.DijagnozaOznaka_D);
+            }
+            Lecenja = dobavljenaLecenja;
+
+            if (Lecenja.Count == 0)
+            {
+                MessageBox.Show("Nema lecenja.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                selectedLecenje = Lecenja[0];
+            }
+
             AddUspostavljaCommand = new MyICommand(OnAddUspostavlja);
             if (uspostavka != null)
             {
                 SelectedPregled = uspostavka.Pregled.Naziv;
                 SelectedDijagnoza = uspostavka.Dijagnoza.Naziv;
+                SelectedLecenje = uspostavka.Lecenje.TerapijaBroj_T + "," + uspostavka.Lecenje.DijagnozaOznaka_D;
                 AddButtonContent = "IZMENI";
             }
             else
@@ -103,13 +155,15 @@ namespace UI.ViewModel
             Servis.InterfejsServisi.UspostavljaServis us = new Servis.InterfejsServisi.UspostavljaServis();
             Servis.InterfejsServisi.PregledServis ps = new Servis.InterfejsServisi.PregledServis();
             Servis.InterfejsServisi.DijagnozaServis ds = new Servis.InterfejsServisi.DijagnozaServis();
+            Servis.InterfejsServisi.LecenjeServis ls = new Servis.InterfejsServisi.LecenjeServis();
             Uspostavlja u = new Uspostavlja();
             if (CreatedUspostavlja == null)
             {
 
                 u.PregledBroj_P = ps.FindByName(SelectedPregled);
                 u.DijagnozaOznaka_D = ds.FindByName(SelectedDijagnoza);
-                u.LecenjeId_Lecenja = 1;
+                u.LecenjeDijagnozaOznaka_D = Int32.Parse(SelectedLecenje.Split(',')[1]);
+                u.LecenjeTerapijaBroj_T = Int32.Parse(SelectedLecenje.Split(',')[0]);
 
                 if (us.Insert(u))
                 {
@@ -128,6 +182,8 @@ namespace UI.ViewModel
             {
                 CreatedUspostavlja.PregledBroj_P = ps.FindByName(SelectedPregled);
                 CreatedUspostavlja.DijagnozaOznaka_D = ds.FindByName(SelectedDijagnoza);
+                CreatedUspostavlja.LecenjeTerapijaBroj_T = Int32.Parse(SelectedLecenje.Split(',')[0]);
+                CreatedUspostavlja.LecenjeDijagnozaOznaka_D = Int32.Parse(SelectedLecenje.Split(',')[1]);
                 if (us.Update(CreatedUspostavlja))
                 {
                     MessageBox.Show("Uspostavlja uspešno izmenjeno.", "Operacija uspešna.", MessageBoxButton.OK, MessageBoxImage.Information);

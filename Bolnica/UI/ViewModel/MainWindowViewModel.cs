@@ -31,6 +31,12 @@ namespace UI.ViewModel
         public Recept SelectedRecept { get; set; }
         public Uspostavlja SelectedUspostavlja { get; set; }
         public Lecenje SelectedLecenje { get; set; }
+        public Izdaje SelectedIzdaje { get; set; }
+        public SeLeci SelectedSeLeci { get; set; }
+        public Sadrzi SelectedSadrzi { get; set; }
+        public Poseduje SelectedPoseduje { get; set; }
+        public Dolazi SelectedDolazi { get; set; }
+        public Pregleda SelectedPregleda { get; set; }
         private List<Bolnica> bolnica;
 
         public List<Bolnica> Bolnica
@@ -159,6 +165,55 @@ namespace UI.ViewModel
             get { return lecenje; }
             set { lecenje = value; OnPropertyChanged("Lecenje"); }
         }
+
+        private List<Izdaje> izdaje;
+
+        public List<Izdaje> Izdaje
+        {
+            get { return izdaje; }
+            set { izdaje = value; OnPropertyChanged("Izdaje"); }
+        }
+
+        private List<SeLeci> seLeci;
+
+        public List<SeLeci> SeLeci
+        {
+            get { return seLeci; }
+            set { seLeci = value; OnPropertyChanged("SeLeci"); }
+        }
+
+        private List<Sadrzi> sadrzi;
+
+        public List<Sadrzi> Sadrzi
+        {
+            get { return sadrzi; }
+            set { sadrzi = value; OnPropertyChanged("Sadrzi"); }
+        }
+
+        private List<Poseduje> poseduje;
+
+        public List<Poseduje> Poseduje
+        {
+            get { return poseduje; }
+            set { poseduje = value; OnPropertyChanged("Poseduje"); }
+        }
+
+        private List<Dolazi> dolazi;
+
+        public List<Dolazi> Dolazi
+        {
+            get { return dolazi; }
+            set { dolazi = value; OnPropertyChanged("Dolazi"); }
+        }
+
+
+        private List<Pregleda> pregleda;
+
+        public List<Pregleda> Pregleda
+        {
+            get { return pregleda; }
+            set { pregleda = value; OnPropertyChanged("Pregleda"); }
+        }
         #endregion
 
         #region commands
@@ -206,6 +261,24 @@ namespace UI.ViewModel
         public MyICommand CreateLecenjeCommand { get; set; }
         public MyICommand UpdateLecenjeCommand { get; set; }
         public MyICommand DeleteLecenjeCommand { get; set; }
+        public MyICommand CreateIzdajeCommand { get; set; }
+        public MyICommand UpdateIzdajeCommand { get; set; }
+        public MyICommand DeleteIzdajeCommand { get; set; }
+        public MyICommand CreateSeLeciCommand { get; set; }
+        public MyICommand UpdateSeLeciCommand { get; set; }
+        public MyICommand DeleteSeLeciCommand { get; set; }
+        public MyICommand CreateSadrziCommand { get; set; }
+        public MyICommand UpdateSadrziCommand { get; set; }
+        public MyICommand DeleteSadrziCommand { get; set; }
+        public MyICommand CreatePosedujeCommand { get; set; }
+        public MyICommand UpdatePosedujeCommand { get; set; }
+        public MyICommand DeletePosedujeCommand { get; set; }
+        public MyICommand CreateDolaziCommand { get; set; }
+        public MyICommand UpdateDolaziCommand { get; set; }
+        public MyICommand DeleteDolaziCommand { get; set; }
+        public MyICommand CreatePregledaCommand { get; set; }
+        public MyICommand UpdatePregledaCommand { get; set; }
+        public MyICommand DeletePregledaCommand { get; set; }
         #endregion
 
 
@@ -255,6 +328,24 @@ namespace UI.ViewModel
             DeleteLecenjeCommand = new MyICommand(OnDeleteLecenje);
             UpdateLecenjeCommand = new MyICommand(OnUpdateLecenje);
             CreateLecenjeCommand = new MyICommand(OnCreateLecenje);
+            DeleteIzdajeCommand = new MyICommand(OnDeleteIzdaje);
+            UpdateIzdajeCommand = new MyICommand(OnUpdateIzdaje);
+            CreateIzdajeCommand = new MyICommand(OnCreateIzdaje);
+            DeleteSeLeciCommand = new MyICommand(OnDeleteSeLeci);
+            UpdateSeLeciCommand = new MyICommand(OnUpdateSeLeci);
+            CreateSeLeciCommand = new MyICommand(OnCreateSeLeci);
+            DeleteSadrziCommand = new MyICommand(OnDeleteSadrzi);
+            UpdateSadrziCommand = new MyICommand(OnUpdateSadrzi);
+            CreateSadrziCommand = new MyICommand(OnCreateSadrzi);
+            DeletePosedujeCommand = new MyICommand(OnDeletePoseduje);
+            UpdatePosedujeCommand = new MyICommand(OnUpdatePoseduje);
+            CreatePosedujeCommand = new MyICommand(OnCreatePoseduje);
+            DeleteDolaziCommand = new MyICommand(OnDeleteDolazi);
+            UpdateDolaziCommand = new MyICommand(OnUpdateDolazi);
+            CreateDolaziCommand = new MyICommand(OnCreateDolazi);
+            DeletePregledaCommand = new MyICommand(OnDeletePregleda);
+            UpdatePregledaCommand = new MyICommand(OnUpdatePregleda);
+            CreatePregledaCommand = new MyICommand(OnCreatePregleda);
 
             ReadAllMesto();
             ReadAllBolnica();
@@ -272,6 +363,12 @@ namespace UI.ViewModel
             ReadAllRecept();
             ReadAllUspostavlja();
             ReadAllLecenje();
+            ReadAllIzdaje();
+            ReadAllSeLeci();
+            ReadAllSadrzi();
+            ReadAllPoseduje();
+            ReadAllDolazi();
+            ReadAllPregleda();
         }
 
         public void OnCreateBolnica()
@@ -280,10 +377,46 @@ namespace UI.ViewModel
             OnChangeBolnica();
         }
 
+        public void OnCreatePregleda()
+        {
+            new AddPregleda(null).ShowDialog();
+            OnChangePregleda();
+        }
+
         public void OnCreateLecenje()
         {
             new AddLecenje(null).ShowDialog();
             OnChangeLecenje();
+        }
+
+        public void OnCreateDolazi()
+        {
+            new AddDolazi(null).ShowDialog();
+            OnChangeDolazi();
+        }
+
+        public void OnCreatePoseduje()
+        {
+            new AddPoseduje(null).ShowDialog();
+            OnChangePoseduje();
+        }
+
+        public void OnCreateSadrzi()
+        {
+            new AddSadrzi(null).ShowDialog();
+            OnChangeSadrzi();
+        }
+
+        public void OnCreateIzdaje()
+        {
+            new AddIzdaje(null).ShowDialog();
+            OnChangeIzdaje();
+        }
+
+        public void OnCreateSeLeci()
+        {
+            new AddSeLeci(null).ShowDialog();
+            OnChangeSeLeci();
         }
 
         public void OnCreateUspostavlja()
@@ -349,10 +482,46 @@ namespace UI.ViewModel
             OnChangeBolnica();
         }
 
+        public void OnUpdatePoseduje()
+        {
+            new AddPoseduje(SelectedPoseduje).ShowDialog();
+            OnChangePoseduje();
+        }
+
+        public void OnUpdateDolazi()
+        {
+            new AddDolazi(SelectedDolazi).ShowDialog();
+            OnChangeDolazi();
+        }
+
+        public void OnUpdateSeLeci()
+        {
+            new AddSeLeci(SelectedSeLeci).ShowDialog();
+            OnChangeSeLeci();
+        }
+
+        public void OnUpdatePregleda()
+        {
+            new AddPregleda(SelectedPregleda).ShowDialog();
+            OnChangePregleda();
+        }
+
         public void OnUpdateLecenje()
         {
             new AddLecenje(SelectedLecenje).ShowDialog();
             OnChangeLecenje();
+        }
+
+        public void OnUpdateIzdaje()
+        {
+            new AddIzdaje(SelectedIzdaje).ShowDialog();
+            OnChangeIzdaje();
+        }
+
+        public void OnUpdateSadrzi()
+        {
+            new AddSadrzi(SelectedSadrzi).ShowDialog();
+            OnChangeSadrzi();
         }
 
         public void OnUpdateUspostavlja()
@@ -421,6 +590,81 @@ namespace UI.ViewModel
             OnChangeOsoba();
         }
 
+        public void OnDeleteDolazi()
+        {
+            Servis.InterfejsServisi.DolaziServis ds = new Servis.InterfejsServisi.DolaziServis();
+            if (SelectedDolazi != null)
+            {
+                ds.Delete(SelectedDolazi.PacijentJmbg, SelectedDolazi.PregledBroj_P);
+            }
+            else
+            {
+                MessageBox.Show("Niste izabrali dolazi!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
+            OnChangeDolazi();
+        }
+
+        public void OnDeletePoseduje()
+        {
+            Servis.InterfejsServisi.PosedujeServis ps = new Servis.InterfejsServisi.PosedujeServis();
+            if (SelectedPoseduje != null)
+            {
+                ps.Delete(SelectedPoseduje.ZdravstveniKartonBroj_K, SelectedPoseduje.TerapijaBroj_T);
+            }
+            else
+            {
+                MessageBox.Show("Niste izabrali poseduje!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
+            OnChangePoseduje();
+        }
+
+        public void OnDeleteSadrzi()
+        {
+            Servis.InterfejsServisi.SadrziServis sas = new Servis.InterfejsServisi.SadrziServis();
+            if (SelectedSadrzi != null)
+            {
+                sas.Delete(SelectedSadrzi.ZdravstveniKartonBroj_K, SelectedSadrzi.DijagnozaOznaka_D);
+            }
+            else
+            {
+                MessageBox.Show("Niste izabrali sadrzi!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
+            OnChangeSadrzi();
+        }
+
+        public void OnDeletePregleda()
+        {
+            Servis.InterfejsServisi.PregledaServis ps = new Servis.InterfejsServisi.PregledaServis();
+            if (SelectedPregleda != null)
+            {
+                ps.Delete(SelectedPregleda.LekarJmbg, SelectedPregleda.PregledBroj_P);
+            }
+            else
+            {
+                MessageBox.Show("Niste izabrali pregleda!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
+            OnChangePregleda();
+        }
+
+        public void OnDeleteSeLeci()
+        {
+            Servis.InterfejsServisi.SeLeciServis sls = new Servis.InterfejsServisi.SeLeciServis();
+            if (SelectedSeLeci != null)
+            {
+                sls.Delete(SelectedSeLeci.LekId_Leka, SelectedSeLeci.DijagnozaOznaka_D);
+            }
+            else
+            {
+                MessageBox.Show("Niste izabrali SeLeci!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
+            OnChangeSeLeci();
+        }
+
         public void OnDeleteUspostavlja()
         {
             Servis.InterfejsServisi.UspostavljaServis us = new Servis.InterfejsServisi.UspostavljaServis();
@@ -434,6 +678,21 @@ namespace UI.ViewModel
             }
 
             OnChangeUspostavlja();
+        }
+
+        public void OnDeleteIzdaje()
+        {
+            Servis.InterfejsServisi.IzdajeServis iss = new Servis.InterfejsServisi.IzdajeServis();
+            if (SelectedIzdaje != null)
+            {
+                iss.Delete(SelectedIzdaje.ReceptOznaka_R, SelectedIzdaje.UspostavljaPregledBroj_P,SelectedIzdaje.UspostavljaDijagnozaOznaka_D);
+            }
+            else
+            {
+                MessageBox.Show("Niste izabrali izdaje!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
+            OnChangeIzdaje();
         }
 
         public void OnDeleteLecenje()
@@ -694,14 +953,43 @@ namespace UI.ViewModel
             OnChangeMesto();
         }
 
+        public void ReadAllSeLeci()
+        {
+            OnChangeSeLeci();
+        }
+
+        public void ReadAllDolazi()
+        {
+            OnChangeDolazi();
+        }
+
+        public void ReadAllPregleda()
+        {
+            OnChangePregleda();
+        }
+
         public void ReadAllUspostavlja()
         {
             OnChangeUspostavlja();
         }
 
+        public void ReadAllPoseduje()
+        {
+            OnChangePoseduje();
+        }
+        public void ReadAllIzdaje()
+        {
+            OnChangeIzdaje();
+        }
+
         public void ReadAllLek()
         {
             OnChangeLek();
+        }
+
+        public void ReadAllSadrzi()
+        {
+            OnChangeSadrzi();
         }
 
         public void ReadAllLecenje()
@@ -806,12 +1094,82 @@ namespace UI.ViewModel
             }
         }
 
+        public void OnChangeSeLeci()
+        {
+            Servis.InterfejsServisi.SeLeciServis sls = new Servis.InterfejsServisi.SeLeciServis();
+            try
+            {
+                SeLeci = sls.GetAll();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+            }
+        }
+
+        public void OnChangeSadrzi()
+        {
+            Servis.InterfejsServisi.SadrziServis sas = new Servis.InterfejsServisi.SadrziServis();
+            try
+            {
+                Sadrzi = sas.GetAll();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+            }
+        }
+
+        public void OnChangePoseduje()
+        {
+            Servis.InterfejsServisi.PosedujeServis pos = new Servis.InterfejsServisi.PosedujeServis();
+            try
+            {
+                Poseduje = pos.GetAll();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+            }
+        }
+
+        public void OnChangeDolazi()
+        {
+            Servis.InterfejsServisi.DolaziServis ds = new Servis.InterfejsServisi.DolaziServis();
+            try
+            {
+                Dolazi = ds.GetAll();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+            }
+        }
+
         public void OnChangeLecenje()
         {
             Servis.InterfejsServisi.LecenjeServis ls = new Servis.InterfejsServisi.LecenjeServis();
             try
             {
                 Lecenje = ls.GetAll();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+            }
+        }
+
+        public void OnChangeIzdaje()
+        {
+            Servis.InterfejsServisi.IzdajeServis iss = new Servis.InterfejsServisi.IzdajeServis();
+            try
+            {
+                Izdaje = iss.GetAll();
 
             }
             catch (Exception e)
@@ -910,6 +1268,20 @@ namespace UI.ViewModel
             try
             {
                 Pacijent = ps.GetAll();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+            }
+        }
+
+        public void OnChangePregleda()
+        {
+            Servis.InterfejsServisi.PregledaServis ps = new Servis.InterfejsServisi.PregledaServis();
+            try
+            {
+                Pregleda = ps.GetAll();
 
             }
             catch (Exception e)

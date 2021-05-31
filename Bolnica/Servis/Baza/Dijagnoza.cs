@@ -17,9 +17,9 @@ namespace Servis.Baza
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Dijagnoza()
         {
-            this.ZdravstveniKartons = new HashSet<ZdravstveniKarton>();
-            this.Leks = new HashSet<Lek>();
             this.Lecenjes = new HashSet<Lecenje>();
+            this.SeLecis = new HashSet<SeLeci>();
+            this.Sadrzis = new HashSet<Sadrzi>();
             this.Uspostavljas = new HashSet<Uspostavlja>();
         }
     
@@ -28,11 +28,11 @@ namespace Servis.Baza
         public int UspostavljaPregledBroj_P { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ZdravstveniKarton> ZdravstveniKartons { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Lek> Leks { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Lecenje> Lecenjes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SeLeci> SeLecis { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sadrzi> Sadrzis { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Uspostavlja> Uspostavljas { get; set; }
     }

@@ -21,7 +21,7 @@
         <Label Content="Ime:" FontWeight="Bold" HorizontalAlignment="Left" Margin="75,65,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.244,0.548" Width="120"/>
         <Label Content="Radni staz:" FontWeight="Bold" HorizontalAlignment="Left" Margin="72,257,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.244,0.548" Width="120"/>
         <Label Content="Prezime:" FontWeight="Bold" HorizontalAlignment="Left" Margin="72,164,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.244,0.548" Width="120"/>
-        <Label Content="Radno mesto:" FontWeight="Bold" HorizontalAlignment="Left" Margin="379,65,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.002,0.844" Width="120"/>
+        <Label Content="Bolnica:" FontWeight="Bold" HorizontalAlignment="Left" Margin="379,65,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.002,0.844" Width="120"/>
         <Button Content="{Binding AddButtonContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Command="{Binding AddLekarCommand}" HorizontalAlignment="Left" Margin="298,361,0,0" VerticalAlignment="Top" Width="119" Height="33"/>
         <Label Content="Mesto prebivalista:" FontWeight="Bold" HorizontalAlignment="Left" Margin="379,138,0,0" VerticalAlignment="Top" Width="120"/>
 

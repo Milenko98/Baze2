@@ -14,7 +14,7 @@ namespace Servis.InterfejsServisi
         public RecepcionerServis() { }
         public virtual bool Delete(object id)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -36,7 +36,7 @@ namespace Servis.InterfejsServisi
         public virtual Recepcioner FindById(object id)
         {
 
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Recepcioner>().Find(id);
             }
@@ -44,7 +44,7 @@ namespace Servis.InterfejsServisi
 
         public virtual List<Recepcioner> GetAll()
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Recepcioner>().ToList();
             }
@@ -52,7 +52,7 @@ namespace Servis.InterfejsServisi
 
         public bool Insert(Recepcioner entity)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -71,7 +71,7 @@ namespace Servis.InterfejsServisi
 
         public bool Update(Recepcioner entityToUpdate)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {

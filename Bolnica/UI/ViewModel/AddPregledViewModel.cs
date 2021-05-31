@@ -71,8 +71,16 @@ namespace UI.ViewModel
                 dobavljeniPacijenti.Add(item.Ime +" "+item.Prezime);
             }
             Pacijenti = dobavljeniPacijenti;
+            if(Pacijenti.Count == 0)
+            {
+                MessageBox.Show("Nema pacijenata.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                selectedPacijent = Pacijenti[0];
+            }
 
-            selectedPacijent = Pacijenti[0];
+            
             AddPregledCommand = new MyICommand(OnAddPregled);
             if (pregled != null)
             {

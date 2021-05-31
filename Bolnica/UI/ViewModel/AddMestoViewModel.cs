@@ -63,7 +63,7 @@ namespace UI.ViewModel
 
         public void OnAddMesto()
         {
-            Servis.InterfejsServisi.MestoServis bo = new Servis.InterfejsServisi.MestoServis();
+            Servis.InterfejsServisi.MestoServis ms = new Servis.InterfejsServisi.MestoServis();
             Mesto m = new Mesto();
             if (CreatedMesto == null)
             {
@@ -78,22 +78,31 @@ namespace UI.ViewModel
                     var pronadjena = provera;
                     do
                     {
-                        pronadjena = bo.FindById(Oznaka_B_Random);
+                        pronadjena = ms.FindById(Oznaka_B_Random);
 
                     } while (pronadjena != null);
 
                     m.P_Broj = Oznaka_B_Random;
                     m.Naziv = NazivMesta;
 
-                    if (bo.Insert(m))
+                    if (ms.Validate(m.Naziv))
                     {
 
-                        MessageBox.Show("Mesto uspešno dodato.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
-                        Window.Close();
+                        if (ms.Insert(m))
+                        {
+
+                            MessageBox.Show("Mesto uspešno dodato.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                            Window.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Greška prilikom dodavanja.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                            Window.Close();
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Greška prilikom dodavanja.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Vec postoji mesto sa tim nazivom.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
                         Window.Close();
                     }
                 }
@@ -107,7 +116,7 @@ namespace UI.ViewModel
                 else
                 {
                     CreatedMesto.Naziv = NazivMesta;
-                    if (bo.Update(CreatedMesto))
+                    if (ms.Update(CreatedMesto))
                     {
                         MessageBox.Show("Mesto uspešno izmenjeno.", "Operacija uspešna.", MessageBoxButton.OK, MessageBoxImage.Information);
                         Window.Close();

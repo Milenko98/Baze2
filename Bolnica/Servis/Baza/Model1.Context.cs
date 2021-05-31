@@ -13,10 +13,10 @@ namespace Servis.Baza
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Model1Container1 : DbContext
+    public partial class Model1Container : DbContext
     {
-        public Model1Container1()
-            : base("name=Model1Container1")
+        public Model1Container()
+            : base("name=Model1Container")
         {
         }
     
@@ -36,5 +36,11 @@ namespace Servis.Baza
         public virtual DbSet<Pregled> Pregleds { get; set; }
         public virtual DbSet<Uspostavlja> Uspostavljas { get; set; }
         public virtual DbSet<Recept> Recepts { get; set; }
+        public virtual DbSet<SeLeci> SeLecis { get; set; }
+        public virtual DbSet<Sadrzi> Sadrzis { get; set; }
+        public virtual DbSet<Poseduje> Posedujes { get; set; }
+        public virtual DbSet<Izdaje> Izdajes { get; set; }
+        public virtual DbSet<Dolazi> Dolazis { get; set; }
+        public virtual DbSet<Pregleda> Pregledas { get; set; }
     }
 }

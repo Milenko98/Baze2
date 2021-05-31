@@ -14,10 +14,18 @@ namespace Servis.Baza
     
     public partial class Lecenje
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Lecenje()
+        {
+            this.Uspostavljas = new HashSet<Uspostavlja>();
+        }
+    
         public int TerapijaBroj_T { get; set; }
         public int DijagnozaOznaka_D { get; set; }
     
         public virtual Dijagnoza Dijagnoza { get; set; }
         public virtual Terapija Terapija { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Uspostavlja> Uspostavljas { get; set; }
     }
 }

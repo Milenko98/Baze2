@@ -125,7 +125,6 @@ namespace UI.ViewModel
                     zk.Pacijent = p;
                     if (zks.Insert(zk))
                     {
-
                         MessageBox.Show("ZdravstveniKarton uspešno dodat.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
                         Window.Close();
                     }
@@ -135,7 +134,16 @@ namespace UI.ViewModel
                         Window.Close();
                     }
                 }
-
+                if (ps.Delete(p.Jmbg))
+                {
+                    MessageBox.Show("ok.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Window.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Greška prilikom brisanja pacijenta.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Window.Close();
+                }
             }
             else
             {

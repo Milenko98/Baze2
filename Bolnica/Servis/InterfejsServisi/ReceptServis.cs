@@ -14,7 +14,7 @@ namespace Servis.InterfejsServisi
         public ReceptServis() { }
         public virtual bool Delete(object id)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -36,7 +36,7 @@ namespace Servis.InterfejsServisi
         public virtual Recept FindById(object id)
         {
 
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Recept>().Find(id);
             }
@@ -44,7 +44,7 @@ namespace Servis.InterfejsServisi
 
         public virtual List<Recept> GetAll()
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Recept>().ToList();
             }
@@ -52,7 +52,7 @@ namespace Servis.InterfejsServisi
 
         public bool Insert(Recept entity)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -71,7 +71,7 @@ namespace Servis.InterfejsServisi
 
         public bool Update(Recept entityToUpdate)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -86,6 +86,15 @@ namespace Servis.InterfejsServisi
                     return false;
                 }
 
+            }
+        }
+
+        public int FindByName(string name)
+        {
+            using (var db = new Model1Container())
+            {
+                var pom = db.Set<Recept>().First(f => f.Naziv == name);
+                return pom.Oznaka_R;
             }
         }
     }

@@ -14,7 +14,7 @@ namespace Servis.InterfejsServisi
         public RadnikServis() { }
         public virtual bool Delete(object id)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -36,7 +36,7 @@ namespace Servis.InterfejsServisi
         public virtual Radnik FindById(object id)
         {
 
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Radnik>().Find(id);
             }
@@ -44,7 +44,7 @@ namespace Servis.InterfejsServisi
 
         public virtual List<Radnik> GetAll()
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Radnik>().ToList();
             }
@@ -52,7 +52,7 @@ namespace Servis.InterfejsServisi
 
         public bool Insert(Radnik entity)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -71,7 +71,7 @@ namespace Servis.InterfejsServisi
 
         public bool Update(Radnik entityToUpdate)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {

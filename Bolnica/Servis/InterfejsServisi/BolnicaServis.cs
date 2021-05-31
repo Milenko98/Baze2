@@ -18,7 +18,7 @@ namespace Servis.InterfejsServisi
 
         public virtual bool Delete(object id)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -41,7 +41,7 @@ namespace Servis.InterfejsServisi
         public virtual Bolnica FindById(object id)
         {
 
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Bolnica>().Find(id);
             }
@@ -49,7 +49,7 @@ namespace Servis.InterfejsServisi
 
         public virtual List<Bolnica> GetAll()
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Bolnica>().ToList();
             }
@@ -57,7 +57,7 @@ namespace Servis.InterfejsServisi
 
         public bool Insert(Bolnica entity)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -76,7 +76,7 @@ namespace Servis.InterfejsServisi
 
         public bool Update(Bolnica entityToUpdate)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -96,10 +96,22 @@ namespace Servis.InterfejsServisi
 
         public int FindByName(string name)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 var pom = db.Set<Bolnica>().First(f => f.Naziv == name);
                 return pom.Oznaka_B;
+            }
+        }
+
+        public bool Validate(string name)
+        {
+            using (var db = new Model1Container())
+            {
+                if (db.Set<Bolnica>().FirstOrDefault(f => f.Naziv == name) != null)
+                {
+                    return false;
+                }
+                return true;
             }
         }
     }

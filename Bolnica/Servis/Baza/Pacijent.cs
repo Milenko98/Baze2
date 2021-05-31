@@ -17,12 +17,12 @@ namespace Servis.Baza
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Pacijent()
         {
-            this.Pregleds = new HashSet<Pregled>();
+            this.Dolazis = new HashSet<Dolazi>();
         }
     
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pregled> Pregleds { get; set; }
         public virtual ZdravstveniKarton ZdravstveniKarton { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Dolazi> Dolazis { get; set; }
     }
 }

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Milenko\Desktop\BazeProj\Bolnica\UI\App.xaml
-15395359660
+21562838373
 
-391994284408
+501131745893
 17-1433575588
-MainWindow.xaml;View\AddBolnica.xaml;View\AddDijagnoza.xaml;View\AddLecenje.xaml;View\AddLek.xaml;View\AddLekar.xaml;View\AddMesto.xaml;View\AddObezbedjenje.xaml;View\AddPacijent.xaml;View\AddPregled.xaml;View\AddRecepcioner.xaml;View\AddRecept.xaml;View\AddTerapija.xaml;View\AddUspostavlja.xaml;View\AddZdravstveniKarton.xaml;
+MainWindow.xaml;View\AddBolnica.xaml;View\AddDijagnoza.xaml;View\AddDolazi.xaml;View\AddIzdaje.xaml;View\AddLecenje.xaml;View\AddLek.xaml;View\AddLekar.xaml;View\AddMesto.xaml;View\AddObezbedjenje.xaml;View\AddPacijent.xaml;View\AddPoseduje.xaml;View\AddPregled.xaml;View\AddPregleda.xaml;View\AddRecepcioner.xaml;View\AddRecept.xaml;View\AddSadrzi.xaml;View\AddSeLeci.xaml;View\AddTerapija.xaml;View\AddUspostavlja.xaml;View\AddZdravstveniKarton.xaml;
 
-False
+True
 

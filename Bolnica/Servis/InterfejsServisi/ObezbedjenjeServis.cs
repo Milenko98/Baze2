@@ -14,7 +14,7 @@ namespace Servis.InterfejsServisi
         public ObezbedjenjeServis() { }
         public virtual bool Delete(object id)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -36,7 +36,7 @@ namespace Servis.InterfejsServisi
         public virtual Obezbedjenje FindById(object id)
         {
 
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Obezbedjenje>().Find(id);
             }
@@ -44,7 +44,7 @@ namespace Servis.InterfejsServisi
 
         public virtual List<Obezbedjenje> GetAll()
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Obezbedjenje>().ToList();
             }
@@ -52,7 +52,7 @@ namespace Servis.InterfejsServisi
 
         public bool Insert(Obezbedjenje entity)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -71,7 +71,7 @@ namespace Servis.InterfejsServisi
 
         public bool Update(Obezbedjenje entityToUpdate)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {

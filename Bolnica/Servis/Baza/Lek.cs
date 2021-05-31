@@ -17,7 +17,7 @@ namespace Servis.Baza
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Lek()
         {
-            this.Dijagnozas = new HashSet<Dijagnoza>();
+            this.SeLecis = new HashSet<SeLeci>();
         }
     
         public int Id_Leka { get; set; }
@@ -25,6 +25,6 @@ namespace Servis.Baza
         public int Kolicina { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Dijagnoza> Dijagnozas { get; set; }
+        public virtual ICollection<SeLeci> SeLecis { get; set; }
     }
 }

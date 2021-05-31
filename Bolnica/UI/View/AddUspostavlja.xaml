@@ -12,6 +12,8 @@
         <Label Content="Pregled:" FontWeight="Bold" HorizontalAlignment="Left" Margin="298,63,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.002,0.844" Width="120"/>
         <Button Content="{Binding AddButtonContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Command="{Binding AddUspostavljaCommand}" HorizontalAlignment="Left" Margin="298,361,0,0" VerticalAlignment="Top" Width="119" Height="33"/>
         <Label Content="Dijagnoza:" FontWeight="Bold" HorizontalAlignment="Left" Margin="298,136,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cmbLecenje" HorizontalAlignment="Left" Margin="298,249,0,0" SelectedItem="{Binding SelectedLecenje}" ItemsSource="{Binding Lecenja}"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="Lecenja:" FontWeight="Bold" HorizontalAlignment="Left" Margin="298,223,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

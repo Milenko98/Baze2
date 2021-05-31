@@ -10,6 +10,7 @@ namespace Servis.Interfejsi
     public interface IMesto
     {
         Mesto FindById(object id);
+        bool Validate(string name);
         List<Mesto> GetAll();
         bool Insert(Mesto mesto);
         bool Delete(object id);

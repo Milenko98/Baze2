@@ -59,6 +59,12 @@
     <Compile Include="Baza\Dijagnoza.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Baza\Dolazi.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Baza\Izdaje.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Baza\Lecenje.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -95,7 +101,13 @@
     <Compile Include="Baza\Pacijent.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Baza\Poseduje.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Baza\Pregled.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Baza\Pregleda.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Baza\Radnik.cs">
@@ -105,6 +117,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Baza\Recept.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Baza\Sadrzi.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Baza\SeLeci.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Baza\Terapija.cs">
@@ -119,6 +137,8 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Interfejsi\IBolnica.cs" />
     <Compile Include="Interfejsi\IDijagnoza.cs" />
+    <Compile Include="Interfejsi\IDolazi.cs" />
+    <Compile Include="Interfejsi\IIzdaje.cs" />
     <Compile Include="Interfejsi\ILecenje.cs" />
     <Compile Include="Interfejsi\ILek.cs" />
     <Compile Include="Interfejsi\ILekar.cs" />
@@ -126,15 +146,21 @@
     <Compile Include="Interfejsi\IObezbedjenje.cs" />
     <Compile Include="Interfejsi\IOsoba.cs" />
     <Compile Include="Interfejsi\IPacijent.cs" />
+    <Compile Include="Interfejsi\IPoseduje.cs" />
     <Compile Include="Interfejsi\IPregled.cs" />
+    <Compile Include="Interfejsi\IPregleda.cs" />
     <Compile Include="Interfejsi\IRadnik.cs" />
     <Compile Include="Interfejsi\IRecepcioner.cs" />
     <Compile Include="Interfejsi\IRecept.cs" />
+    <Compile Include="Interfejsi\ISadrzi.cs" />
+    <Compile Include="Interfejsi\ISeLeci.cs" />
     <Compile Include="Interfejsi\ITerapija.cs" />
     <Compile Include="Interfejsi\IUspostavlja.cs" />
     <Compile Include="Interfejsi\IZdravstveniKarton.cs" />
     <Compile Include="InterfejsServisi\BolnicaServis.cs" />
     <Compile Include="InterfejsServisi\DijagnozaServis.cs" />
+    <Compile Include="InterfejsServisi\DolaziServis.cs" />
+    <Compile Include="InterfejsServisi\IzdajeServis.cs" />
     <Compile Include="InterfejsServisi\LecenjeServis.cs" />
     <Compile Include="InterfejsServisi\LekarServis.cs" />
     <Compile Include="InterfejsServisi\LekServis.cs" />
@@ -142,16 +168,36 @@
     <Compile Include="InterfejsServisi\ObezbedjenjeServis.cs" />
     <Compile Include="InterfejsServisi\OsobaServis.cs" />
     <Compile Include="InterfejsServisi\PacijentServis.cs" />
+    <Compile Include="InterfejsServisi\PosedujeServis.cs" />
+    <Compile Include="InterfejsServisi\PregledaServis.cs" />
     <Compile Include="InterfejsServisi\PregledServis.cs" />
     <Compile Include="InterfejsServisi\RadnikServis.cs" />
     <Compile Include="InterfejsServisi\RecepcionerServis.cs" />
     <Compile Include="InterfejsServisi\ReceptServis.cs" />
+    <Compile Include="InterfejsServisi\SadrziServis.cs" />
+    <Compile Include="InterfejsServisi\SeLeciServis.cs" />
     <Compile Include="InterfejsServisi\TerapijaServis.cs" />
     <Compile Include="InterfejsServisi\UspostavljaServis.cs" />
     <Compile Include="InterfejsServisi\ZdravstveniKartonServis.cs" />
     <Compile Include="PomocneKlase\BindableBase.cs" />
     <Compile Include="PomocneKlase\MyICommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="Baza\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Baza\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Baza\Model1.Context.tt">
@@ -165,20 +211,6 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
-    <EntityDeploy Include="Baza\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Baza\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </None>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

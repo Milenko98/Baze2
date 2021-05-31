@@ -11,6 +11,7 @@ namespace Servis.Interfejsi
     {
         Recept FindById(object id);
         List<Recept> GetAll();
+        int FindByName(string name);
         bool Insert(Recept recept);
         bool Delete(object id);
         bool Update(Recept recept);

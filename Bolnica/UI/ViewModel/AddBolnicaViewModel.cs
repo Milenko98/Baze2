@@ -75,8 +75,16 @@ namespace UI.ViewModel
                 dobavljenaMesta.Add(item.Naziv);
             }
             Mesta = dobavljenaMesta;
+            if(Mesta.Count == 0)
+            {
+                MessageBox.Show("Nema mesta.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                selectedMesto = Mesta[0];
+            }
 
-            selectedMesto = Mesta[0];
+            
             CreatedBolnica = bolnica;
             AddBolnicaCommand = new MyICommand(OnAddBolnica);
             CreatedBolnica = bolnica;
@@ -119,16 +127,25 @@ namespace UI.ViewModel
                     b.Oznaka_B = Oznaka_B_Random;
                     b.MestoP_Broj = ms.FindByName(selectedMesto);
 
-
-                    if (bs.Insert(b))
+                    if (bs.Validate(b.Naziv))
                     {
 
-                            MessageBox.Show("Bolnica uspešno dodata.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
-                        Window.Close();
+
+                        if (bs.Insert(b))
+                        {
+
+                            MessageBox.Show("Bolnica uspešno dodata.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+                            Window.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Greška prilikom dodavanja.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                            Window.Close();
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Greška prilikom dodavanja.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Vec postoji bolnica sa tim nazivom.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                         Window.Close();
                     }
                 }

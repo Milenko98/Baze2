@@ -15,7 +15,7 @@ namespace Servis.InterfejsServisi
         public LekarServis() { }
         public virtual bool Delete(object id)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -37,7 +37,7 @@ namespace Servis.InterfejsServisi
         public virtual Lekar FindById(object id)
         {
 
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Lekar>().Find(id);
             }
@@ -45,7 +45,7 @@ namespace Servis.InterfejsServisi
 
         public virtual List<Lekar> GetAll()
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Lekar>().ToList();
             }
@@ -53,7 +53,7 @@ namespace Servis.InterfejsServisi
 
         public bool Insert(Lekar entity)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -72,7 +72,7 @@ namespace Servis.InterfejsServisi
 
         public bool Update(Lekar entityToUpdate)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -87,6 +87,15 @@ namespace Servis.InterfejsServisi
                     return false;
                 }
 
+            }
+        }
+
+        public Lekar FindByName(string name)
+        {
+            using (var db = new Model1Container())
+            {
+                var pom = db.Set<Lekar>().First(f => f.Ime == name);
+                return pom;
             }
         }
     }

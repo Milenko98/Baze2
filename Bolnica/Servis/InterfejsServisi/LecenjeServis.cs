@@ -15,7 +15,7 @@ namespace Servis.InterfejsServisi
         public LecenjeServis() { }
         public virtual bool Delete(object id1, object id2)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -37,7 +37,7 @@ namespace Servis.InterfejsServisi
         public virtual Lecenje FindById(object id1, object id2)
         {
 
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Lecenje>().Find(id1, id2);
             }
@@ -45,7 +45,7 @@ namespace Servis.InterfejsServisi
 
         public virtual List<Lecenje> GetAll()
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Lecenje>().ToList();
             }
@@ -53,7 +53,7 @@ namespace Servis.InterfejsServisi
 
         public bool Insert(Lecenje entity)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -72,7 +72,7 @@ namespace Servis.InterfejsServisi
 
         public bool Update(Lecenje entityToUpdate)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {

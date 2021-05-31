@@ -17,16 +17,16 @@ namespace Servis.Baza
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Terapija()
         {
-            this.ZdravstveniKartons = new HashSet<ZdravstveniKarton>();
             this.Lecenjes = new HashSet<Lecenje>();
+            this.Posedujes = new HashSet<Poseduje>();
         }
     
         public int Broj_T { get; set; }
         public string Naziv { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ZdravstveniKarton> ZdravstveniKartons { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Lecenje> Lecenjes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Poseduje> Posedujes { get; set; }
     }
 }

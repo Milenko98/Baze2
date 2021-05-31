@@ -65,18 +65,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="da.cs" />
     <Compile Include="ViewModel\AddBolnicaViewModel.cs" />
     <Compile Include="ViewModel\AddDijagnozaViewModel.cs" />
+    <Compile Include="ViewModel\AddDolaziViewModel.cs" />
+    <Compile Include="ViewModel\AddIzdajeViewModel.cs" />
     <Compile Include="ViewModel\AddLecenjeViewModel.cs" />
     <Compile Include="ViewModel\AddLekarViewModel.cs" />
     <Compile Include="ViewModel\AddLekViewModel.cs" />
     <Compile Include="ViewModel\AddMestoViewModel.cs" />
     <Compile Include="ViewModel\AddObezbedjenjeViewModel.cs" />
     <Compile Include="ViewModel\AddPacijentViewModel.cs" />
+    <Compile Include="ViewModel\AddPosedujeViewModel.cs" />
+    <Compile Include="ViewModel\AddPregledaViewModel.cs" />
     <Compile Include="ViewModel\AddPregledViewModel.cs" />
     <Compile Include="ViewModel\AddRecepcionerViewModel.cs" />
     <Compile Include="ViewModel\AddReceptViewModel.cs" />
+    <Compile Include="ViewModel\AddSadrziViewModel.cs" />
+    <Compile Include="ViewModel\AddSeLeciViewModel.cs" />
     <Compile Include="ViewModel\AddTerapijaViewModel.cs" />
     <Compile Include="ViewModel\AddUspostavljaViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
@@ -86,6 +91,12 @@
     </Compile>
     <Compile Include="View\AddDijagnoza.xaml.cs">
       <DependentUpon>AddDijagnoza.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddDolazi.xaml.cs">
+      <DependentUpon>AddDolazi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddIzdaje.xaml.cs">
+      <DependentUpon>AddIzdaje.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddLecenje.xaml.cs">
       <DependentUpon>AddLecenje.xaml</DependentUpon>
@@ -105,14 +116,26 @@
     <Compile Include="View\AddPacijent.xaml.cs">
       <DependentUpon>AddPacijent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AddPoseduje.xaml.cs">
+      <DependentUpon>AddPoseduje.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddPregled.xaml.cs">
       <DependentUpon>AddPregled.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddPregleda.xaml.cs">
+      <DependentUpon>AddPregleda.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddRecepcioner.xaml.cs">
       <DependentUpon>AddRecepcioner.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddRecept.xaml.cs">
       <DependentUpon>AddRecept.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddSadrzi.xaml.cs">
+      <DependentUpon>AddSadrzi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddSeLeci.xaml.cs">
+      <DependentUpon>AddSeLeci.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddTerapija.xaml.cs">
       <DependentUpon>AddTerapija.xaml</DependentUpon>
@@ -143,6 +166,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AddDolazi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddIzdaje.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddLecenje.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -167,7 +198,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AddPoseduje.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddPregled.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddPregleda.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -176,6 +215,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddRecept.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddSadrzi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddSeLeci.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

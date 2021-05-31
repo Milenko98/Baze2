@@ -10,6 +10,7 @@ namespace Servis.Interfejsi
     public interface IBolnica
     {
         Bolnica FindById(object id);
+        bool Validate(string name);
         int FindByName(string name);
         List<Bolnica> GetAll();
         bool Insert(Bolnica bolnica);

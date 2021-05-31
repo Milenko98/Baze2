@@ -14,7 +14,7 @@ namespace Servis.InterfejsServisi
         public DijagnozaServis() { }
         public virtual bool Delete(object id)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -36,7 +36,7 @@ namespace Servis.InterfejsServisi
         public virtual Dijagnoza FindById(object id)
         {
 
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Dijagnoza>().Find(id);
             }
@@ -44,7 +44,7 @@ namespace Servis.InterfejsServisi
 
         public virtual List<Dijagnoza> GetAll()
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Dijagnoza>().ToList();
             }
@@ -52,7 +52,7 @@ namespace Servis.InterfejsServisi
 
         public bool Insert(Dijagnoza entity)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -71,7 +71,7 @@ namespace Servis.InterfejsServisi
 
         public bool Update(Dijagnoza entityToUpdate)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -91,7 +91,7 @@ namespace Servis.InterfejsServisi
 
         public int FindByName(string name)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 var pom = db.Set<Dijagnoza>().First(f => f.Naziv == name);
                 return pom.Oznaka_D;
@@ -100,7 +100,7 @@ namespace Servis.InterfejsServisi
 
         public Dijagnoza FindByNamee(string name)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 var pom = db.Set<Dijagnoza>().First(f => f.Naziv == name);
                 return pom;

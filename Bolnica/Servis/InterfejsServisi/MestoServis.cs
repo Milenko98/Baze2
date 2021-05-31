@@ -19,7 +19,7 @@ namespace Servis.InterfejsServisi
 
         public virtual bool Delete(object id)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -41,7 +41,7 @@ namespace Servis.InterfejsServisi
         public virtual Mesto FindById(object id)
         {
 
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Mesto>().Find(id);
             }
@@ -49,7 +49,7 @@ namespace Servis.InterfejsServisi
 
         public virtual List<Mesto> GetAll()
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 return db.Set<Mesto>().ToList();
             }
@@ -57,7 +57,7 @@ namespace Servis.InterfejsServisi
 
         public bool Insert(Mesto entity)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -76,7 +76,7 @@ namespace Servis.InterfejsServisi
 
         public bool Update(Mesto entityToUpdate)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 try
                 {
@@ -96,10 +96,22 @@ namespace Servis.InterfejsServisi
 
         public int FindByName(string name)
         {
-            using (var db = new Model1Container1())
+            using (var db = new Model1Container())
             {
                 var pom = db.Set<Mesto>().First(f => f.Naziv == name);
                 return pom.P_Broj;
+            }
+        }
+
+        public bool Validate(string name)
+        {
+            using (var db = new Model1Container())
+            {
+                if (db.Set<Mesto>().FirstOrDefault(f => f.Naziv == name) != null)
+                {
+                    return false;
+                }
+                return true;
             }
         }
     }
