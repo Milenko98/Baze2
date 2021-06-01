@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI.View"
         mc:Ignorable="d"
-        Title="AddTerapija" Height="450" Width="800">
+        Title="AddTerapija" Height="300" Width="300">
     <Grid>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="297,145,0,0" TextWrapping="Wrap" Text="{Binding Naziv, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="{Binding Nazivlbl, UpdateSourceTrigger=PropertyChanged}" x:Name="imelbl" HorizontalAlignment="Left" Margin="259,168,0,0" VerticalAlignment="Top" Width="205" Height="24"/>
-        <Label Content="Naziv terapije:" FontWeight="Bold" HorizontalAlignment="Left" Margin="297,119,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.244,0.548" Width="120"/>
-        <Button Content="{Binding AddButtonContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Command="{Binding AddTerapijaCommand}" HorizontalAlignment="Left" Margin="298,361,0,0" VerticalAlignment="Top" Width="119" Height="33"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="77,93,0,0" TextWrapping="Wrap" Text="{Binding Naziv, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <Label Content="{Binding Nazivlbl, UpdateSourceTrigger=PropertyChanged}" Foreground="red" FontWeight="Bold" x:Name="imelbl" HorizontalAlignment="Left" Margin="65,116,0,0" VerticalAlignment="Top" Width="205" Height="24"/>
+        <Label Content="Naziv terapije:" FontWeight="Bold" HorizontalAlignment="Left" Margin="77,67,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.244,0.548" Width="120"/>
+        <Button Content="{Binding AddButtonContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Command="{Binding AddTerapijaCommand}" HorizontalAlignment="Left" Margin="77,160,0,0" VerticalAlignment="Top" Width="119" Height="33"/>
 
     </Grid>
 </Window>

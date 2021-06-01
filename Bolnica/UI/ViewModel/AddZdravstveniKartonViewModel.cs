@@ -58,10 +58,19 @@ namespace UI.ViewModel
             set { rokVazenjalbl = value; OnPropertyChanged("RokVazenjalbl"); }
         }
 
+        private DateTime izabranDatum;
+
+        public DateTime IzabranDatum
+        {
+            get { return izabranDatum; }
+            set { izabranDatum = value; OnPropertyChanged("IzabranDatum"); }
+        }
+
 
         public AddZdravstveniKartonViewModel(ZdravstveniKarton karton)
         {
             CreatedZdravstveniKarton = karton;
+            IzabranDatum = DateTime.Now;
             List<Pacijent> pacijenti = new List<Pacijent>();
             ObservableCollection<string> dobavljeniPacijenti = new ObservableCollection<string>();
             Servis.InterfejsServisi.PacijentServis ps = new Servis.InterfejsServisi.PacijentServis();
@@ -73,7 +82,7 @@ namespace UI.ViewModel
             Pacijenti = dobavljeniPacijenti;
             if (pacijenti.Count == 0)
             {
-                selectedPacijent = null;
+                MessageBox.Show("Nema pacijenata.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -82,13 +91,13 @@ namespace UI.ViewModel
             AddZdravstveniKartonCommand = new MyICommand(OnAddZdravstveniKarton);
             if (karton != null)
             {
-                rokVazenja = karton.Rok_vazenja;
-                selectedPacijent = karton.Ime_pacijenta + " " + karton.Prezime_pacijenta;
-                AddButtonContent = "IZMENI";
+                SelectedPacijent = karton.Ime_pacijenta + " " + karton.Prezime_pacijenta;
+                IzabranDatum = DateTime.Parse(karton.Rok_vazenja);
+                AddButtonContent = "Izmeni";
             }
             else
             {
-                AddButtonContent = "DODAJ";
+                AddButtonContent = "Dodaj";
             }
         }
 
@@ -100,71 +109,49 @@ namespace UI.ViewModel
             Pacijent p = new Pacijent();
             if (CreatedZdravstveniKarton == null)
             {
-                rokVazenjalbl = "";
-                if (String.IsNullOrWhiteSpace(rokVazenja))
-                    rokVazenjalbl = "Morate uneti rok vazenja zdravstvenog kartona!";
-                else
+                Random r = new Random();
+                int brojKRandom = r.Next(0, 200);
+                ZdravstveniKarton provera = new ZdravstveniKarton();
+                var pronadjen = provera;
+                do
                 {
-                    Random r = new Random();
-                    int brojKRandom = r.Next(0, 200);
-                    ZdravstveniKarton provera = new ZdravstveniKarton();
-                    var pronadjen = provera;
-                    do
-                    {
-                        pronadjen = zks.FindById(brojKRandom);
+                    pronadjen = zks.FindById(brojKRandom);
 
-                    } while (pronadjen != null);
+                } while (pronadjen != null);
 
-                    zk.Broj_K = brojKRandom;
-                    string selectedime = selectedPacijent.Split(' ')[0];
-                    string selectedprezime = selectedPacijent.Split(' ')[1];
-                    zk.Ime_pacijenta = selectedime;
-                    zk.Prezime_pacijenta = selectedprezime;
-                    zk.Rok_vazenja = rokVazenja;
-                    p = ps.FindByName(selectedime);
-                    zk.Pacijent = p;
-                    if (zks.Insert(zk))
-                    {
-                        MessageBox.Show("ZdravstveniKarton uspešno dodat.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
-                        Window.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Greška prilikom dodavanja.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
-                        Window.Close();
-                    }
-                }
-                if (ps.Delete(p.Jmbg))
+                zk.Broj_K = brojKRandom;
+                string selectedime = selectedPacijent.Split(' ')[0];
+                string selectedprezime = selectedPacijent.Split(' ')[1];
+                zk.Ime_pacijenta = selectedime;
+                zk.Prezime_pacijenta = selectedprezime;
+                zk.Rok_vazenja = IzabranDatum.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                p = ps.FindByName(selectedime);
+                zk.PacijentJmbg = p.Jmbg;
+                if (zks.Insert(zk))
                 {
-                    MessageBox.Show("ok.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("ZdravstveniKarton uspešno dodat.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                     Window.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Greška prilikom brisanja pacijenta.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Greška prilikom dodavanja.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     Window.Close();
                 }
             }
             else
             {
-                rokVazenjalbl = "";
-                if (String.IsNullOrWhiteSpace(rokVazenja))
-                    rokVazenjalbl = "Morate uneti rok vazenja zdravstvenog kartona!";
+                CreatedZdravstveniKarton.Ime_pacijenta = selectedPacijent.Split(' ')[0];
+                CreatedZdravstveniKarton.Prezime_pacijenta = selectedPacijent.Split(' ')[1];
+                CreatedZdravstveniKarton.Rok_vazenja = IzabranDatum.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                if (zks.Update(CreatedZdravstveniKarton))
+                {
+                    MessageBox.Show("ZdravstveniKarton uspešno izmenjen.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Window.Close();
+                }
                 else
                 {
-                    CreatedZdravstveniKarton.Ime_pacijenta = selectedPacijent.Split(' ')[0];
-                    CreatedZdravstveniKarton.Prezime_pacijenta = selectedPacijent.Split(' ')[1];
-                    CreatedZdravstveniKarton.Rok_vazenja = rokVazenja;
-                    if (zks.Update(CreatedZdravstveniKarton))
-                    {
-                        MessageBox.Show("ZdravstveniKarton uspešno izmenjen.", "Operacija uspešna.", MessageBoxButton.OK, MessageBoxImage.Information);
-                        Window.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Greška prilikom izmene.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
-                        Window.Close();
-                    }
+                    MessageBox.Show("Greška prilikom izmene.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Window.Close();
                 }
             }
         }

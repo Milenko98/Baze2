@@ -79,7 +79,7 @@ namespace UI.ViewModel
 
             if (Lekovi.Count == 0)
             {
-                MessageBox.Show("Nema lekova.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Nema lekova.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -95,7 +95,7 @@ namespace UI.ViewModel
 
             if (Dijagnoze.Count == 0)
             {
-                MessageBox.Show("Nema dijagnoza.", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Nema dijagnoza.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -108,11 +108,11 @@ namespace UI.ViewModel
             {
                 SelectedLek = seLeci.Lek.Naziv;
                 SelectedDijagnoza = seLeci.Dijagnoza.Naziv;
-                AddButtonContent = "IZMENI";
+                AddButtonContent = "Izmeni";
             }
             else
             {
-                AddButtonContent = "DODAJ";
+                AddButtonContent = "Dodaj";
             }
         }
 
@@ -130,12 +130,12 @@ namespace UI.ViewModel
                 if (sls.Insert(sl))
                 {
 
-                    MessageBox.Show("SeLeci uspešno dodato.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("SeLeci uspešno dodato.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                     Window.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Greška prilikom dodavanja.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Greška prilikom dodavanja.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     Window.Close();
                 }
 
@@ -146,12 +146,12 @@ namespace UI.ViewModel
                 CreatedSeLeci.LekId_Leka = ls.FindByName(SelectedLek);
                 if (sls.Update(CreatedSeLeci))
                 {
-                    MessageBox.Show("SeLeci uspešno izmenjeno.", "Operacija uspešna.", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("SeLeci uspešno izmenjeno.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     Window.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Greška prilikom izmene.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Greška prilikom izmene.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     Window.Close();
                 }
             }

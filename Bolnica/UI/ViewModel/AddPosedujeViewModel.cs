@@ -79,7 +79,7 @@ namespace UI.ViewModel
 
             if (Zkovi.Count == 0)
             {
-                MessageBox.Show("Nema zdravstvenih kartona.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Nema zdravstvenih kartona.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -95,7 +95,7 @@ namespace UI.ViewModel
 
             if (Terapije.Count == 0)
             {
-                MessageBox.Show("Nema terapija.", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Nema terapija.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -109,11 +109,11 @@ namespace UI.ViewModel
 
                 SelectedTerapija = poseduje.Terapija.Broj_T.ToString();
                 SelectedZk = poseduje.ZdravstveniKarton.Broj_K.ToString();
-                AddButtonContent = "IZMENI";
+                AddButtonContent = "Izmeni";
             }
             else
             {
-                AddButtonContent = "DODAJ";
+                AddButtonContent = "Dodaj";
             }
         }
 
@@ -130,12 +130,12 @@ namespace UI.ViewModel
                 if (pos.Insert(p))
                 {
 
-                    MessageBox.Show("Poseduje uspešno dodato.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Poseduje uspešno dodato.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                     Window.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Greška prilikom dodavanja.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Greška prilikom dodavanja.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     Window.Close();
                 }
 
@@ -146,12 +146,12 @@ namespace UI.ViewModel
                 CreatedPoseduje.TerapijaBroj_T = ts.FindByName(SelectedTerapija);
                 if (pos.Update(CreatedPoseduje))
                 {
-                    MessageBox.Show("Poseduje uspešno izmenjeno.", "Operacija uspešna.", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Poseduje uspešno izmenjeno.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                     Window.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Greška prilikom izmene.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Greška prilikom izmene.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     Window.Close();
                 }
             }

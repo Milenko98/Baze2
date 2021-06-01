@@ -87,7 +87,7 @@ namespace UI.ViewModel
         public string Imelbl
         {
             get { return imelbl; }
-            set { imelbl = value; }
+            set { imelbl = value; OnPropertyChanged("Imelbl"); }
         }
 
         private string prezimelbl;
@@ -95,7 +95,7 @@ namespace UI.ViewModel
         public string Prezimelbl
         {
             get { return prezimelbl; }
-            set { prezimelbl = value; }
+            set { prezimelbl = value; OnPropertyChanged("Prezimelbl"); }
         }
 
         private string radnistazlbl;
@@ -103,7 +103,7 @@ namespace UI.ViewModel
         public string Radnistazlbl
         {
             get { return radnistazlbl; }
-            set { radnistazlbl = value; }
+            set { radnistazlbl = value; OnPropertyChanged("Radnistazlbl"); }
         }
 
 
@@ -125,7 +125,15 @@ namespace UI.ViewModel
             }
             Bolnice = dobavljeneBolnice;
 
-            selectedBolnica = Bolnice[0];
+            if(Bolnice.Count == 0)
+            {
+                MessageBox.Show("Nema bolnica za lekara.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                SelectedBolnica = Bolnice[0];
+            }
+            
 
             mestaa = mss.GetAll();
             foreach (var item in mestaa)
@@ -134,18 +142,26 @@ namespace UI.ViewModel
             }
             Mesta = dobavljenaMesta;
 
-            selectedMesto = Mesta[0];
-            AddLekarCommand = new MyICommand(OnAddLekar);
-            if (lekar != null)
+            if(Mesta.Count == 0)
             {
-                ime = lekar.Ime;
-                prezime = lekar.Prezime;
-                radni_staz = lekar.Radni_staz.ToString();
-                AddButtonContent = "IZMENI";
+                MessageBox.Show("Nema mesta za lekara.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
-                AddButtonContent = "DODAJ";
+                SelectedMesto = Mesta[0];
+            }
+            
+            AddLekarCommand = new MyICommand(OnAddLekar);
+            if (lekar != null)
+            {
+                Ime = lekar.Ime;
+                Prezime = lekar.Prezime;
+                Radni_staz = lekar.Radni_staz.ToString();
+                AddButtonContent = "Izmeni";
+            }
+            else
+            {
+                AddButtonContent = "Dodaj";
             }
         }
 
@@ -157,15 +173,27 @@ namespace UI.ViewModel
             Lekar l = new Lekar();
             if (CreatedLekar == null)
             {
-                imelbl = "";
-                prezimelbl = "";
-                radnistazlbl = "";
-                if (String.IsNullOrWhiteSpace(ime))
-                    imelbl = "Morate uneti ime!";
-                else if (String.IsNullOrWhiteSpace(prezime))
-                    prezimelbl = "Morate uneti prezime!";
-                else if (String.IsNullOrWhiteSpace(radni_staz))
-                    radnistazlbl = "Morate uneti radni staz!";
+                Imelbl = "";
+                Prezimelbl = "";
+                Radnistazlbl = "";
+                if (String.IsNullOrWhiteSpace(Ime))
+                    Imelbl = "Morate uneti ime!";
+                else if (int.TryParse(Ime, out _))
+                    Imelbl = "Ime ne moze biti broj!";
+                else if (Ime.Length < 3)
+                    Imelbl = "Ime mora sadrzati bar 3 slova!";
+                else if (String.IsNullOrWhiteSpace(Prezime))
+                    Prezimelbl = "Morate uneti prezime!";
+                else if (int.TryParse(Prezime, out _))
+                    Prezimelbl = "Prezime ne moze biti broj!";
+                else if (Prezime.Length < 3)
+                    Prezimelbl = "Prezime mora sadrzati bar 3 slova!";
+                else if (String.IsNullOrWhiteSpace(Radni_staz))
+                    Radnistazlbl = "Morate uneti radni staz!";
+                else if (!int.TryParse(Radni_staz, out _))
+                    Radnistazlbl = "Radni staz mora biti broj!";
+                else if (int.Parse(Radni_staz) > 80)
+                    Radnistazlbl = "Radni staz ne moze biti veci od 80 godina!";
                 else
                 {
                     Random r = new Random();
@@ -179,21 +207,21 @@ namespace UI.ViewModel
                     } while (pronadjen != null);
 
                     l.Jmbg = jmbgRandom;
-                    l.Ime = ime;
-                    l.Prezime = prezime;
-                    l.Radni_staz = radni_staz;
-                    l.BolnicaOznaka_B = bs.FindByName(selectedBolnica);
-                    l.MestoP_Broj = ms.FindByName(selectedMesto);
+                    l.Ime = Ime;
+                    l.Prezime = Prezime;
+                    l.Radni_staz = Radni_staz;
+                    l.BolnicaOznaka_B = bs.FindByName(SelectedBolnica);
+                    l.MestoP_Broj = ms.FindByName(SelectedMesto);
 
                     if (ls.Insert(l))
                     {
 
-                        MessageBox.Show("Lekar uspešno dodat.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Lekar uspešno dodat.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                         Window.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Greška prilikom dodavanja.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Greška prilikom dodavanja.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                         Window.Close();
                     }
                 }
@@ -201,29 +229,41 @@ namespace UI.ViewModel
             }
             else
             {
-                imelbl = "";
-                prezimelbl = "";
-                radnistazlbl = "";
-                if (String.IsNullOrWhiteSpace(ime))
-                    imelbl = "Morate uneti ime!";
-                else if (String.IsNullOrWhiteSpace(prezime))
-                    prezimelbl = "Morate uneti prezime!";
-                else if (String.IsNullOrWhiteSpace(radni_staz))
-                    radnistazlbl = "Morate uneti radni staz!";
+                Imelbl = "";
+                Prezimelbl = "";
+                Radnistazlbl = "";
+                if (String.IsNullOrWhiteSpace(Ime))
+                    Imelbl = "Morate uneti ime!";
+                else if (int.TryParse(Ime, out _))
+                    Imelbl = "Ime ne moze biti broj!";
+                else if (Ime.Length < 3)
+                    Imelbl = "Ime mora sadrzati bar 3 slova!";
+                else if (String.IsNullOrWhiteSpace(Prezime))
+                    Prezimelbl = "Morate uneti prezime!";
+                else if (int.TryParse(Prezime, out _))
+                    Prezimelbl = "Prezime ne moze biti broj!";
+                else if (Prezime.Length < 3)
+                    Prezimelbl = "Prezime mora sadrzati bar 3 slova!";
+                else if (String.IsNullOrWhiteSpace(Radni_staz))
+                    Radnistazlbl = "Morate uneti radni staz!";
+                else if (!int.TryParse(Radni_staz, out _))
+                    Radnistazlbl = "Radni staz mora biti broj!";
+                else if (int.Parse(Radni_staz) > 80)
+                    Radnistazlbl = "Radni staz ne moze biti veci od 80 godina!";
                 else
                 {
-                    CreatedLekar.Ime = ime;
-                    CreatedLekar.Prezime = prezime;
-                    CreatedLekar.Radni_staz = radni_staz;
-                    CreatedLekar.BolnicaOznaka_B = bs.FindByName(selectedBolnica);
+                    CreatedLekar.Ime = Ime;
+                    CreatedLekar.Prezime = Prezime;
+                    CreatedLekar.Radni_staz = Radni_staz;
+                    CreatedLekar.BolnicaOznaka_B = bs.FindByName(SelectedBolnica);
                     if (ls.Update(CreatedLekar))
                     {
-                        MessageBox.Show("Lekar uspešno izmenjen.", "Operacija uspešna.", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Lekar uspešno izmenjen.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                         Window.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Greška prilikom izmene.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Greška prilikom izmene.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                         Window.Close();
                     }
                 }

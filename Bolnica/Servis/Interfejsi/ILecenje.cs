@@ -12,6 +12,8 @@ namespace Servis.Interfejsi
         Lecenje FindById(object id1, object id2);
         List<Lecenje> GetAll();
         bool Insert(Lecenje lecenje);
+        bool DeleteDijagnoza(int id);
+        bool DeleteTerapija(int id);
         bool Delete(object id1, object id2);
     }
 }

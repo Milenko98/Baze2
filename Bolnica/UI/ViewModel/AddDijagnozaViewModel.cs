@@ -51,11 +51,11 @@ namespace UI.ViewModel
             if (dijagnoza != null)
             {
                 naziv = dijagnoza.Naziv;
-                AddButtonContent = "IZMENI";
+                AddButtonContent = "Izmeni";
             }
             else
             {
-                AddButtonContent = "DODAJ";
+                AddButtonContent = "Dodaj";
             }
         }
 
@@ -65,9 +65,11 @@ namespace UI.ViewModel
             Dijagnoza d = new Dijagnoza();
             if (CreatedDijagnoza == null)
             {
-                nazivlbl = "";
-                if (String.IsNullOrWhiteSpace(naziv))
-                    nazivlbl = "Morate uneti naziv dijagnoze!";
+                Nazivlbl = "";
+                if (String.IsNullOrWhiteSpace(Naziv))
+                    Nazivlbl = "Morate uneti naziv dijagnoze!";
+                else if (int.TryParse(Naziv, out _))
+                    Nazivlbl = "Naziv ne moze biti broj!";
                 else
                 {
                     Random r = new Random();
@@ -81,18 +83,18 @@ namespace UI.ViewModel
                     } while (pronadjen != null);
 
                     d.Oznaka_D = oznakaRandom;
-                    d.Naziv = naziv;
+                    d.Naziv = Naziv;
 
 
                     if (ds.Insert(d))
                     {
 
-                        MessageBox.Show("Dijagnoza uspešno dodata.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Dijagnoza uspešno dodata.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                         Window.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Greška prilikom dodavanja.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Greška prilikom dodavanja.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                         Window.Close();
                     }
                 }
@@ -100,20 +102,22 @@ namespace UI.ViewModel
             }
             else
             {
-                nazivlbl = "";
-                if (String.IsNullOrWhiteSpace(naziv))
-                    nazivlbl = "Morate uneti naziv dijagnoze!";
+                Nazivlbl = "";
+                if (String.IsNullOrWhiteSpace(Naziv))
+                    Nazivlbl = "Morate uneti naziv dijagnoze!";
+                else if (int.TryParse(Naziv, out _))
+                    Nazivlbl = "Naziv ne moze biti broj!";
                 else
                 {
-                    CreatedDijagnoza.Naziv = naziv;
+                    CreatedDijagnoza.Naziv = Naziv;
                     if (ds.Update(CreatedDijagnoza))
                     {
-                        MessageBox.Show("Dijagnoza uspešno izmenjena.", "Operacija uspešna.", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Dijagnoza uspešno izmenjena.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                         Window.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Greška prilikom izmene.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Greška prilikom izmene.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                         Window.Close();
                     }
                 }

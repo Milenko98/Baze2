@@ -27,7 +27,7 @@ namespace Servis.InterfejsServisi
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Message:\n" + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n" + e.InnerException);
+                    Console.WriteLine("Message:\n" + e.Message);
                     return false;
                 }
 
@@ -63,7 +63,7 @@ namespace Servis.InterfejsServisi
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Message:\n" + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n" + e.InnerException);
+                    Console.WriteLine("Message:\n" + e.Message);
                     return false;
                 }
 
@@ -83,10 +83,71 @@ namespace Servis.InterfejsServisi
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Message:\n" + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n" + e.InnerException);
+                    Console.WriteLine("Message:\n" + e.Message);
                     return false;
                 }
 
+            }
+        }
+
+        public bool DeleteDijagnoza(int id)
+        {
+            List<Sadrzi> lista = new List<Sadrzi>();
+            using (var db = new Model1Container())
+            {
+                try
+                {
+                    lista = db.Set<Sadrzi>().Where(x => x.DijagnozaOznaka_D == id).ToList();
+                    if (lista.Count != 0)
+                    {
+                        foreach (var v in lista)
+                        {
+                            db.Set<Sadrzi>().Remove(v);
+                        }
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Message:\n" + e.Message);
+                    return false;
+                }
+            }
+        }
+
+        public bool DeleteZdravstveniKarton(int id)
+        {
+            List<Sadrzi> lista = new List<Sadrzi>();
+            using (var db = new Model1Container())
+            {
+                try
+                {
+                    lista = db.Set<Sadrzi>().ToList();
+                    if (lista.Count != 0)
+                    {
+                        foreach (var v in lista)
+                        {
+                            if(v.ZdravstveniKartonBroj_K == id)
+                                db.Set<Sadrzi>().Remove(v);
+                        }
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Message:\n" + e.Message);
+                    return false;
+                }
             }
         }
     }

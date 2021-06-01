@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI.View"
         mc:Ignorable="d"
-        Title="AddBolnica" Height="450" Width="800">
+        Title="AddBolnica" Height="300" Width="300">
     <Grid>
-        <ComboBox x:Name="cmbMesto" HorizontalAlignment="Left" Margin="395,167,0,0" SelectedItem="{Binding SelectedMesto}" ItemsSource="{Binding Mesta}"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="170,166,0,0" TextWrapping="Wrap" Text="{Binding NazivBolnice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Naziv bolnice:" FontWeight="Bold" HorizontalAlignment="Left" Margin="180,140,0,0" VerticalAlignment="Top"/>
-        <Label Content="{Binding  Nazivlbl, UpdateSourceTrigger=PropertyChanged}" Name="Nazivlbl" HorizontalAlignment="Left" Margin="129,189,0,0" VerticalAlignment="Top" Width="204" Height="23"/>
-        <Button Content="{Binding AddButtonContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsDefault="True" Command="{Binding AddBolnicaCommand}" HorizontalAlignment="Left" Margin="263,249,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.077,0.576" Height="31"/>
+        <ComboBox x:Name="cmbMesto" HorizontalAlignment="Left" Margin="59,129,0,0" SelectedItem="{Binding SelectedMesto}" ItemsSource="{Binding Mesta}"  VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="59,62,0,0" TextWrapping="Wrap" Text="{Binding NazivBolnice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Naziv bolnice:" FontWeight="Bold" HorizontalAlignment="Left" Margin="69,36,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding  Nazivlbl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="Nazivlbl" Foreground="Red" FontWeight="Bold" HorizontalAlignment="Left" Margin="51,85,0,0" VerticalAlignment="Top" Width="187" Height="23"/>
+        <Button Content="{Binding AddButtonContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsDefault="True" Command="{Binding AddBolnicaCommand}" HorizontalAlignment="Left" Margin="59,203,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.077,0.576" Height="31"/>
 
     </Grid>
 </Window>

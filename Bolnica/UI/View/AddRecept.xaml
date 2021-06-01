@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI.View"
         mc:Ignorable="d"
-        Title="AddRecept" Height="450" Width="800">
-    <Grid>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="301,74,0,0" TextWrapping="Wrap" Text="{Binding Naziv, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="{Binding Nazivlbl, UpdateSourceTrigger=PropertyChanged}" x:Name="imelbl" HorizontalAlignment="Left" Margin="263,97,0,0" VerticalAlignment="Top" Width="205" Height="24"/>
-        <Label Content="Naziv recepta:" FontWeight="Bold" HorizontalAlignment="Left" Margin="301,48,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.244,0.548" Width="120"/>
-        <Button Content="{Binding AddButtonContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Command="{Binding AddReceptCommand}" HorizontalAlignment="Left" Margin="298,361,0,0" VerticalAlignment="Top" Width="119" Height="33"/>
+        Title="AddRecept" Height="300" Width="300">
+    <Grid Margin="0,0,2,0">
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="87,88,0,0" TextWrapping="Wrap" Text="{Binding Naziv, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <Label Content="{Binding Nazivlbl, UpdateSourceTrigger=PropertyChanged}" Foreground="Red" FontWeight="Bold" x:Name="imelbl" HorizontalAlignment="Left" Margin="75,111,0,0" VerticalAlignment="Top" Width="205" Height="24"/>
+        <Label Content="Naziv recepta:" FontWeight="Bold" HorizontalAlignment="Left" Margin="87,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.244,0.548" Width="120"/>
+        <Button Content="{Binding AddButtonContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Command="{Binding AddReceptCommand}" HorizontalAlignment="Left" Margin="87,153,0,0" VerticalAlignment="Top" Width="119" Height="33"/>
 
     </Grid>
 </Window>

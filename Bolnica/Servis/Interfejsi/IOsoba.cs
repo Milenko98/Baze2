@@ -12,6 +12,7 @@ namespace Servis.Interfejsi
         Osoba FindById(object id);
         int FindByName(string name);
         List<Osoba> GetAll();
+        bool DeleteBolnica(int id);
         bool Insert(Osoba osoba);
         bool Delete(object id);
         bool Update(Osoba osoba);

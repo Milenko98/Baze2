@@ -5,25 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI.View"
         mc:Ignorable="d"
-        Title="AddPacijent" Height="450" Width="800">
+        Title="AddPacijent" Height="400" Width="400">
     <Grid>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="75,91,0,0" TextWrapping="Wrap" Text="{Binding Ime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="72,190,0,0" TextWrapping="Wrap" Text="{Binding Prezime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="72,283,0,0" TextWrapping="Wrap" Text="{Binding Radni_staz, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="{Binding Imelbl, UpdateSourceTrigger=PropertyChanged}" x:Name="imelbl" HorizontalAlignment="Left" Margin="37,114,0,0" VerticalAlignment="Top" Width="205" Height="24">
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="63,51,0,0" TextWrapping="Wrap" Text="{Binding Ime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="60,150,0,0" TextWrapping="Wrap" Text="{Binding Prezime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="60,243,0,0" TextWrapping="Wrap" Text="{Binding Radni_staz, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <Label Content="{Binding Imelbl, UpdateSourceTrigger=PropertyChanged}" Foreground="Red" FontWeight="Bold" x:Name="imelbl" HorizontalAlignment="Left" Margin="44,74,0,0" VerticalAlignment="Top" Width="205" Height="24">
         </Label>
-        <Label Content="{Binding Prezimelbl, UpdateSourceTrigger=PropertyChanged}" x:Name="prezimelbl" HorizontalAlignment="Left" Margin="43,213,0,0" VerticalAlignment="Top" Width="205" Height="25">
+        <Label Content="{Binding Prezimelbl, UpdateSourceTrigger=PropertyChanged}" Foreground="Red" FontWeight="Bold" x:Name="prezimelbl" HorizontalAlignment="Left" Margin="44,173,0,0" VerticalAlignment="Top" Width="205" Height="25">
         </Label>
-        <Label Content="{Binding Radnistazlbl, UpdateSourceTrigger=PropertyChanged}" x:Name="radnistazlbl" HorizontalAlignment="Left" Margin="43,306,0,0" VerticalAlignment="Top" Width="205" Height="27">
+        <Label Content="{Binding Radnistazlbl, UpdateSourceTrigger=PropertyChanged}" Foreground="Red" FontWeight="Bold" x:Name="radnistazlbl" HorizontalAlignment="Left" Margin="44,266,0,0" VerticalAlignment="Top" Width="328" Height="27">
         </Label>
-        <ComboBox x:Name="cmbBolnica" HorizontalAlignment="Left" Margin="379,91,0,0" SelectedItem="{Binding SelectedBolnica}" ItemsSource="{Binding Bolnice}"  VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="cmbMesto" HorizontalAlignment="Left" Margin="379,164,0,0" SelectedItem="{Binding SelectedMesto}" ItemsSource="{Binding Mesta}"  VerticalAlignment="Top" Width="120"/>
-        <Label Content="Ime:" FontWeight="Bold" HorizontalAlignment="Left" Margin="75,65,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.244,0.548" Width="120"/>
-        <Label Content="Radni staz:" FontWeight="Bold" HorizontalAlignment="Left" Margin="72,257,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.244,0.548" Width="120"/>
-        <Label Content="Prezime:" FontWeight="Bold" HorizontalAlignment="Left" Margin="72,164,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.244,0.548" Width="120"/>
-        <Label Content="Bolnica:" FontWeight="Bold" HorizontalAlignment="Left" Margin="379,65,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.002,0.844" Width="120"/>
-        <Button Content="{Binding AddButtonContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Command="{Binding AddLekarCommand}" HorizontalAlignment="Left" Margin="298,361,0,0" VerticalAlignment="Top" Width="119" Height="33"/>
-        <Label Content="Mesto prebivalista:" FontWeight="Bold" HorizontalAlignment="Left" Margin="379,138,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cmbBolnica" HorizontalAlignment="Left" Margin="232,51,0,0" SelectedItem="{Binding SelectedBolnica}" ItemsSource="{Binding Bolnice}"  VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cmbMesto" HorizontalAlignment="Left" Margin="232,124,0,0" SelectedItem="{Binding SelectedMesto}" ItemsSource="{Binding Mesta}"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="Ime:" FontWeight="Bold" HorizontalAlignment="Left" Margin="63,25,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.244,0.548" Width="120"/>
+        <Label Content="Radni staz:" FontWeight="Bold" HorizontalAlignment="Left" Margin="60,217,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.244,0.548" Width="120"/>
+        <Label Content="Prezime:" FontWeight="Bold" HorizontalAlignment="Left" Margin="60,124,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.244,0.548" Width="120"/>
+        <Label Content="Bolnica:" FontWeight="Bold" HorizontalAlignment="Left" Margin="232,25,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.002,0.844" Width="120"/>
+        <Button Content="{Binding AddButtonContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Command="{Binding AddLekarCommand}" HorizontalAlignment="Left" Margin="130,315,0,0" VerticalAlignment="Top" Width="119" Height="33"/>
+        <Label Content="Mesto prebivalista:" FontWeight="Bold" HorizontalAlignment="Left" Margin="232,98,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

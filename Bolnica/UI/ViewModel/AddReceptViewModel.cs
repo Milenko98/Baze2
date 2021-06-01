@@ -52,11 +52,11 @@ namespace UI.ViewModel
             if (recept != null)
             {
                 naziv = recept.Naziv;
-                AddButtonContent = "IZMENI";
+                AddButtonContent = "Izmeni";
             }
             else
             {
-                AddButtonContent = "DODAJ";
+                AddButtonContent = "Dodaj";
             }
         }
 
@@ -66,9 +66,13 @@ namespace UI.ViewModel
             Recept r = new Recept();
             if (CreatedRecept == null)
             {
-                nazivlbl = "";
-                if (String.IsNullOrWhiteSpace(naziv))
-                    nazivlbl = "Morate uneti naziv recepta!";
+                Nazivlbl = "";
+                if (String.IsNullOrWhiteSpace(Naziv))
+                    Nazivlbl = "Morate uneti naziv recepta!";
+                else if(int.TryParse(Naziv, out _))
+                    Nazivlbl = "Naziv ne moze biti broj!";
+                else if(Naziv.Length < 3)
+                    Nazivlbl = "Naziv mora sadrzati bar 3 slova!";
                 else
                 {
                     Random rr = new Random();
@@ -87,12 +91,12 @@ namespace UI.ViewModel
                     if (rs.Insert(r))
                     {
 
-                        MessageBox.Show("Recept uspešno dodat.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Recept uspešno dodat.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                         Window.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Greška prilikom dodavanja.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Greška prilikom dodavanja.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                         Window.Close();
                     }
                 }
@@ -100,20 +104,24 @@ namespace UI.ViewModel
             }
             else
             {
-                nazivlbl = "";
-                if (String.IsNullOrWhiteSpace(naziv))
-                    nazivlbl = "Morate uneti naziv leka!";
+                Nazivlbl = "";
+                if (String.IsNullOrWhiteSpace(Naziv))
+                    Nazivlbl = "Morate uneti naziv recepta!";
+                else if (int.TryParse(Naziv, out _))
+                    Nazivlbl = "Naziv ne moze biti broj!";
+                else if (Naziv.Length < 3)
+                    Nazivlbl = "Naziv mora sadrzati bar 3 slova!";
                 else
                 {
                     CreatedRecept.Naziv = naziv;
                     if (rs.Update(CreatedRecept))
                     {
-                        MessageBox.Show("Recept uspešno izmenjen.", "Operacija uspešna.", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Recept uspešno izmenjen.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                         Window.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Greška prilikom izmene.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Greška prilikom izmene.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                         Window.Close();
                     }
                 }

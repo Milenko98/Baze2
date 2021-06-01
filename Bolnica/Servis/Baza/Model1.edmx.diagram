@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ff0d0e8677654f5b93674b7964c8b07e" Name="Diagram1" ZoomLevel="89" >
+      <Diagram DiagramId="ff0d0e8677654f5b93674b7964c8b07e" Name="Diagram1" ZoomLevel="87" >
         <EntityTypeShape EntityType="Model1.Bolnica" Width="1.5" PointX="1.5" PointY="3" />
         <EntityTypeShape EntityType="Model1.Mesto" Width="1.5" PointX="6.25" PointY="2.875" />
         <EntityTypeShape EntityType="Model1.Osoba" Width="1.5" PointX="1.375" PointY="6.625" />
@@ -28,7 +28,6 @@
         <EntityTypeShape EntityType="Model1.Dolazi" Width="1.5" PointX="6.625" PointY="9.625" />
         <EntityTypeShape EntityType="Model1.Pregleda" Width="1.5" PointX="2.75" PointY="14.875" />
         <AssociationConnector Association="Model1.BolnicaOsoba" />
-        <AssociationConnector Association="Model1.PacijentZdravstveniKarton" />
         <AssociationConnector Association="Model1.DijagnozaLecenje" />
         <AssociationConnector Association="Model1.LekSeLeci" />
         <AssociationConnector Association="Model1.TerapijaLecenje" />
@@ -52,6 +51,7 @@
         <AssociationConnector Association="Model1.PacijentDolazi" />
         <AssociationConnector Association="Model1.DolaziPregled" />
         <AssociationConnector Association="Model1.UspostavljaIzdaje" />
+        <AssociationConnector Association="Model1.PacijentZdravstveniKarton" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

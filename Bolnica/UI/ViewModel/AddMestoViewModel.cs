@@ -69,7 +69,11 @@ namespace UI.ViewModel
             {
                 Nazivlbl = "";
                 if (String.IsNullOrWhiteSpace(NazivMesta))
-                    nazivlbl = "Morate uneti naziv mesta";
+                    Nazivlbl = "Morate uneti naziv mesta";
+                else if (int.TryParse(NazivMesta, out _))
+                    Nazivlbl = "Naziv ne moze biti broj!";
+                else if (NazivMesta.Length < 2)
+                    Nazivlbl = "Mesto mora da sadrzi bar 2 slova!";
                 else
                 {
                     Random r = new Random();
@@ -91,19 +95,18 @@ namespace UI.ViewModel
                         if (ms.Insert(m))
                         {
 
-                            MessageBox.Show("Mesto uspešno dodato.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show("Mesto uspešno dodato.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                             Window.Close();
                         }
                         else
                         {
-                            MessageBox.Show("Greška prilikom dodavanja.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("Greška prilikom dodavanja.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                             Window.Close();
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Vec postoji mesto sa tim nazivom.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
-                        Window.Close();
+                        MessageBox.Show("Vec postoji mesto sa tim nazivom.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
 
@@ -113,17 +116,21 @@ namespace UI.ViewModel
                 Nazivlbl = "";
                 if (String.IsNullOrWhiteSpace(NazivMesta))
                     nazivlbl = "Morate uneti naziv mesta";
+                else if (int.TryParse(NazivMesta, out _))
+                    Nazivlbl = "Naziv ne moze biti broj!";
+                else if (NazivMesta.Length < 2)
+                    Nazivlbl = "Mesto mora da sadrzi bar 2 slova!";
                 else
                 {
                     CreatedMesto.Naziv = NazivMesta;
                     if (ms.Update(CreatedMesto))
                     {
-                        MessageBox.Show("Mesto uspešno izmenjeno.", "Operacija uspešna.", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Mesto uspešno izmenjeno.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                         Window.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Greška prilikom izmene.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Greška prilikom izmene.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                         Window.Close();
                     }
                 }

@@ -23,18 +23,14 @@
     <EntitySet Name="Izdajes" EntityType="Model1.Store.Izdajes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Dolazis" EntityType="Model1.Store.Dolazis" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Pregledas" EntityType="Model1.Store.Pregledas" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Osobas_Pacijent" EntityType="Model1.Store.Osobas_Pacijent" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Osobas_Radnik" EntityType="Model1.Store.Osobas_Radnik" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Osobas_Lekar" EntityType="Model1.Store.Osobas_Lekar" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Osobas_Pacijent" EntityType="Model1.Store.Osobas_Pacijent" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Osobas_Recepcioner" EntityType="Model1.Store.Osobas_Recepcioner" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Osobas_Obezbedjenje" EntityType="Model1.Store.Osobas_Obezbedjenje" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="BolnicaOsoba" Association="Model1.Store.BolnicaOsoba">
       <End Role="Bolnica" EntitySet="Bolnicas" />
       <End Role="Osoba" EntitySet="Osobas" />
-    </AssociationSet>
-    <AssociationSet Name="PacijentZdravstveniKarton" Association="Model1.Store.PacijentZdravstveniKarton">
-      <End Role="Pacijent" EntitySet="Osobas_Pacijent" />
-      <End Role="ZdravstveniKarton" EntitySet="ZdravstveniKartons" />
     </AssociationSet>
     <AssociationSet Name="DijagnozaLecenje" Association="Model1.Store.DijagnozaLecenje">
       <End Role="Dijagnoza" EntitySet="Dijagnozas" />
@@ -108,9 +104,9 @@
       <End Role="Uspostavlja" EntitySet="Uspostavljas" />
       <End Role="Izdaje" EntitySet="Izdajes" />
     </AssociationSet>
-    <AssociationSet Name="FK_Pacijent_inherits_Osoba" Association="Model1.Store.FK_Pacijent_inherits_Osoba">
-      <End Role="Osoba" EntitySet="Osobas" />
+    <AssociationSet Name="PacijentZdravstveniKarton" Association="Model1.Store.PacijentZdravstveniKarton">
       <End Role="Pacijent" EntitySet="Osobas_Pacijent" />
+      <End Role="ZdravstveniKarton" EntitySet="ZdravstveniKartons" />
     </AssociationSet>
     <AssociationSet Name="FK_Radnik_inherits_Osoba" Association="Model1.Store.FK_Radnik_inherits_Osoba">
       <End Role="Osoba" EntitySet="Osobas" />
@@ -119,6 +115,10 @@
     <AssociationSet Name="FK_Lekar_inherits_Radnik" Association="Model1.Store.FK_Lekar_inherits_Radnik">
       <End Role="Radnik" EntitySet="Osobas_Radnik" />
       <End Role="Lekar" EntitySet="Osobas_Lekar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pacijent_inherits_Osoba" Association="Model1.Store.FK_Pacijent_inherits_Osoba">
+      <End Role="Osoba" EntitySet="Osobas" />
+      <End Role="Pacijent" EntitySet="Osobas_Pacijent" />
     </AssociationSet>
     <AssociationSet Name="FK_Recepcioner_inherits_Radnik" Association="Model1.Store.FK_Recepcioner_inherits_Radnik">
       <End Role="Radnik" EntitySet="Osobas_Radnik" />
@@ -163,7 +163,7 @@
     <Property Name="Rok_vazenja" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Ime_pacijenta" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Prezime_pacijenta" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Pacijent_Jmbg" Type="int" Nullable="false" />
+    <Property Name="PacijentJmbg" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Dijagnozas">
     <Key>
@@ -272,12 +272,6 @@
     <Property Name="LekarJmbg" Type="int" Nullable="false" />
     <Property Name="PregledBroj_P" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Osobas_Pacijent">
-    <Key>
-      <PropertyRef Name="Jmbg" />
-    </Key>
-    <Property Name="Jmbg" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="Osobas_Radnik">
     <Key>
       <PropertyRef Name="Jmbg" />
@@ -285,6 +279,12 @@
     <Property Name="Jmbg" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Osobas_Lekar">
+    <Key>
+      <PropertyRef Name="Jmbg" />
+    </Key>
+    <Property Name="Jmbg" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Osobas_Pacijent">
     <Key>
       <PropertyRef Name="Jmbg" />
     </Key>
@@ -311,18 +311,6 @@
       </Principal>
       <Dependent Role="Osoba">
         <PropertyRef Name="BolnicaOznaka_B" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="PacijentZdravstveniKarton">
-    <End Role="Pacijent" Type="Model1.Store.Osobas_Pacijent" Multiplicity="1" />
-    <End Role="ZdravstveniKarton" Type="Model1.Store.ZdravstveniKartons" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Pacijent">
-        <PropertyRef Name="Jmbg" />
-      </Principal>
-      <Dependent Role="ZdravstveniKarton">
-        <PropertyRef Name="Pacijent_Jmbg" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -546,17 +534,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Pacijent_inherits_Osoba">
-    <End Role="Osoba" Type="Model1.Store.Osobas" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Pacijent" Type="Model1.Store.Osobas_Pacijent" Multiplicity="0..1" />
+  <Association Name="PacijentZdravstveniKarton">
+    <End Role="Pacijent" Type="Model1.Store.Osobas_Pacijent" Multiplicity="1" />
+    <End Role="ZdravstveniKarton" Type="Model1.Store.ZdravstveniKartons" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Osoba">
+      <Principal Role="Pacijent">
         <PropertyRef Name="Jmbg" />
       </Principal>
-      <Dependent Role="Pacijent">
-        <PropertyRef Name="Jmbg" />
+      <Dependent Role="ZdravstveniKarton">
+        <PropertyRef Name="PacijentJmbg" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -584,6 +570,20 @@
         <PropertyRef Name="Jmbg" />
       </Principal>
       <Dependent Role="Lekar">
+        <PropertyRef Name="Jmbg" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pacijent_inherits_Osoba">
+    <End Role="Osoba" Type="Model1.Store.Osobas" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Pacijent" Type="Model1.Store.Osobas_Pacijent" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Osoba">
+        <PropertyRef Name="Jmbg" />
+      </Principal>
+      <Dependent Role="Pacijent">
         <PropertyRef Name="Jmbg" />
       </Dependent>
     </ReferentialConstraint>
@@ -641,10 +641,6 @@
           <AssociationSet Name="BolnicaOsoba" Association="Model1.BolnicaOsoba">
             <End Role="Bolnica" EntitySet="Bolnicas" />
             <End Role="Osoba" EntitySet="Osobas" />
-          </AssociationSet>
-          <AssociationSet Name="PacijentZdravstveniKarton" Association="Model1.PacijentZdravstveniKarton">
-            <End Role="Pacijent" EntitySet="Osobas" />
-            <End Role="ZdravstveniKarton" EntitySet="ZdravstveniKartons" />
           </AssociationSet>
           <AssociationSet Name="DijagnozaLecenje" Association="Model1.DijagnozaLecenje">
             <End Role="Dijagnoza" EntitySet="Dijagnozas" />
@@ -718,6 +714,10 @@
             <End Role="Uspostavlja" EntitySet="Uspostavljas" />
             <End Role="Izdaje" EntitySet="Izdajes" />
           </AssociationSet>
+          <AssociationSet Name="PacijentZdravstveniKarton" Association="Model1.PacijentZdravstveniKarton">
+            <End Role="Pacijent" EntitySet="Osobas" />
+            <End Role="ZdravstveniKarton" EntitySet="ZdravstveniKartons" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Bolnica">
           <Key>
@@ -751,8 +751,8 @@
         </EntityType>
         <EntityType Name="Radnik" BaseType="Model1.Osoba" />
         <EntityType Name="Pacijent" BaseType="Model1.Osoba">
-          <NavigationProperty Name="ZdravstveniKarton" Relationship="Model1.PacijentZdravstveniKarton" FromRole="Pacijent" ToRole="ZdravstveniKarton" />
           <NavigationProperty Name="Dolazis" Relationship="Model1.PacijentDolazi" FromRole="Pacijent" ToRole="Dolazi" />
+          <NavigationProperty Name="ZdravstveniKartons" Relationship="Model1.PacijentZdravstveniKarton" FromRole="Pacijent" ToRole="ZdravstveniKarton" />
         </EntityType>
         <EntityType Name="Lekar" BaseType="Model1.Radnik">
           <NavigationProperty Name="Pregledas" Relationship="Model1.LekarPregleda" FromRole="Lekar" ToRole="Pregleda" />
@@ -767,9 +767,10 @@
           <Property Name="Rok_vazenja" Type="String" Nullable="false" />
           <Property Name="Ime_pacijenta" Type="String" Nullable="false" />
           <Property Name="Prezime_pacijenta" Type="String" Nullable="false" />
-          <NavigationProperty Name="Pacijent" Relationship="Model1.PacijentZdravstveniKarton" FromRole="ZdravstveniKarton" ToRole="Pacijent" />
           <NavigationProperty Name="Sadrzis" Relationship="Model1.ZdravstveniKartonSadrzi" FromRole="ZdravstveniKarton" ToRole="Sadrzi" />
           <NavigationProperty Name="Posedujes" Relationship="Model1.ZdravstveniKartonPoseduje" FromRole="ZdravstveniKarton" ToRole="Poseduje" />
+          <NavigationProperty Name="Pacijent" Relationship="Model1.PacijentZdravstveniKarton" FromRole="ZdravstveniKarton" ToRole="Pacijent" />
+          <Property Name="PacijentJmbg" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Dijagnoza">
           <Key>
@@ -919,10 +920,6 @@
               <PropertyRef Name="BolnicaOznaka_B" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="PacijentZdravstveniKarton">
-          <End Type="Model1.Pacijent" Role="Pacijent" Multiplicity="1" />
-          <End Type="Model1.ZdravstveniKarton" Role="ZdravstveniKarton" Multiplicity="0..1" />
         </Association>
         <Association Name="DijagnozaLecenje">
           <End Type="Model1.Dijagnoza" Role="Dijagnoza" Multiplicity="1" />
@@ -1144,6 +1141,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="PacijentZdravstveniKarton">
+          <End Type="Model1.Pacijent" Role="Pacijent" Multiplicity="1" />
+          <End Type="Model1.ZdravstveniKarton" Role="ZdravstveniKarton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacijent">
+              <PropertyRef Name="Jmbg" />
+            </Principal>
+            <Dependent Role="ZdravstveniKarton">
+              <PropertyRef Name="PacijentJmbg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1178,11 +1187,6 @@
           <ScalarProperty Name="Radni_staz" ColumnName="Radni_staz" />
         </MappingFragment>
       </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(Model1.Pacijent)">
-        <MappingFragment StoreEntitySet="Osobas_Pacijent">
-          <ScalarProperty Name="Jmbg" ColumnName="Jmbg" />
-        </MappingFragment>
-      </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Model1.Radnik)">
         <MappingFragment StoreEntitySet="Osobas_Radnik">
           <ScalarProperty Name="Jmbg" ColumnName="Jmbg" />
@@ -1190,6 +1194,11 @@
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Model1.Lekar)">
         <MappingFragment StoreEntitySet="Osobas_Lekar">
+          <ScalarProperty Name="Jmbg" ColumnName="Jmbg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Pacijent)">
+        <MappingFragment StoreEntitySet="Osobas_Pacijent">
           <ScalarProperty Name="Jmbg" ColumnName="Jmbg" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -1211,6 +1220,7 @@
           <ScalarProperty Name="Rok_vazenja" ColumnName="Rok_vazenja" />
           <ScalarProperty Name="Ime_pacijenta" ColumnName="Ime_pacijenta" />
           <ScalarProperty Name="Prezime_pacijenta" ColumnName="Prezime_pacijenta" />
+          <ScalarProperty Name="PacijentJmbg" ColumnName="PacijentJmbg" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1325,14 +1335,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="PacijentZdravstveniKarton" TypeName="Model1.PacijentZdravstveniKarton" StoreEntitySet="ZdravstveniKartons">
-      <EndProperty Name="Pacijent">
-        <ScalarProperty Name="Jmbg" ColumnName="Pacijent_Jmbg" />
-      </EndProperty>
-      <EndProperty Name="ZdravstveniKarton">
-        <ScalarProperty Name="Broj_K" ColumnName="Broj_K" />
-      </EndProperty>
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

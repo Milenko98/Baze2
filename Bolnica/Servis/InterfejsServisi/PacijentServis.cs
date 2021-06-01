@@ -26,7 +26,7 @@ namespace Servis.InterfejsServisi
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Message:\n" + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n" + e.InnerException);
+                    Console.WriteLine("Message:\n" + e.Message);
                     return false;
                 }
 
@@ -62,7 +62,7 @@ namespace Servis.InterfejsServisi
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Message:\n" + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n" + e.InnerException);
+                    Console.WriteLine("Message:\n" + e.Message);
                     return false;
                 }
 
@@ -82,7 +82,7 @@ namespace Servis.InterfejsServisi
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Message:\n" + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n" + e.InnerException);
+                    Console.WriteLine("Message:\n" + e.Message);
                     return false;
                 }
 
@@ -94,6 +94,82 @@ namespace Servis.InterfejsServisi
             {
                 var pom = db.Set<Pacijent>().First(f => f.Ime == name);
                 return pom;
+            }
+        }
+
+        public bool DeleteBolnica(int id)
+        {
+            List<Pacijent> lista = new List<Pacijent>();
+            ZdravstveniKartonServis zks = new ZdravstveniKartonServis();
+            DolaziServis ds = new DolaziServis();
+            bool b1 = false;
+            bool b2 = false;
+            using (var db = new Model1Container())
+            {
+                try
+                {
+                    lista = db.Set<Pacijent>().Where(x => x.BolnicaOznaka_B == id).ToList();
+                    if (lista.Count != 0)
+                    {
+                        foreach (var v in lista)
+                        {
+                            if (zks.DeletePacijent(v.Jmbg))
+                                b1 = true;
+                            if (ds.DeletePacijent(v.Jmbg))
+                                b2 = true;
+                            if(b1 || b2)
+                                db.Set<Pacijent>().Remove(v);
+                        }
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Message:\n" + e.Message);
+                    return false;
+                }
+            }
+        }
+
+        public bool DeleteMesto(int id)
+        {
+            List<Pacijent> lista = new List<Pacijent>();
+            ZdravstveniKartonServis zks = new ZdravstveniKartonServis();
+            DolaziServis ds = new DolaziServis();
+            using (var db = new Model1Container())
+            {
+                try
+                {
+                    lista = db.Set<Pacijent>().ToList();
+                    if (lista.Count != 0)
+                    {
+                        foreach (var v in lista)
+                        {
+                            if (v.BolnicaOznaka_B == id)
+                            {
+                                zks.DeletePacijent(v.Jmbg);
+                                ds.DeletePacijent(v.Jmbg);
+                                db.Set<Pacijent>().Remove(v);
+                            }
+                        }
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Message:\n" + e.Message);
+                    return false;
+                }
             }
         }
     }

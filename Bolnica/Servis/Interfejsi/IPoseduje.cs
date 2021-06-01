@@ -11,8 +11,10 @@ namespace Servis.Interfejsi
     {
         Poseduje FindById(object id);
         List<Poseduje> GetAll();
+        bool DeleteZdravstveniKarton(int id);
         bool Insert(Poseduje poseduje);
         bool Delete(object id1, object id2);
+        bool DeleteTerapija(int id);
         bool Update(Poseduje poseduje);
     }
 }

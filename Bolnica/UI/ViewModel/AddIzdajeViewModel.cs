@@ -79,7 +79,7 @@ namespace UI.ViewModel
 
             if (Uspostavke.Count == 0)
             {
-                MessageBox.Show("Nema uspostavke.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Nema uspostavke.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -95,7 +95,7 @@ namespace UI.ViewModel
 
             if (Recepti.Count == 0)
             {
-                MessageBox.Show("Nema recepata.", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Nema recepata.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -108,11 +108,11 @@ namespace UI.ViewModel
             {
                 SelectedRecept = izdaje.Recept.Naziv;
                 SelectedUspostavka = izdaje.Uspostavlja.DijagnozaOznaka_D + "," + izdaje.Uspostavlja.PregledBroj_P;
-                AddButtonContent = "IZMENI";
+                AddButtonContent = "Izmeni";
             }
             else
             {
-                AddButtonContent = "DODAJ";
+                AddButtonContent = "Dodaj";
             }
         }
 
@@ -133,12 +133,12 @@ namespace UI.ViewModel
                 if (iss.Insert(i))
                 {
 
-                    MessageBox.Show("Izdaje uspešno dodato.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Izdaje uspešno dodato.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                     Window.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Greška prilikom dodavanja.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Greška prilikom dodavanja.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     Window.Close();
                 }
 
@@ -150,12 +150,12 @@ namespace UI.ViewModel
                 CreatedIzdaje.ReceptOznaka_R = rs.FindByName(SelectedRecept);
                 if (iss.Update(CreatedIzdaje))
                 {
-                    MessageBox.Show("Izdaje uspešno izmenjeno.", "Operacija uspešna.", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Izdaje uspešno izmenjeno.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                     Window.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Greška prilikom izmene.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Greška prilikom izmene.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     Window.Close();
                 }
             }

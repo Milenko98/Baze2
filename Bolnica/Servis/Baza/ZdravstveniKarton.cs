@@ -25,11 +25,12 @@ namespace Servis.Baza
         public string Rok_vazenja { get; set; }
         public string Ime_pacijenta { get; set; }
         public string Prezime_pacijenta { get; set; }
+        public int PacijentJmbg { get; set; }
     
-        public virtual Pacijent Pacijent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sadrzi> Sadrzis { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Poseduje> Posedujes { get; set; }
+        public virtual Pacijent Pacijent { get; set; }
     }
 }

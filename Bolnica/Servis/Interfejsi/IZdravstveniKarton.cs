@@ -11,6 +11,7 @@ namespace Servis.Interfejsi
     {
         ZdravstveniKarton FindById(object id);
         List<ZdravstveniKarton> GetAll();
+        bool DeletePacijent(int id);
         bool Insert(ZdravstveniKarton zk);
         bool Delete(object id);
         bool Update(ZdravstveniKarton zk);

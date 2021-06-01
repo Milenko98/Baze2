@@ -24,14 +24,13 @@ namespace Servis.InterfejsServisi
                 {
                     DbSet<Bolnica> dbSet = db.Set<Bolnica>();
                     Bolnica entityToDelete = db.Set<Bolnica>().Find(id);
-                    //db.Set<Bolnica>().Remove(entityToDelete);
                     db.Entry(entityToDelete).State = EntityState.Deleted;
                     db.SaveChanges();
                     return true;
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Message:\n" + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n" + e.InnerException);
+                    Console.WriteLine("Message:\n" + e.Message);
                     return false;
                 }
 
@@ -67,7 +66,7 @@ namespace Servis.InterfejsServisi
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Message:\n" + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n" + e.InnerException);
+                    Console.WriteLine("Message:\n" + e.Message);
                     return false;
                 }
 
@@ -87,7 +86,7 @@ namespace Servis.InterfejsServisi
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Message:\n" + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n" + e.InnerException);
+                    Console.WriteLine("Message:\n" + e.Message);
                     return false;
                 }
 
@@ -112,6 +111,49 @@ namespace Servis.InterfejsServisi
                     return false;
                 }
                 return true;
+            }
+        }
+
+        public bool DeleteMesto(int id)
+        {
+            List<Bolnica> lista = new List<Bolnica>();
+            PacijentServis ps = new PacijentServis();
+            LekarServis ls = new LekarServis();
+            RecepcionerServis rs = new RecepcionerServis();
+            ObezbedjenjeServis os = new ObezbedjenjeServis();
+            OsobaServis oos = new OsobaServis();
+            using (var db = new Model1Container())
+            {
+                try
+                {
+                    lista = db.Set<Bolnica>().ToList();
+                    if (lista.Count != 0)
+                    {
+                        foreach (var v in lista)
+                        {
+                            if (v.MestoP_Broj == id)
+                            {
+                                ps.DeleteMesto(v.Oznaka_B);
+                                ls.DeleteMesto(v.Oznaka_B);
+                                rs.DeleteMesto(v.Oznaka_B);
+                                os.DeleteMesto(v.Oznaka_B);
+                                db.Set<Bolnica>().Remove(v);
+   
+                            }
+                        }
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Message:\n" + e.Message);
+                    return false;
+                }
             }
         }
     }

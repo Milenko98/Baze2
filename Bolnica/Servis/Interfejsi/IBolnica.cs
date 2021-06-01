@@ -13,6 +13,7 @@ namespace Servis.Interfejsi
         bool Validate(string name);
         int FindByName(string name);
         List<Bolnica> GetAll();
+        bool DeleteMesto(int id);
         bool Insert(Bolnica bolnica);
         bool Delete(object id);
         bool Update(Bolnica bolnica);

@@ -30,7 +30,7 @@ namespace Servis.InterfejsServisi
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Message:\n" + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n" + e.InnerException);
+                    Console.WriteLine("Message:\n" + e.Message);
                     return false;
                 }
 
@@ -66,7 +66,7 @@ namespace Servis.InterfejsServisi
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Message:\n" + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n" + e.InnerException);
+                    Console.WriteLine("Message:\n" + e.Message);
                     return false;
                 }
 
@@ -86,7 +86,7 @@ namespace Servis.InterfejsServisi
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Message:\n" + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n" + e.InnerException);
+                    Console.WriteLine("Message:\n" + e.Message);
                     return false;
                 }
 
@@ -99,6 +99,67 @@ namespace Servis.InterfejsServisi
             {
                 var pom = db.Set<Osoba>().First(f => f.Ime == name);
                 return pom.Jmbg;
+            }
+        }
+
+        public bool DeleteBolnica(int id)
+        {
+            List<Osoba> lista = new List<Osoba>();
+            using (var db = new Model1Container())
+            {
+                try
+                {
+                    lista = db.Set<Osoba>().Where(x => x.BolnicaOznaka_B == id).ToList();
+                    if (lista.Count != 0)
+                    {
+                        foreach (var v in lista)
+                        {
+                            db.Set<Osoba>().Remove(v);
+                        }
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Message:\n" + e.Message);
+                    return false;
+                }
+            }
+        }
+
+        public bool DeleteMesto(int id)
+        {
+            List<Osoba> lista = new List<Osoba>();
+            using (var db = new Model1Container())
+            {
+                try
+                {
+                    lista = db.Set<Osoba>().ToList();
+                    if (lista.Count != 0)
+                    {
+                        foreach (var v in lista)
+                        {
+                            if(v.MestoP_Broj == id)
+                                db.Set<Osoba>().Remove(v);
+                        }
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Message:\n" + e.Message);
+                    return false;
+                }
             }
         }
     }

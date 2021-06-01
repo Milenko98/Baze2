@@ -27,7 +27,7 @@ namespace Servis.InterfejsServisi
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Message:\n" + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n" + e.InnerException);
+                    Console.WriteLine("Message:\n" + e.Message);
                     return false;
                 }
 
@@ -63,7 +63,7 @@ namespace Servis.InterfejsServisi
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Message:\n" + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n" + e.InnerException);
+                    Console.WriteLine("Message:\n" + e.Message);
                     return false;
                 }
 
@@ -83,7 +83,7 @@ namespace Servis.InterfejsServisi
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Message:\n" + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n" + e.InnerException);
+                    Console.WriteLine("Message:\n" + e.Message);
                     return false;
                 }
 
@@ -96,6 +96,73 @@ namespace Servis.InterfejsServisi
             {
                 var pom = db.Set<Lekar>().First(f => f.Ime == name);
                 return pom;
+            }
+        }
+
+        public bool DeleteBolnica(int id)
+        {
+            List<Lekar> lista = new List<Lekar>();
+            PregledaServis ps = new PregledaServis();
+            using (var db = new Model1Container())
+            {
+                try
+                {
+                    lista = db.Set<Lekar>().Where(x => x.BolnicaOznaka_B == id).ToList();
+                    if (lista.Count != 0)
+                    {
+                        foreach (var v in lista)
+                        {
+                            ps.DeleteLekar(v.Jmbg);
+                            db.Set<Lekar>().Remove(v);
+                        }
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Message:\n" + e.Message);
+                    return false;
+                }
+            }
+        }
+
+        public bool DeleteMesto(int id)
+        {
+            List<Lekar> lista = new List<Lekar>();
+            PregledaServis ps = new PregledaServis();
+            using (var db = new Model1Container())
+            {
+                try
+                {
+                    lista = db.Set<Lekar>().ToList();
+                    if (lista.Count != 0)
+                    {
+                        foreach (var v in lista)
+                        {
+                            if (v.BolnicaOznaka_B == id)
+                            {
+                                ps.DeleteLekar(v.Jmbg);
+                                db.Set<Lekar>().Remove(v);
+                            }
+                        }
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Message:\n" + e.Message);
+                    return false;
+                }
             }
         }
     }

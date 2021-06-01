@@ -75,8 +75,15 @@ namespace UI.ViewModel
             }
             Terapije = dobavljeneTerapije;
 
-            selectedTerapija = Terapije[0];
-
+            if(Terapije.Count == 0)
+            {
+                MessageBox.Show("Nema terapija.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                selectedTerapija = Terapije[0];
+            }
+            
             dijagnozee = ds.GetAll();
             foreach (var item in dijagnozee)
             {
@@ -84,17 +91,24 @@ namespace UI.ViewModel
             }
             Dijagnoze = dobavljeneDijagnoze;
 
-            selectedDijagnoza = Dijagnoze[0];
+            if(Dijagnoze.Count == 0)
+            {
+                MessageBox.Show("Nema dijagnoza.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                selectedDijagnoza = Dijagnoze[0];
+            }
             AddLecenjeCommand = new MyICommand(OnAddLecenje);
             if (lecenje != null)
             {
                 SelectedTerapija = lecenje.Terapija.Naziv;
                 SelectedDijagnoza = lecenje.Dijagnoza.Naziv;
-                AddButtonContent = "IZMENI";
+                AddButtonContent = "Izmeni";
             }
             else
             {
-                AddButtonContent = "DODAJ";
+                AddButtonContent = "Dodaj";
             }
         }
 
@@ -113,12 +127,12 @@ namespace UI.ViewModel
                 if (ls.Insert(l))
                 {
 
-                    MessageBox.Show("Lecenje uspešno dodat.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Lecenje uspešno dodat.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                     Window.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Greška prilikom dodavanja.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Greška prilikom dodavanja.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     Window.Close();
                 }
 
@@ -129,12 +143,12 @@ namespace UI.ViewModel
                 CreatedLecenje.DijagnozaOznaka_D = ds.FindByName(SelectedDijagnoza);
                 if (ls.Update(CreatedLecenje))
                 {
-                    MessageBox.Show("Lecenje uspešno izmenjeno.", "Operacija uspešna.", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Lecenje uspešno izmenjeno.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                     Window.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Greška prilikom izmene.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Greška prilikom izmene.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     Window.Close();
                 }
             }

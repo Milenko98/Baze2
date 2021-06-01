@@ -79,7 +79,7 @@ namespace UI.ViewModel
 
             if (Pregledi.Count == 0)
             {
-                MessageBox.Show("Nema pregleda.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Nema pregleda.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -95,7 +95,7 @@ namespace UI.ViewModel
 
             if (Lekari.Count == 0)
             {
-                MessageBox.Show("Nema lekara.", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Nema lekara.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -109,11 +109,11 @@ namespace UI.ViewModel
 
                 selectedPregled = pregleda.Pregled.Naziv;
                 SelectedLekar = pregleda.Lekar.Ime + " " + pregleda.Lekar.Prezime;
-                AddButtonContent = "IZMENI";
+                AddButtonContent = "Izmeni";
             }
             else
             {
-                AddButtonContent = "DODAJ";
+                AddButtonContent = "Dodaj";
             }
         }
 
@@ -130,12 +130,12 @@ namespace UI.ViewModel
                 if (ps.Insert(p))
                 {
 
-                    MessageBox.Show("Pregleda uspešno dodato.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Pregleda uspešno dodato.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                     Window.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Greška prilikom dodavanja.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Greška prilikom dodavanja.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     Window.Close();
                 }
 
@@ -146,12 +146,12 @@ namespace UI.ViewModel
                 CreatedPregleda.LekarJmbg = ls.FindByName(SelectedLekar.Split(' ')[0]).Jmbg;
                 if (ps.Update(CreatedPregleda))
                 {
-                    MessageBox.Show("Pregleda uspešno izmenjeno.", "Operacija uspešna.", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Pregleda uspešno izmenjeno.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                     Window.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Greška prilikom izmene.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Greška prilikom izmene.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     Window.Close();
                 }
             }

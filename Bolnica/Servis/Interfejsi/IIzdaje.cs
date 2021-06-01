@@ -11,6 +11,8 @@ namespace Servis.Interfejsi
     {
         Izdaje FindById(object id);
         List<Izdaje> GetAll();
+        bool DeleteRecept(int id);
+        bool DeleteUspostavlja(int id1, int id2);
         bool Insert(Izdaje izdaje);
         bool Delete(object id1, object id2, object id3);
         bool Update(Izdaje izdaje);

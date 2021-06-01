@@ -77,25 +77,24 @@ namespace UI.ViewModel
             Mesta = dobavljenaMesta;
             if(Mesta.Count == 0)
             {
-                MessageBox.Show("Nema mesta.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Nema mesta za kreiranje bolnice!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
                 selectedMesto = Mesta[0];
             }
-
-            
+        
             CreatedBolnica = bolnica;
             AddBolnicaCommand = new MyICommand(OnAddBolnica);
             CreatedBolnica = bolnica;
             if (bolnica != null)
             {
                 nazivBolnice = bolnica.Naziv;
-                AddButtonContent = "IZMENI";
+                AddButtonContent = "Izmeni";
             }
             else
             {
-                AddButtonContent = "DODAJ";
+                AddButtonContent = "Dodaj";
             }
 
         }
@@ -110,7 +109,11 @@ namespace UI.ViewModel
             {
                 Nazivlbl = "";
                 if (String.IsNullOrWhiteSpace(NazivBolnice))
-                    Nazivlbl = "Morate uneti naziv bolnice";
+                    Nazivlbl = "Morate uneti naziv bolnice!";
+                else if(int.TryParse(NazivBolnice, out _))
+                    Nazivlbl = "Naziv ne moze biti broj!";
+                else if(NazivBolnice.Length < 3)
+                    Nazivlbl = "Naziv mora sadrzati bar 3 slova!";
                 else
                 {
                     b.Naziv = NazivBolnice;
@@ -130,7 +133,6 @@ namespace UI.ViewModel
                     if (bs.Validate(b.Naziv))
                     {
 
-
                         if (bs.Insert(b))
                         {
 
@@ -146,7 +148,6 @@ namespace UI.ViewModel
                     else
                     {
                         MessageBox.Show("Vec postoji bolnica sa tim nazivom.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
-                        Window.Close();
                     }
                 }
 
@@ -155,19 +156,23 @@ namespace UI.ViewModel
             {
                 Nazivlbl = "";
                 if (String.IsNullOrWhiteSpace(NazivBolnice))
-                    Nazivlbl = "Morate uneti naziv bolnice";
+                    Nazivlbl = "Morate uneti naziv bolnice!";
+                else if (int.TryParse(NazivBolnice, out _))
+                    Nazivlbl = "Naziv ne moze biti broj!";
+                else if (NazivBolnice.Length < 3)
+                    Nazivlbl = "Naziv mora sadrzati bar 3 slova!";
                 else
                 {
                     CreatedBolnica.Naziv = NazivBolnice;
                     CreatedBolnica.MestoP_Broj = ms.FindByName(selectedMesto);
                     if (bs.Update(CreatedBolnica))
                     {
-                        MessageBox.Show("Bolnica uspešno izmenjena.", "Operacija uspešna.", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Bolnica uspešno izmenjena.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                         Window.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Greška prilikom izmene.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Greška prilikom izmene.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                         Window.Close();
                     }
                 }

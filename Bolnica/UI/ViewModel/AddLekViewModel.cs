@@ -66,13 +66,13 @@ namespace UI.ViewModel
             AddLekCommand = new MyICommand(OnAddLek);
             if (lek != null)
             {
-                naziv = lek.Naziv;
-                kolicina = lek.Kolicina.ToString();
-                AddButtonContent = "IZMENI";
+                Naziv = lek.Naziv;
+                Kolicina = lek.Kolicina.ToString();
+                AddButtonContent = "Izmeni";
             }
             else
             {
-                AddButtonContent = "DODAJ";
+                AddButtonContent = "Dodaj";
             }
         }
 
@@ -82,12 +82,16 @@ namespace UI.ViewModel
             Lek l = new Lek();
             if (CreatedLek == null)
             {
-                nazivlbl = "";
-                kolicinalbl = "";
-                if (String.IsNullOrWhiteSpace(naziv))
-                    nazivlbl = "Morate uneti naziv leka!";
-                else if (String.IsNullOrWhiteSpace(kolicina))
-                    kolicinalbl = "Morate uneti kolicinu leka!";
+                Nazivlbl = "";
+                Kolicinalbl = "";
+                if (String.IsNullOrWhiteSpace(Naziv))
+                    Nazivlbl = "Morate uneti naziv leka!";
+                else if(int.TryParse(Naziv, out _))
+                    Nazivlbl = "Naziv ne moze biti broj!";
+                else if (String.IsNullOrWhiteSpace(Kolicina))
+                    Kolicinalbl = "Morate uneti kolicinu leka!";
+                else if (!int.TryParse(Kolicina, out _))
+                    Kolicinalbl = "Kolicina mora biti broj!";
                 else
                 {
                     Random r = new Random();
@@ -101,18 +105,18 @@ namespace UI.ViewModel
                     } while (pronadjen != null);
 
                     l.Id_Leka = idLekaRandom;
-                    l.Naziv = naziv;
-                    l.Kolicina = Int32.Parse(kolicina);
+                    l.Naziv = Naziv;
+                    l.Kolicina = Int32.Parse(Kolicina);
 
                     if (ls.Insert(l))
                     {
 
-                        MessageBox.Show("Lek uspešno dodat.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Lek uspešno dodat.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                         Window.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Greška prilikom dodavanja.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Greška prilikom dodavanja.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                         Window.Close();
                     }
                 }
@@ -120,22 +124,28 @@ namespace UI.ViewModel
             }
             else
             {
-                nazivlbl = "";
-                kolicinalbl = "";
-                if (String.IsNullOrWhiteSpace(naziv))
-                    nazivlbl = "Morate uneti naziv leka!";
+                Nazivlbl = "";
+                Kolicinalbl = "";
+                if (String.IsNullOrWhiteSpace(Naziv))
+                    Nazivlbl = "Morate uneti naziv leka!";
+                else if (int.TryParse(Naziv, out _))
+                    Nazivlbl = "Naziv ne moze biti broj!";
+                else if (String.IsNullOrWhiteSpace(Kolicina))
+                    Kolicinalbl = "Morate uneti kolicinu leka!";
+                else if (int.TryParse(Kolicina, out _))
+                    Kolicinalbl = "Kolicina mora biti broj!";
                 else
                 {
-                    CreatedLek.Naziv = naziv;
-                    CreatedLek.Kolicina = Int32.Parse(kolicina);
+                    CreatedLek.Naziv = Naziv;
+                    CreatedLek.Kolicina = Int32.Parse(Kolicina);
                     if (ls.Update(CreatedLek))
                     {
-                        MessageBox.Show("Lek uspešno izmenjen.", "Operacija uspešna.", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Lek uspešno izmenjen.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                         Window.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Greška prilikom izmene.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Greška prilikom izmene.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                         Window.Close();
                     }
                 }

@@ -73,7 +73,7 @@ namespace UI.ViewModel
             Pacijenti = dobavljeniPacijenti;
             if(Pacijenti.Count == 0)
             {
-                MessageBox.Show("Nema pacijenata.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Nema pacijenata.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -86,11 +86,11 @@ namespace UI.ViewModel
             {
                 nazivPregleda = pregled.Naziv;
                 selectedPacijent = pregled.Ime_pacijenta + " "+ pregled.Prezime_pacijenta;
-                AddButtonContent = "IZMENI";
+                AddButtonContent = "Izmeni";
             }
             else
             {
-                AddButtonContent = "DODAJ";
+                AddButtonContent = "Dodaj";
             }
         }
 
@@ -100,9 +100,13 @@ namespace UI.ViewModel
             Pregled p = new Pregled();
             if (CreatedPregled == null)
             {
-                nazivpregledalbl = "";
-                if (String.IsNullOrWhiteSpace(nazivPregleda))
-                    nazivpregledalbl = "Morate uneti naziv pregleda!";
+                Nazivpregledalbl = "";
+                if (String.IsNullOrWhiteSpace(NazivPregleda))
+                    Nazivpregledalbl = "Morate uneti naziv pregleda!";
+                else if(int.TryParse(NazivPregleda, out _))
+                    Nazivpregledalbl = "Naziv pregleda ne moze biti broj!";
+                else if(NazivPregleda.Length <3)
+                    Nazivpregledalbl = "Naziv pregleda mora da sadrzi bar 3 slova!";
                 else
                 {
                     Random r = new Random();
@@ -124,12 +128,12 @@ namespace UI.ViewModel
                     if (ps.Insert(p))
                     {
 
-                        MessageBox.Show("Pregled uspešno dodat.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Pregled uspešno dodat.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                         Window.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Greška prilikom dodavanja.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Greška prilikom dodavanja.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                         Window.Close();
                     }
                 }
@@ -137,9 +141,13 @@ namespace UI.ViewModel
             }
             else
             {
-                nazivpregledalbl = "";
-                if (String.IsNullOrWhiteSpace(nazivPregleda))
-                    nazivpregledalbl = "Morate uneti naziv pregleda!";
+                Nazivpregledalbl = "";
+                if (String.IsNullOrWhiteSpace(NazivPregleda))
+                    Nazivpregledalbl = "Morate uneti naziv pregleda!";
+                else if (int.TryParse(NazivPregleda, out _))
+                    Nazivpregledalbl = "Naziv pregleda ne moze biti broj!";
+                else if (NazivPregleda.Length < 3)
+                    Nazivpregledalbl = "Naziv pregleda mora da sadrzi bar 3 slova!";
                 else
                 {
                     CreatedPregled.Ime_pacijenta = selectedPacijent.Split(' ')[0];
@@ -147,12 +155,12 @@ namespace UI.ViewModel
                     CreatedPregled.Naziv = nazivPregleda;
                     if (ps.Update(CreatedPregled))
                     {
-                        MessageBox.Show("Pregled uspešno izmenjen.", "Operacija uspešna.", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Pregled uspešno izmenjen.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                         Window.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Greška prilikom izmene.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Greška prilikom izmene.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                         Window.Close();
                     }
                 }

@@ -12,7 +12,7 @@ namespace UI.ViewModel
 {
     public class MainWindowViewModel : BindableBase
     {
-        #region properties
+        #region Propertiji
         public Window Window { get; set; }
 
         public Bolnica SelectedBolnica { get; set; }
@@ -216,7 +216,7 @@ namespace UI.ViewModel
         }
         #endregion
 
-        #region commands
+        #region Komande
         public MyICommand CreateBolnicaCommand { get; set; }
         public MyICommand CreateMestoCommand { get; set; }
         public MyICommand UpdateBolnicaCommand { get; set; }
@@ -576,18 +576,47 @@ namespace UI.ViewModel
         public void OnDeletePacijent()
         {
             Servis.InterfejsServisi.PacijentServis ps = new Servis.InterfejsServisi.PacijentServis();
-            if(SelectedPacijent != null)
+            Servis.InterfejsServisi.ZdravstveniKartonServis zks = new Servis.InterfejsServisi.ZdravstveniKartonServis();
+            Servis.InterfejsServisi.DolaziServis ds = new Servis.InterfejsServisi.DolaziServis();
+            bool zksobrisan = false;
+            bool dsobrisan = false;
+
+            if (zks.DeletePacijent(SelectedPacijent.Jmbg))
             {
-                ps.Delete(SelectedPacijent.Jmbg);
+                zksobrisan = true;
+            }
+
+            if (ds.DeletePacijent(SelectedPacijent.Jmbg))
+            {
+                dsobrisan = true;
+            }
+
+            if (zksobrisan || dsobrisan)
+            {
+                if (SelectedPacijent != null)
+                {
+                    ps.Delete(SelectedPacijent.Jmbg);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali pacijenta!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Niste izabrali pacijenta!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (SelectedPacijent != null)
+                {
+                    ps.Delete(SelectedPacijent.Jmbg);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali pacijenta!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             
-            OnChangeBolnica();
             OnChangePacijent();
-            OnChangeOsoba();
+            OnChangeZdravstveniKarton();
+            OnChangeDolazi();
         }
 
         public void OnDeleteDolazi()
@@ -599,7 +628,7 @@ namespace UI.ViewModel
             }
             else
             {
-                MessageBox.Show("Niste izabrali dolazi!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Niste izabrali dolazi!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             OnChangeDolazi();
@@ -614,7 +643,7 @@ namespace UI.ViewModel
             }
             else
             {
-                MessageBox.Show("Niste izabrali poseduje!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Niste izabrali poseduje!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             OnChangePoseduje();
@@ -629,7 +658,7 @@ namespace UI.ViewModel
             }
             else
             {
-                MessageBox.Show("Niste izabrali sadrzi!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Niste izabrali sadrzi!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             OnChangeSadrzi();
@@ -644,7 +673,7 @@ namespace UI.ViewModel
             }
             else
             {
-                MessageBox.Show("Niste izabrali pregleda!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Niste izabrali pregleda!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             OnChangePregleda();
@@ -659,7 +688,7 @@ namespace UI.ViewModel
             }
             else
             {
-                MessageBox.Show("Niste izabrali SeLeci!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Niste izabrali SeLeci!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             OnChangeSeLeci();
@@ -668,16 +697,33 @@ namespace UI.ViewModel
         public void OnDeleteUspostavlja()
         {
             Servis.InterfejsServisi.UspostavljaServis us = new Servis.InterfejsServisi.UspostavljaServis();
-            if (SelectedUspostavlja != null)
+            Servis.InterfejsServisi.IzdajeServis iss = new Servis.InterfejsServisi.IzdajeServis();
+            if (iss.DeleteUspostavlja(SelectedUspostavlja.DijagnozaOznaka_D, SelectedUspostavlja.PregledBroj_P))
             {
-                us.Delete(SelectedUspostavlja.PregledBroj_P, SelectedUspostavlja.DijagnozaOznaka_D);
+                if (SelectedUspostavlja != null)
+                {
+                    us.Delete(SelectedUspostavlja.PregledBroj_P, SelectedUspostavlja.DijagnozaOznaka_D);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali uspostavku!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Niste izabrali uspostavku!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (SelectedUspostavlja != null)
+                {
+                    us.Delete(SelectedUspostavlja.PregledBroj_P, SelectedUspostavlja.DijagnozaOznaka_D);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali uspostavku!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
 
             OnChangeUspostavlja();
+            OnChangeIzdaje();
+            OnChangeRecept();
         }
 
         public void OnDeleteIzdaje()
@@ -689,7 +735,7 @@ namespace UI.ViewModel
             }
             else
             {
-                MessageBox.Show("Niste izabrali izdaje!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Niste izabrali izdaje!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             OnChangeIzdaje();
@@ -698,58 +744,139 @@ namespace UI.ViewModel
         public void OnDeleteLecenje()
         {
             Servis.InterfejsServisi.LecenjeServis ls = new Servis.InterfejsServisi.LecenjeServis();
-            if (SelectedLecenje != null)
+            Servis.InterfejsServisi.UspostavljaServis us = new Servis.InterfejsServisi.UspostavljaServis();
+            if (us.DeleteLecenje(SelectedLecenje.DijagnozaOznaka_D, SelectedLecenje.TerapijaBroj_T))
             {
-                ls.Delete(SelectedLecenje.TerapijaBroj_T, SelectedLecenje.DijagnozaOznaka_D);
+                if (SelectedLecenje != null)
+                {
+                    ls.Delete(SelectedLecenje.TerapijaBroj_T, SelectedLecenje.DijagnozaOznaka_D);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali lecenje!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Niste izabrali lecenje!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (SelectedLecenje != null)
+                {
+                    ls.Delete(SelectedLecenje.TerapijaBroj_T, SelectedLecenje.DijagnozaOznaka_D);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali lecenje!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-
+            OnChangeUspostavlja();
             OnChangeLecenje();
         }
 
         public void OnDeleteRecept()
         {
             Servis.InterfejsServisi.ReceptServis rs = new Servis.InterfejsServisi.ReceptServis();
-            if (SelectedRecept != null)
+            Servis.InterfejsServisi.IzdajeServis iss = new Servis.InterfejsServisi.IzdajeServis();
+            if (iss.DeleteRecept(SelectedRecept.Oznaka_R))
             {
-                rs.Delete(SelectedRecept.Oznaka_R);
+                if (SelectedRecept != null)
+                {
+                    rs.Delete(SelectedRecept.Oznaka_R);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali recept!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Niste izabrali recept!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (SelectedRecept != null)
+                {
+                    rs.Delete(SelectedRecept.Oznaka_R);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali recept!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-
             OnChangeRecept();
+            OnChangeIzdaje();
+            OnChangeUspostavlja();
         }
+
+
 
         public void OnDeleteTerapija()
         {
             Servis.InterfejsServisi.TerapijaServis ts = new Servis.InterfejsServisi.TerapijaServis();
-            if (SelectedTerapija != null)
+            Servis.InterfejsServisi.PosedujeServis ps = new Servis.InterfejsServisi.PosedujeServis();
+            Servis.InterfejsServisi.LecenjeServis ls = new Servis.InterfejsServisi.LecenjeServis();
+
+            bool psobrisan = false;
+            bool lsobrisan = false;
+
+            if (ps.DeleteTerapija(SelectedTerapija.Broj_T))
             {
-                ts.Delete(SelectedTerapija.Broj_T);
+                psobrisan = true;
+            }
+
+            if (ls.DeleteTerapija(SelectedTerapija.Broj_T))
+            {
+                lsobrisan = true;
+            }
+
+            if (psobrisan || lsobrisan)
+            {
+                if (SelectedTerapija != null)
+                {
+                    ts.Delete(SelectedTerapija.Broj_T);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali terapiju!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Niste izabrali terapiju!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (SelectedTerapija != null)
+                {
+                    ts.Delete(SelectedTerapija.Broj_T);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali terapiju!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
 
+            OnChangePoseduje();
+            OnChangeLecenje();
             OnChangeTerapija();
         }
 
         public void OnDeleteLek()
         {
             Servis.InterfejsServisi.LekServis ps = new Servis.InterfejsServisi.LekServis();
-            if (SelectedLek != null)
+            Servis.InterfejsServisi.SeLeciServis ss = new Servis.InterfejsServisi.SeLeciServis();
+
+            if (ss.DeleteLek(SelectedLek.Id_Leka))
             {
-                ps.Delete(SelectedLek.Id_Leka);
+                if (SelectedLek != null)
+                {
+                    ps.Delete(SelectedLek.Id_Leka);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali lek!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Niste izabrali lek!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (SelectedLek != null)
+                {
+                    ps.Delete(SelectedLek.Id_Leka);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali lek!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
 
             OnChangeLek();
@@ -758,60 +885,229 @@ namespace UI.ViewModel
         public void OnDeleteDijagnoza()
         {
             Servis.InterfejsServisi.DijagnozaServis ds = new Servis.InterfejsServisi.DijagnozaServis();
-            if (SelectedDijagnoza != null)
+            Servis.InterfejsServisi.SeLeciServis ss = new Servis.InterfejsServisi.SeLeciServis();
+            Servis.InterfejsServisi.UspostavljaServis us = new Servis.InterfejsServisi.UspostavljaServis();
+            Servis.InterfejsServisi.LecenjeServis ls = new Servis.InterfejsServisi.LecenjeServis();
+            Servis.InterfejsServisi.SadrziServis sas = new Servis.InterfejsServisi.SadrziServis();
+
+            bool ssobrisan = false;
+            bool usobrisan = false;
+            bool lsobrisan = false;
+            bool sasobrisan = false;
+
+            if (ss.DeleteDijagnoza(SelectedDijagnoza.Oznaka_D))
             {
-                ds.Delete(SelectedDijagnoza.Oznaka_D);
+                ssobrisan = true;
+            }
+
+            if (us.DeleteDijagnoza(SelectedDijagnoza.Oznaka_D))
+            {
+                usobrisan = true;
+            }
+
+            if (ls.DeleteDijagnoza(SelectedDijagnoza.Oznaka_D))
+            {
+                lsobrisan = true;
+            }
+
+            if (sas.DeleteDijagnoza(SelectedDijagnoza.Oznaka_D))
+            {
+                sasobrisan = true;
+            }
+
+            if (ssobrisan || usobrisan || lsobrisan || sasobrisan)
+            {
+                if (SelectedDijagnoza != null)
+                {
+                    ds.Delete(SelectedDijagnoza.Oznaka_D);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali dijagnozu!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Niste izabrali dijagnozu!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (SelectedDijagnoza != null)
+                {
+                    ds.Delete(SelectedDijagnoza.Oznaka_D);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali dijagnozu!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-
+            OnChangeSeLeci();
+            OnChangeUspostavlja();
+            OnChangeSadrzi();
+            OnChangeLecenje();
             OnChangeDijagnoza();
         }
 
         public void OnDeleteZdravstveniKarton()
         {
             Servis.InterfejsServisi.ZdravstveniKartonServis ps = new Servis.InterfejsServisi.ZdravstveniKartonServis();
-            if (SelectedZdravstveniKarton != null)
+            Servis.InterfejsServisi.PosedujeServis pos = new Servis.InterfejsServisi.PosedujeServis();
+            Servis.InterfejsServisi.SadrziServis sas = new Servis.InterfejsServisi.SadrziServis();
+
+            bool posobrisan = false;
+            bool sasobrisan = false;
+
+            if (pos.DeleteZdravstveniKarton(SelectedZdravstveniKarton.Broj_K))
             {
-                ps.Delete(SelectedZdravstveniKarton.Broj_K);
-            }
-            else
-            {
-                MessageBox.Show("Niste izabrali zdravstveni karton!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                posobrisan = true;
             }
 
+            if (sas.DeleteZdravstveniKarton(SelectedZdravstveniKarton.Broj_K))
+            {
+                sasobrisan = true;
+            }
+
+            if(posobrisan || sasobrisan)
+            {
+                if (SelectedZdravstveniKarton != null)
+                {
+                    ps.Delete(SelectedZdravstveniKarton.Broj_K);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali zdravstveni karton!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+
+            else
+            {
+                if (SelectedZdravstveniKarton != null)
+                {
+                    ps.Delete(SelectedZdravstveniKarton.Broj_K);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali zdravstveni karton!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+
+            OnChangeSadrzi();
+            OnChangePoseduje();
             OnChangeZdravstveniKarton();
         }
 
         public void OnDeletePregled()
         {
             Servis.InterfejsServisi.PregledServis ps = new Servis.InterfejsServisi.PregledServis();
-            if (SelectedPregled != null)
+            Servis.InterfejsServisi.DolaziServis ds = new Servis.InterfejsServisi.DolaziServis();
+            Servis.InterfejsServisi.PregledaServis prs = new Servis.InterfejsServisi.PregledaServis();
+            Servis.InterfejsServisi.UspostavljaServis us = new Servis.InterfejsServisi.UspostavljaServis();
+            bool dsobrisan = false;
+            bool prsobrisan = false;
+            bool usobrisan = false;
+            if (ds.DeletePregled(SelectedPregled.Broj_P))
             {
-                ps.Delete(SelectedPregled.Broj_P);
+                dsobrisan = true;
+            }
+
+            if (prs.DeletePregled(SelectedPregled.Broj_P))
+            {
+                prsobrisan = true;
+            }
+
+            if (us.DeletePregled(SelectedPregled.Broj_P))
+            {
+                usobrisan = true;
+            }
+
+            if (dsobrisan || prsobrisan || usobrisan)
+            {
+                if (SelectedPregled != null)
+                {
+                    ps.Delete(SelectedPregled.Broj_P);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali pregled!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Niste izabrali pregled!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (SelectedPregled != null)
+                {
+                    ps.Delete(SelectedPregled.Broj_P);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali pregled!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             OnChangePregled();
+            OnChangeDolazi();
+            OnChangeUspostavlja();
+            OnChangePregleda();
         }
 
         public void OnDeleteBolnica()
         {
             Servis.InterfejsServisi.BolnicaServis bs = new Servis.InterfejsServisi.BolnicaServis();
-            if (SelectedBolnica != null)
+            Servis.InterfejsServisi.PacijentServis ps = new Servis.InterfejsServisi.PacijentServis();
+            Servis.InterfejsServisi.LekarServis ls = new Servis.InterfejsServisi.LekarServis();
+            Servis.InterfejsServisi.ObezbedjenjeServis os = new Servis.InterfejsServisi.ObezbedjenjeServis();
+            Servis.InterfejsServisi.RecepcionerServis rs = new Servis.InterfejsServisi.RecepcionerServis();
+
+            bool psobrisan = false;
+            bool lsobrisan = false;
+            bool osobrisan = false;
+            bool rsobrisan = false;
+
+            if (ps.DeleteBolnica(SelectedBolnica.Oznaka_B))
             {
-                bs.Delete(SelectedBolnica.Oznaka_B);
+                psobrisan = true;
+            }
+            if (ls.DeleteBolnica(SelectedBolnica.Oznaka_B))
+            {
+                lsobrisan = true;
+            }
+            if (os.DeleteBolnica(SelectedBolnica.Oznaka_B))
+            {
+                osobrisan = true;
+            }
+            if (rs.DeleteBolnica(SelectedBolnica.Oznaka_B))
+            {
+                rsobrisan = true;
+            }
+
+            if (psobrisan || lsobrisan || osobrisan || rsobrisan)
+            {
+                if (SelectedBolnica != null)
+                {
+                    bs.Delete(SelectedBolnica.Oznaka_B);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali bolnicu!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Niste izabrali bolnicu!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (SelectedBolnica != null)
+                {
+                    bs.Delete(SelectedBolnica.Oznaka_B);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali bolnicu!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-
+            OnChangeOsoba();
+            OnChangeRadnik();
+            OnChangePacijent();
+            OnChangeLekar();
+            OnChangeRecepcioner();
+            OnChangeObezbedjenje();
             OnChangeBolnica();
+            OnChangeZdravstveniKarton();
+            OnChangeSadrzi();
+            OnChangePoseduje();
+            OnChangePregleda();
+            OnChangeDolazi();
         }
 
 
@@ -824,7 +1120,7 @@ namespace UI.ViewModel
             }
             else
             {
-                MessageBox.Show("Niste izabrali osobu!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Niste izabrali osobu!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             OnChangeOsoba();
@@ -841,7 +1137,7 @@ namespace UI.ViewModel
             }
             else
             {
-                MessageBox.Show("Niste izabrali obezbedjenje!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Niste izabrali obezbedjenje!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             OnChangeObezbedjenje();
@@ -858,7 +1154,7 @@ namespace UI.ViewModel
             }
             else
             {
-                MessageBox.Show("Niste izabrali radnika!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Niste izabrali radnika!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             OnChangeRadnik();
@@ -877,7 +1173,7 @@ namespace UI.ViewModel
             }
             else
             {
-                MessageBox.Show("Niste izabrali recepcionera!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Niste izabrali recepcionera!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             OnChangeRecepcioner();
@@ -888,16 +1184,33 @@ namespace UI.ViewModel
         public void OnDeleteLekar()
         {
             Servis.InterfejsServisi.LekarServis ls = new Servis.InterfejsServisi.LekarServis();
-            if(SelectedLekar != null)
-            { 
-                ls.Delete(SelectedLekar.Jmbg);
+            Servis.InterfejsServisi.PregledaServis ps = new Servis.InterfejsServisi.PregledaServis();
+
+            if (ps.DeleteLekar(SelectedLekar.Jmbg))
+            {
+                if (SelectedLekar != null)
+                {
+                    ls.Delete(SelectedLekar.Jmbg);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali lekara!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Niste izabrali lekara!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (SelectedLekar != null)
+                {
+                    ls.Delete(SelectedLekar.Jmbg);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali lekara!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             
             OnChangeLekar();
+            OnChangePregleda();
             OnChangeOsoba();
             OnChangeRadnik();
         }
@@ -905,15 +1218,50 @@ namespace UI.ViewModel
         public void OnDeleteMesto()
         {
             Servis.InterfejsServisi.MestoServis ms = new Servis.InterfejsServisi.MestoServis();
-            if (SelectedMesto != null)
+            Servis.InterfejsServisi.BolnicaServis bs = new Servis.InterfejsServisi.BolnicaServis();
+            bool bsobrisan = false;
+
+            if (bs.DeleteMesto(SelectedMesto.P_Broj))
             {
-                ms.Delete(SelectedMesto.P_Broj);
+                bsobrisan = true;
+            }
+
+
+            if (bsobrisan)
+            {
+                if (SelectedMesto != null)
+                {
+                    ms.Delete(SelectedMesto.P_Broj);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali mesto!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Niste izabrali mesto!", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (SelectedMesto != null)
+                {
+                    ms.Delete(SelectedMesto.P_Broj);
+                }
+                else
+                {
+                    MessageBox.Show("Niste izabrali mesto!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             OnChangeMesto();
+            OnChangeOsoba();
+            OnChangeRadnik();
+            OnChangePacijent();
+            OnChangeLekar();
+            OnChangeRecepcioner();
+            OnChangeObezbedjenje();
+            OnChangeBolnica();
+            OnChangeZdravstveniKarton();
+            OnChangeSadrzi();
+            OnChangePoseduje();
+            OnChangePregleda();
+            OnChangeDolazi();
         }
 
         public void OnCreateRecepcioner()
@@ -1090,7 +1438,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
 
@@ -1104,7 +1452,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
 
@@ -1118,7 +1466,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
 
@@ -1132,7 +1480,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
 
@@ -1146,7 +1494,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
 
@@ -1160,7 +1508,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
 
@@ -1174,7 +1522,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
 
@@ -1188,7 +1536,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
 
@@ -1202,7 +1550,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
 
@@ -1216,7 +1564,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
 
@@ -1230,7 +1578,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
 
@@ -1244,7 +1592,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
 
@@ -1258,7 +1606,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
 
@@ -1272,7 +1620,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
 
@@ -1286,7 +1634,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
 
@@ -1300,7 +1648,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
 
@@ -1314,7 +1662,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
 
@@ -1328,7 +1676,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
 
@@ -1342,7 +1690,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
 
@@ -1356,7 +1704,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
 
@@ -1369,7 +1717,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
 
@@ -1382,7 +1730,7 @@ namespace UI.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Message: " + e.Message + "\n\nTrace:\n" + e.StackTrace + "\n\nInner:\n\n" + e.InnerException);
+                Console.WriteLine("Message: " + e.Message);
             }
         }
     }

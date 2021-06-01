@@ -11,6 +11,8 @@ namespace Servis.Interfejsi
     {
         Pregleda FindById(object id);
         List<Pregleda> GetAll();
+        bool DeletePregled(int id);
+        bool DeleteLekar(int id);
         bool Insert(Pregleda pregleda);
         bool Delete(object id1, object id2);
         bool Update(Pregleda pregleda);

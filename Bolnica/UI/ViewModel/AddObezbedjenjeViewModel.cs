@@ -85,7 +85,7 @@ namespace UI.ViewModel
         public string Imelbl
         {
             get { return imelbl; }
-            set { imelbl = value; }
+            set { imelbl = value; OnPropertyChanged("Imelbl"); }
         }
 
         private string prezimelbl;
@@ -93,7 +93,7 @@ namespace UI.ViewModel
         public string Prezimelbl
         {
             get { return prezimelbl; }
-            set { prezimelbl = value; }
+            set { prezimelbl = value; OnPropertyChanged("Prezimelbl"); }
         }
 
         private string radnistazlbl;
@@ -101,7 +101,7 @@ namespace UI.ViewModel
         public string Radnistazlbl
         {
             get { return radnistazlbl; }
-            set { radnistazlbl = value; }
+            set { radnistazlbl = value; OnPropertyChanged("Radnistazlbl"); }
         }
 
 
@@ -139,11 +139,11 @@ namespace UI.ViewModel
                 ime = obezbedjenje.Ime;
                 prezime = obezbedjenje.Prezime;
                 radni_staz = obezbedjenje.Radni_staz.ToString();
-                AddButtonContent = "IZMENI";
+                AddButtonContent = "Izmeni";
             }
             else
             {
-                AddButtonContent = "DODAJ";
+                AddButtonContent = "Dodaj";
             }
         }
 
@@ -155,15 +155,27 @@ namespace UI.ViewModel
             Obezbedjenje ob = new Obezbedjenje();
             if (CreatedObezbedjenje == null)
             {
-                imelbl = "";
-                prezimelbl = "";
-                radnistazlbl = "";
-                if (String.IsNullOrWhiteSpace(ime))
-                    imelbl = "Morate uneti ime!";
-                else if (String.IsNullOrWhiteSpace(prezime))
-                    prezimelbl = "Morate uneti prezime!";
-                else if (String.IsNullOrWhiteSpace(radni_staz))
-                    radnistazlbl = "Morate uneti radni staz!";
+                Imelbl = "";
+                Prezimelbl = "";
+                Radnistazlbl = "";
+                if (String.IsNullOrWhiteSpace(Ime))
+                    Imelbl = "Morate uneti ime!";
+                else if (int.TryParse(Ime, out _))
+                    Imelbl = "Ime ne moze biti broj!";
+                else if (Ime.Length < 3)
+                    Imelbl = "Ime mora sadrzati bar 3 slova!";
+                else if (String.IsNullOrWhiteSpace(Prezime))
+                    Prezimelbl = "Morate uneti prezime!";
+                else if (int.TryParse(Prezime, out _))
+                    Prezimelbl = "Prezime ne moze biti broj!";
+                else if (Prezime.Length < 3)
+                    Prezimelbl = "Prezime mora sadrzati bar 3 slova!";
+                else if (String.IsNullOrWhiteSpace(Radni_staz))
+                    Radnistazlbl = "Morate uneti radni staz!";
+                else if (!int.TryParse(Radni_staz, out _))
+                    Radnistazlbl = "Radni staz mora biti broj!";
+                else if (int.Parse(Radni_staz) > 80)
+                    Radnistazlbl = "Radni staz ne moze biti veci od 80 godina!";
                 else
                 {
                     Random r = new Random();
@@ -186,12 +198,12 @@ namespace UI.ViewModel
                     if (os.Insert(ob))
                     {
 
-                        MessageBox.Show("Obezbedjenje uspešno dodato.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Obezbedjenje uspešno dodato.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                         Window.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Greška prilikom dodavanja.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Greška prilikom dodavanja.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                         Window.Close();
                     }
                 }
@@ -199,15 +211,27 @@ namespace UI.ViewModel
             }
             else
             {
-                imelbl = "";
-                prezimelbl = "";
-                radnistazlbl = "";
-                if (String.IsNullOrWhiteSpace(ime))
-                    imelbl = "Morate uneti ime!";
-                else if (String.IsNullOrWhiteSpace(prezime))
-                    prezimelbl = "Morate uneti prezime!";
-                else if (String.IsNullOrWhiteSpace(radni_staz))
-                    radnistazlbl = "Morate uneti radni staz!";
+                Imelbl = "";
+                Prezimelbl = "";
+                Radnistazlbl = "";
+                if (String.IsNullOrWhiteSpace(Ime))
+                    Imelbl = "Morate uneti ime!";
+                else if (int.TryParse(Ime, out _))
+                    Imelbl = "Ime ne moze biti broj!";
+                else if (Ime.Length < 3)
+                    Imelbl = "Ime mora sadrzati bar 3 slova!";
+                else if (String.IsNullOrWhiteSpace(Prezime))
+                    Prezimelbl = "Morate uneti prezime!";
+                else if (int.TryParse(Prezime, out _))
+                    Prezimelbl = "Prezime ne moze biti broj!";
+                else if (Prezime.Length < 3)
+                    Prezimelbl = "Prezime mora sadrzati bar 3 slova!";
+                else if (String.IsNullOrWhiteSpace(Radni_staz))
+                    Radnistazlbl = "Morate uneti radni staz!";
+                else if (!int.TryParse(Radni_staz, out _))
+                    Radnistazlbl = "Radni staz mora biti broj!";
+                else if (int.Parse(Radni_staz) > 80)
+                    Radnistazlbl = "Radni staz ne moze biti veci od 80 godina!";
                 else
                 {
                     CreatedObezbedjenje.Ime = ime;
@@ -216,12 +240,12 @@ namespace UI.ViewModel
                     CreatedObezbedjenje.BolnicaOznaka_B = bs.FindByName(SelectedBolnica);
                     if (os.Update(CreatedObezbedjenje))
                     {
-                        MessageBox.Show("Recepcioner uspešno izmenjen.", "Operacija uspešna.", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Recepcioner uspešno izmenjen.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                         Window.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Greška prilikom izmene.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Greška prilikom izmene.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                         Window.Close();
                     }
                 }

@@ -53,11 +53,11 @@ namespace UI.ViewModel
             if (terapija != null)
             {
                 naziv = terapija.Naziv;
-                AddButtonContent = "IZMENI";
+                AddButtonContent = "Izmeni";
             }
             else
             {
-                AddButtonContent = "DODAJ";
+                AddButtonContent = "Dodaj";
             }
         }
 
@@ -67,9 +67,13 @@ namespace UI.ViewModel
             Terapija t = new Terapija();
             if (CreatedTerapija == null)
             {
-                nazivlbl = "";
-                if (String.IsNullOrWhiteSpace(naziv))
-                    nazivlbl = "Morate uneti naziv terapije!";
+                Nazivlbl = "";
+                if (String.IsNullOrWhiteSpace(Naziv))
+                    Nazivlbl = "Morate uneti naziv terapije!";
+                else if(int.TryParse(Naziv, out _))
+                    Nazivlbl = "Naziv ne moze biti broj!";
+                else if(Naziv.Length < 3)
+                    Nazivlbl = "Naziv mora sadrzati bar 3 slova!";
                 else
                 {
                     Random r = new Random();
@@ -88,12 +92,12 @@ namespace UI.ViewModel
                     if (ts.Insert(t))
                     {
 
-                        MessageBox.Show("Terapija uspešno dodata.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Terapija uspešno dodata.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                         Window.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Greška prilikom dodavanja.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Greška prilikom dodavanja.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                         Window.Close();
                     }
                 }
@@ -101,20 +105,24 @@ namespace UI.ViewModel
             }
             else
             {
-                nazivlbl = "";
-                if (String.IsNullOrWhiteSpace(naziv))
-                    nazivlbl = "Morate uneti naziv terapije!";
+                Nazivlbl = "";
+                if (String.IsNullOrWhiteSpace(Naziv))
+                    Nazivlbl = "Morate uneti naziv terapije!";
+                else if (int.TryParse(Naziv, out _))
+                    Nazivlbl = "Naziv ne moze biti broj!";
+                else if (Naziv.Length < 3)
+                    Nazivlbl = "Naziv mora sadrzati bar 3 slova!";
                 else
                 {
                     CreatedTerapija.Naziv = naziv;
                     if (ts.Update(CreatedTerapija))
                     {
-                        MessageBox.Show("Terapija uspešno izmenjena.", "Operacija uspešna.", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Terapija uspešno izmenjena.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                         Window.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Greška prilikom izmene.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Greška prilikom izmene.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                         Window.Close();
                     }
                 }

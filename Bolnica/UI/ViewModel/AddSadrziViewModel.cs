@@ -79,7 +79,7 @@ namespace UI.ViewModel
 
             if (Zkovi.Count == 0)
             {
-                MessageBox.Show("Nema zdravstvenih kartona.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Nema zdravstvenih kartona.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -95,7 +95,7 @@ namespace UI.ViewModel
 
             if (Dijagnoze.Count == 0)
             {
-                MessageBox.Show("Nema dijagnoza.", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Nema dijagnoza.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -108,11 +108,11 @@ namespace UI.ViewModel
             {
                 SelectedZk = sadrzi.ZdravstveniKarton.Broj_K.ToString();
                 SelectedDijagnoza = sadrzi.Dijagnoza.Naziv;
-                AddButtonContent = "IZMENI";
+                AddButtonContent = "Izmeni";
             }
             else
             {
-                AddButtonContent = "DODAJ";
+                AddButtonContent = "Dodaj";
             }
         }
 
@@ -131,12 +131,12 @@ namespace UI.ViewModel
                 if (sas.Insert(s))
                 {
 
-                    MessageBox.Show("Sadrzi uspešno dodato.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Sadrzi uspešno dodato.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     Window.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Greška prilikom dodavanja.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Greška prilikom dodavanja.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     Window.Close();
                 }
 
@@ -147,12 +147,12 @@ namespace UI.ViewModel
                 CreatedSadrzi.ZdravstveniKartonBroj_K = Int32.Parse(SelectedZk);
                 if (sas.Update(CreatedSadrzi))
                 {
-                    MessageBox.Show("Sadrzi uspešno izmenjeno.", "Operacija uspešna.", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Sadrzi uspešno izmenjeno.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     Window.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Greška prilikom izmene.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Greška prilikom izmene.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     Window.Close();
                 }
             }

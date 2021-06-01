@@ -18,11 +18,13 @@ namespace Servis.Baza
         public Pacijent()
         {
             this.Dolazis = new HashSet<Dolazi>();
+            this.ZdravstveniKartons = new HashSet<ZdravstveniKarton>();
         }
     
     
-        public virtual ZdravstveniKarton ZdravstveniKarton { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Dolazi> Dolazis { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ZdravstveniKarton> ZdravstveniKartons { get; set; }
     }
 }

@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI.View"
         mc:Ignorable="d"
-        Title="AddPregled" Height="450" Width="800">
+        Title="AddPregled" Height="300" Width="300">
     <Grid>
-        <Button Content="{Binding AddButtonContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Command="{Binding AddPregledCommand}" HorizontalAlignment="Left" Margin="298,361,0,0" VerticalAlignment="Top" Width="119" Height="33"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="297,102,0,0" TextWrapping="Wrap" Text="{Binding NazivPregleda, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="{Binding NazivPregledalbl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="radnistazlbl_Copy" HorizontalAlignment="Left" Margin="268,125,0,0" VerticalAlignment="Top" Width="205" Height="27"/>
-        <Label Content="Naziv pregleda:" FontWeight="Bold" HorizontalAlignment="Left" Margin="297,76,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.244,0.548" Width="120"/>
-        <ComboBox x:Name="cmbPacijent" HorizontalAlignment="Left" Margin="297,201,0,0" SelectedItem="{Binding SelectedPacijent}" ItemsSource="{Binding Pacijenti}"  VerticalAlignment="Top" Width="120"/>
-        <Label Content="Pacijent:" FontWeight="Bold" HorizontalAlignment="Left" Margin="297,175,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.002,0.844" Width="120"/>
+        <Button Content="{Binding AddButtonContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Command="{Binding AddPregledCommand}" HorizontalAlignment="Left" Margin="74,193,0,0" VerticalAlignment="Top" Width="119" Height="33"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="74,53,0,0" TextWrapping="Wrap" Text="{Binding NazivPregleda, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <Label Content="{Binding NazivPregledalbl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="radnistazlbl_Copy" HorizontalAlignment="Left" Margin="45,76,0,0" VerticalAlignment="Top" Width="205" Height="27"/>
+        <Label Content="Naziv pregleda:" FontWeight="Bold" HorizontalAlignment="Left" Margin="74,27,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.244,0.548" Width="120"/>
+        <ComboBox x:Name="cmbPacijent" HorizontalAlignment="Left" Margin="74,129,0,0" SelectedItem="{Binding SelectedPacijent}" ItemsSource="{Binding Pacijenti}"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="Pacijent:" FontWeight="Bold" HorizontalAlignment="Left" Margin="74,103,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.002,0.844" Width="120"/>
 
     </Grid>
 </Window>

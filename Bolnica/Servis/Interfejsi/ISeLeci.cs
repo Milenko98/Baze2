@@ -12,6 +12,8 @@ namespace Servis.Interfejsi
         SeLeci FindById(object id);
         List<SeLeci> GetAll();
         bool Insert(SeLeci seLeci);
+        bool DeleteLek(int id);
+        bool DeleteDijagnoza(int id);
         bool Delete(object id1, object id2);
         bool Update(SeLeci seLeci);
     }

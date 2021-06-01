@@ -79,7 +79,7 @@ namespace UI.ViewModel
 
             if (Pregledi.Count == 0)
             {
-                MessageBox.Show("Nema pregleda.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Nema pregleda.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -95,7 +95,7 @@ namespace UI.ViewModel
 
             if (Pacijenti.Count == 0)
             {
-                MessageBox.Show("Nema pacijenata.", "Operacija neuspesna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Nema pacijenata.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -109,11 +109,11 @@ namespace UI.ViewModel
 
                 SelectedPregled = dolazi.Pregled.Broj_P.ToString();
                 SelectedPacijent = dolazi.Pacijent.Ime + " " + dolazi.Pacijent.Prezime;
-                AddButtonContent = "IZMENI";
+                AddButtonContent = "Izmeni";
             }
             else
             {
-                AddButtonContent = "DODAJ";
+                AddButtonContent = "Dodaj";
             }
         }
 
@@ -130,12 +130,12 @@ namespace UI.ViewModel
                 if (ds.Insert(d))
                 {
 
-                    MessageBox.Show("Dolazi uspešno dodato.", "Operacija uspešna!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Dolazi uspešno dodato.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                     Window.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Greška prilikom dodavanja.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Greška prilikom dodavanja.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     Window.Close();
                 }
 
@@ -146,12 +146,12 @@ namespace UI.ViewModel
                 CreatedDolazi.PacijentJmbg = pas.FindByName(SelectedPacijent.Split(',')[1]).Jmbg;
                 if (ds.Update(CreatedDolazi))
                 {
-                    MessageBox.Show("Dolazi uspešno izmenjeno.", "Operacija uspešna.", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Dolazi uspešno izmenjeno.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     Window.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Greška prilikom izmene.", "Operacija neuspešna!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Greška prilikom izmene.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     Window.Close();
                 }
             }

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/30/2021 22:58:11
+-- Date Created: 05/31/2021 17:33:30
 -- Generated from EDMX file: C:\Users\Milenko\Desktop\BazeProj\Bolnica\Servis\Baza\Model1.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,152 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_BolnicaOsoba]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Osobas] DROP CONSTRAINT [FK_BolnicaOsoba];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PacijentZdravstveniKarton]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ZdravstveniKartons] DROP CONSTRAINT [FK_PacijentZdravstveniKarton];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DijagnozaLecenje]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Lecenjes] DROP CONSTRAINT [FK_DijagnozaLecenje];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LekSeLeci]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SeLecis] DROP CONSTRAINT [FK_LekSeLeci];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TerapijaLecenje]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Lecenjes] DROP CONSTRAINT [FK_TerapijaLecenje];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PregledUspostavlja]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Uspostavljas] DROP CONSTRAINT [FK_PregledUspostavlja];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ZdravstveniKartonSadrzi]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Sadrzis] DROP CONSTRAINT [FK_ZdravstveniKartonSadrzi];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ZdravstveniKartonPoseduje]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Posedujes] DROP CONSTRAINT [FK_ZdravstveniKartonPoseduje];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UspostavljaLecenje]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Uspostavljas] DROP CONSTRAINT [FK_UspostavljaLecenje];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SeLeciDijagnoza]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SeLecis] DROP CONSTRAINT [FK_SeLeciDijagnoza];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SadrziDijagnoza]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Sadrzis] DROP CONSTRAINT [FK_SadrziDijagnoza];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PosedujeTerapija]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Posedujes] DROP CONSTRAINT [FK_PosedujeTerapija];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LekarPregleda]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Pregledas] DROP CONSTRAINT [FK_LekarPregleda];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PregledaPregled]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Pregledas] DROP CONSTRAINT [FK_PregledaPregled];
+GO
+IF OBJECT_ID(N'[dbo].[FK_IzdajeRecept]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Izdajes] DROP CONSTRAINT [FK_IzdajeRecept];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UspostavljaDijagnoza]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Uspostavljas] DROP CONSTRAINT [FK_UspostavljaDijagnoza];
+GO
+IF OBJECT_ID(N'[dbo].[FK_BolnicaMesto]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Bolnicas] DROP CONSTRAINT [FK_BolnicaMesto];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PacijentDolazi]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Dolazis] DROP CONSTRAINT [FK_PacijentDolazi];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DolaziPregled]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Dolazis] DROP CONSTRAINT [FK_DolaziPregled];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UspostavljaIzdaje]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Izdajes] DROP CONSTRAINT [FK_UspostavljaIzdaje];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Pacijent_inherits_Osoba]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Osobas_Pacijent] DROP CONSTRAINT [FK_Pacijent_inherits_Osoba];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Radnik_inherits_Osoba]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Osobas_Radnik] DROP CONSTRAINT [FK_Radnik_inherits_Osoba];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Lekar_inherits_Radnik]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Osobas_Lekar] DROP CONSTRAINT [FK_Lekar_inherits_Radnik];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Recepcioner_inherits_Radnik]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Osobas_Recepcioner] DROP CONSTRAINT [FK_Recepcioner_inherits_Radnik];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Obezbedjenje_inherits_Radnik]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Osobas_Obezbedjenje] DROP CONSTRAINT [FK_Obezbedjenje_inherits_Radnik];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Bolnicas]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Bolnicas];
+GO
+IF OBJECT_ID(N'[dbo].[Mestoes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Mestoes];
+GO
+IF OBJECT_ID(N'[dbo].[Osobas]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Osobas];
+GO
+IF OBJECT_ID(N'[dbo].[ZdravstveniKartons]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ZdravstveniKartons];
+GO
+IF OBJECT_ID(N'[dbo].[Dijagnozas]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Dijagnozas];
+GO
+IF OBJECT_ID(N'[dbo].[Leks]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Leks];
+GO
+IF OBJECT_ID(N'[dbo].[Terapijas]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Terapijas];
+GO
+IF OBJECT_ID(N'[dbo].[Lecenjes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Lecenjes];
+GO
+IF OBJECT_ID(N'[dbo].[Pregleds]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Pregleds];
+GO
+IF OBJECT_ID(N'[dbo].[Uspostavljas]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Uspostavljas];
+GO
+IF OBJECT_ID(N'[dbo].[Recepts]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Recepts];
+GO
+IF OBJECT_ID(N'[dbo].[SeLecis]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[SeLecis];
+GO
+IF OBJECT_ID(N'[dbo].[Sadrzis]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Sadrzis];
+GO
+IF OBJECT_ID(N'[dbo].[Posedujes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Posedujes];
+GO
+IF OBJECT_ID(N'[dbo].[Izdajes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Izdajes];
+GO
+IF OBJECT_ID(N'[dbo].[Dolazis]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Dolazis];
+GO
+IF OBJECT_ID(N'[dbo].[Pregledas]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Pregledas];
+GO
+IF OBJECT_ID(N'[dbo].[Osobas_Pacijent]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Osobas_Pacijent];
+GO
+IF OBJECT_ID(N'[dbo].[Osobas_Radnik]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Osobas_Radnik];
+GO
+IF OBJECT_ID(N'[dbo].[Osobas_Lekar]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Osobas_Lekar];
+GO
+IF OBJECT_ID(N'[dbo].[Osobas_Recepcioner]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Osobas_Recepcioner];
+GO
+IF OBJECT_ID(N'[dbo].[Osobas_Obezbedjenje]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Osobas_Obezbedjenje];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -59,7 +200,7 @@ CREATE TABLE [dbo].[ZdravstveniKartons] (
     [Rok_vazenja] nvarchar(max)  NOT NULL,
     [Ime_pacijenta] nvarchar(max)  NOT NULL,
     [Prezime_pacijenta] nvarchar(max)  NOT NULL,
-    [Pacijent_Jmbg] int  NOT NULL
+    [PacijentJmbg] int  NOT NULL
 );
 GO
 
@@ -161,12 +302,6 @@ CREATE TABLE [dbo].[Pregledas] (
 );
 GO
 
--- Creating table 'Osobas_Pacijent'
-CREATE TABLE [dbo].[Osobas_Pacijent] (
-    [Jmbg] int  NOT NULL
-);
-GO
-
 -- Creating table 'Osobas_Radnik'
 CREATE TABLE [dbo].[Osobas_Radnik] (
     [Jmbg] int  NOT NULL
@@ -175,6 +310,12 @@ GO
 
 -- Creating table 'Osobas_Lekar'
 CREATE TABLE [dbo].[Osobas_Lekar] (
+    [Jmbg] int  NOT NULL
+);
+GO
+
+-- Creating table 'Osobas_Pacijent'
+CREATE TABLE [dbo].[Osobas_Pacijent] (
     [Jmbg] int  NOT NULL
 );
 GO
@@ -297,12 +438,6 @@ ADD CONSTRAINT [PK_Pregledas]
     PRIMARY KEY CLUSTERED ([LekarJmbg], [PregledBroj_P] ASC);
 GO
 
--- Creating primary key on [Jmbg] in table 'Osobas_Pacijent'
-ALTER TABLE [dbo].[Osobas_Pacijent]
-ADD CONSTRAINT [PK_Osobas_Pacijent]
-    PRIMARY KEY CLUSTERED ([Jmbg] ASC);
-GO
-
 -- Creating primary key on [Jmbg] in table 'Osobas_Radnik'
 ALTER TABLE [dbo].[Osobas_Radnik]
 ADD CONSTRAINT [PK_Osobas_Radnik]
@@ -312,6 +447,12 @@ GO
 -- Creating primary key on [Jmbg] in table 'Osobas_Lekar'
 ALTER TABLE [dbo].[Osobas_Lekar]
 ADD CONSTRAINT [PK_Osobas_Lekar]
+    PRIMARY KEY CLUSTERED ([Jmbg] ASC);
+GO
+
+-- Creating primary key on [Jmbg] in table 'Osobas_Pacijent'
+ALTER TABLE [dbo].[Osobas_Pacijent]
+ADD CONSTRAINT [PK_Osobas_Pacijent]
     PRIMARY KEY CLUSTERED ([Jmbg] ASC);
 GO
 
@@ -344,21 +485,6 @@ GO
 CREATE INDEX [IX_FK_BolnicaOsoba]
 ON [dbo].[Osobas]
     ([BolnicaOznaka_B]);
-GO
-
--- Creating foreign key on [Pacijent_Jmbg] in table 'ZdravstveniKartons'
-ALTER TABLE [dbo].[ZdravstveniKartons]
-ADD CONSTRAINT [FK_PacijentZdravstveniKarton]
-    FOREIGN KEY ([Pacijent_Jmbg])
-    REFERENCES [dbo].[Osobas_Pacijent]
-        ([Jmbg])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_PacijentZdravstveniKarton'
-CREATE INDEX [IX_FK_PacijentZdravstveniKarton]
-ON [dbo].[ZdravstveniKartons]
-    ([Pacijent_Jmbg]);
 GO
 
 -- Creating foreign key on [DijagnozaOznaka_D] in table 'Lecenjes'
@@ -583,13 +709,19 @@ ON [dbo].[Izdajes]
     ([UspostavljaPregledBroj_P], [UspostavljaDijagnozaOznaka_D]);
 GO
 
--- Creating foreign key on [Jmbg] in table 'Osobas_Pacijent'
-ALTER TABLE [dbo].[Osobas_Pacijent]
-ADD CONSTRAINT [FK_Pacijent_inherits_Osoba]
-    FOREIGN KEY ([Jmbg])
-    REFERENCES [dbo].[Osobas]
+-- Creating foreign key on [PacijentJmbg] in table 'ZdravstveniKartons'
+ALTER TABLE [dbo].[ZdravstveniKartons]
+ADD CONSTRAINT [FK_PacijentZdravstveniKarton]
+    FOREIGN KEY ([PacijentJmbg])
+    REFERENCES [dbo].[Osobas_Pacijent]
         ([Jmbg])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PacijentZdravstveniKarton'
+CREATE INDEX [IX_FK_PacijentZdravstveniKarton]
+ON [dbo].[ZdravstveniKartons]
+    ([PacijentJmbg]);
 GO
 
 -- Creating foreign key on [Jmbg] in table 'Osobas_Radnik'
@@ -606,6 +738,15 @@ ALTER TABLE [dbo].[Osobas_Lekar]
 ADD CONSTRAINT [FK_Lekar_inherits_Radnik]
     FOREIGN KEY ([Jmbg])
     REFERENCES [dbo].[Osobas_Radnik]
+        ([Jmbg])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Jmbg] in table 'Osobas_Pacijent'
+ALTER TABLE [dbo].[Osobas_Pacijent]
+ADD CONSTRAINT [FK_Pacijent_inherits_Osoba]
+    FOREIGN KEY ([Jmbg])
+    REFERENCES [dbo].[Osobas]
         ([Jmbg])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
