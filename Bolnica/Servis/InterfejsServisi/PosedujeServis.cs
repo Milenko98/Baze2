@@ -97,12 +97,15 @@ namespace Servis.InterfejsServisi
             {
                 try
                 {
-                    lista = db.Set<Poseduje>().Where(x => x.TerapijaBroj_T == id).ToList();
+                    lista = db.Set<Poseduje>().ToList();
                     if (lista.Count != 0)
                     {
                         foreach (var v in lista)
                         {
-                            db.Set<Poseduje>().Remove(v);
+                            if (v.TerapijaBroj_T == id)
+                            {
+                                db.Set<Poseduje>().Remove(v);
+                            }
                         }
                         db.SaveChanges();
                         return true;

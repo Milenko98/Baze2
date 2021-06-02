@@ -10,3 +10,15 @@ C:\Users\Milenko\Desktop\Bolnica\Servis\obj\Debug\Servis.csproj.CoreCompileInput
 C:\Users\Milenko\Desktop\Bolnica\Servis\obj\Debug\Servis.csproj.CopyComplete
 C:\Users\Milenko\Desktop\Bolnica\Servis\obj\Debug\Servis.dll
 C:\Users\Milenko\Desktop\Bolnica\Servis\obj\Debug\Servis.pdb
+D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\Servis\bin\Debug\Servis.dll.config
+D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\Servis\bin\Debug\Servis.dll
+D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\Servis\bin\Debug\Servis.pdb
+D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\Servis\bin\Debug\EntityFramework.dll
+D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\Servis\bin\Debug\EntityFramework.SqlServer.dll
+D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\Servis\bin\Debug\EntityFramework.xml
+D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\Servis\bin\Debug\EntityFramework.SqlServer.xml
+D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\Servis\obj\Debug\Servis.csprojAssemblyReference.cache
+D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\Servis\obj\Debug\Servis.csproj.CoreCompileInputs.cache
+D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\Servis\obj\Debug\Servis.csproj.CopyComplete
+D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\Servis\obj\Debug\Servis.dll
+D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\Servis\obj\Debug\Servis.pdb

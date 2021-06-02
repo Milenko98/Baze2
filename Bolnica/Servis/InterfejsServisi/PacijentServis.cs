@@ -172,5 +172,42 @@ namespace Servis.InterfejsServisi
                 }
             }
         }
+
+        public bool DeleteMestoo(int id)
+        {
+            List<Pacijent> lista = new List<Pacijent>();
+            ZdravstveniKartonServis zks = new ZdravstveniKartonServis();
+            DolaziServis ds = new DolaziServis();
+            using (var db = new Model1Container())
+            {
+                try
+                {
+                    lista = db.Set<Pacijent>().ToList();
+                    if (lista.Count != 0)
+                    {
+                        foreach (var v in lista)
+                        {
+                            if (v.MestoP_Broj == id)
+                            {
+                                zks.DeletePacijent(v.Jmbg);
+                                ds.DeletePacijent(v.Jmbg);
+                                db.Set<Pacijent>().Remove(v);
+                            }
+                        }
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Message:\n" + e.Message);
+                    return false;
+                }
+            }
+        }
     }
 }

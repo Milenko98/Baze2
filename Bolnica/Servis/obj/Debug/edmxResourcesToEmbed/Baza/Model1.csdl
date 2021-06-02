@@ -1,0 +1,554 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bolnicas" EntityType="Model1.Bolnica" />
+    <EntitySet Name="Mestoes" EntityType="Model1.Mesto" />
+    <EntitySet Name="Osobas" EntityType="Model1.Osoba" />
+    <EntitySet Name="ZdravstveniKartons" EntityType="Model1.ZdravstveniKarton" />
+    <EntitySet Name="Dijagnozas" EntityType="Model1.Dijagnoza" />
+    <EntitySet Name="Leks" EntityType="Model1.Lek" />
+    <EntitySet Name="Terapijas" EntityType="Model1.Terapija" />
+    <EntitySet Name="Lecenjes" EntityType="Model1.Lecenje" />
+    <EntitySet Name="Pregleds" EntityType="Model1.Pregled" />
+    <EntitySet Name="Uspostavljas" EntityType="Model1.Uspostavlja" />
+    <EntitySet Name="Recepts" EntityType="Model1.Recept" />
+    <EntitySet Name="SeLecis" EntityType="Model1.SeLeci" />
+    <EntitySet Name="Sadrzis" EntityType="Model1.Sadrzi" />
+    <EntitySet Name="Posedujes" EntityType="Model1.Poseduje" />
+    <EntitySet Name="Izdajes" EntityType="Model1.Izdaje" />
+    <EntitySet Name="Dolazis" EntityType="Model1.Dolazi" />
+    <EntitySet Name="Pregledas" EntityType="Model1.Pregleda" />
+    <AssociationSet Name="BolnicaOsoba" Association="Model1.BolnicaOsoba">
+      <End Role="Bolnica" EntitySet="Bolnicas" />
+      <End Role="Osoba" EntitySet="Osobas" />
+    </AssociationSet>
+    <AssociationSet Name="DijagnozaLecenje" Association="Model1.DijagnozaLecenje">
+      <End Role="Dijagnoza" EntitySet="Dijagnozas" />
+      <End Role="Lecenje" EntitySet="Lecenjes" />
+    </AssociationSet>
+    <AssociationSet Name="LekSeLeci" Association="Model1.LekSeLeci">
+      <End Role="Lek" EntitySet="Leks" />
+      <End Role="SeLeci" EntitySet="SeLecis" />
+    </AssociationSet>
+    <AssociationSet Name="TerapijaLecenje" Association="Model1.TerapijaLecenje">
+      <End Role="Terapija" EntitySet="Terapijas" />
+      <End Role="Lecenje" EntitySet="Lecenjes" />
+    </AssociationSet>
+    <AssociationSet Name="PregledUspostavlja" Association="Model1.PregledUspostavlja">
+      <End Role="Pregled" EntitySet="Pregleds" />
+      <End Role="Uspostavlja" EntitySet="Uspostavljas" />
+    </AssociationSet>
+    <AssociationSet Name="ZdravstveniKartonSadrzi" Association="Model1.ZdravstveniKartonSadrzi">
+      <End Role="ZdravstveniKarton" EntitySet="ZdravstveniKartons" />
+      <End Role="Sadrzi" EntitySet="Sadrzis" />
+    </AssociationSet>
+    <AssociationSet Name="ZdravstveniKartonPoseduje" Association="Model1.ZdravstveniKartonPoseduje">
+      <End Role="ZdravstveniKarton" EntitySet="ZdravstveniKartons" />
+      <End Role="Poseduje" EntitySet="Posedujes" />
+    </AssociationSet>
+    <AssociationSet Name="UspostavljaLecenje" Association="Model1.UspostavljaLecenje">
+      <End Role="Uspostavlja" EntitySet="Uspostavljas" />
+      <End Role="Lecenje" EntitySet="Lecenjes" />
+    </AssociationSet>
+    <AssociationSet Name="SeLeciDijagnoza" Association="Model1.SeLeciDijagnoza">
+      <End Role="SeLeci" EntitySet="SeLecis" />
+      <End Role="Dijagnoza" EntitySet="Dijagnozas" />
+    </AssociationSet>
+    <AssociationSet Name="SadrziDijagnoza" Association="Model1.SadrziDijagnoza">
+      <End Role="Sadrzi" EntitySet="Sadrzis" />
+      <End Role="Dijagnoza" EntitySet="Dijagnozas" />
+    </AssociationSet>
+    <AssociationSet Name="PosedujeTerapija" Association="Model1.PosedujeTerapija">
+      <End Role="Poseduje" EntitySet="Posedujes" />
+      <End Role="Terapija" EntitySet="Terapijas" />
+    </AssociationSet>
+    <AssociationSet Name="LekarPregleda" Association="Model1.LekarPregleda">
+      <End Role="Lekar" EntitySet="Osobas" />
+      <End Role="Pregleda" EntitySet="Pregledas" />
+    </AssociationSet>
+    <AssociationSet Name="PregledaPregled" Association="Model1.PregledaPregled">
+      <End Role="Pregleda" EntitySet="Pregledas" />
+      <End Role="Pregled" EntitySet="Pregleds" />
+    </AssociationSet>
+    <AssociationSet Name="IzdajeRecept" Association="Model1.IzdajeRecept">
+      <End Role="Izdaje" EntitySet="Izdajes" />
+      <End Role="Recept" EntitySet="Recepts" />
+    </AssociationSet>
+    <AssociationSet Name="UspostavljaDijagnoza" Association="Model1.UspostavljaDijagnoza">
+      <End Role="Uspostavlja" EntitySet="Uspostavljas" />
+      <End Role="Dijagnoza" EntitySet="Dijagnozas" />
+    </AssociationSet>
+    <AssociationSet Name="BolnicaMesto" Association="Model1.BolnicaMesto">
+      <End Role="Bolnica" EntitySet="Bolnicas" />
+      <End Role="Mesto" EntitySet="Mestoes" />
+    </AssociationSet>
+    <AssociationSet Name="PacijentDolazi" Association="Model1.PacijentDolazi">
+      <End Role="Pacijent" EntitySet="Osobas" />
+      <End Role="Dolazi" EntitySet="Dolazis" />
+    </AssociationSet>
+    <AssociationSet Name="DolaziPregled" Association="Model1.DolaziPregled">
+      <End Role="Dolazi" EntitySet="Dolazis" />
+      <End Role="Pregled" EntitySet="Pregleds" />
+    </AssociationSet>
+    <AssociationSet Name="UspostavljaIzdaje" Association="Model1.UspostavljaIzdaje">
+      <End Role="Uspostavlja" EntitySet="Uspostavljas" />
+      <End Role="Izdaje" EntitySet="Izdajes" />
+    </AssociationSet>
+    <AssociationSet Name="PacijentZdravstveniKarton" Association="Model1.PacijentZdravstveniKarton">
+      <End Role="Pacijent" EntitySet="Osobas" />
+      <End Role="ZdravstveniKarton" EntitySet="ZdravstveniKartons" />
+    </AssociationSet>
+    <AssociationSet Name="OsobaMesto" Association="Model1.OsobaMesto">
+      <End Role="Osoba" EntitySet="Osobas" />
+      <End Role="Mesto" EntitySet="Mestoes" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Bolnica">
+    <Key>
+      <PropertyRef Name="Oznaka_B" />
+    </Key>
+    <Property Name="Oznaka_B" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" Nullable="false" />
+    <NavigationProperty Name="Osobas" Relationship="Model1.BolnicaOsoba" FromRole="Bolnica" ToRole="Osoba" />
+    <NavigationProperty Name="Mesto" Relationship="Model1.BolnicaMesto" FromRole="Bolnica" ToRole="Mesto" />
+    <Property Name="MestoP_Broj" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mesto">
+    <Key>
+      <PropertyRef Name="P_Broj" />
+    </Key>
+    <Property Name="P_Broj" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" Nullable="false" />
+    <NavigationProperty Name="Bolnicas" Relationship="Model1.BolnicaMesto" FromRole="Mesto" ToRole="Bolnica" />
+    <NavigationProperty Name="Osobas" Relationship="Model1.OsobaMesto" FromRole="Mesto" ToRole="Osoba" />
+  </EntityType>
+  <EntityType Name="Osoba">
+    <Key>
+      <PropertyRef Name="Jmbg" />
+    </Key>
+    <Property Name="Jmbg" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ime" Type="String" Nullable="false" />
+    <Property Name="Prezime" Type="String" Nullable="false" />
+    <Property Name="BolnicaOznaka_B" Type="Int32" Nullable="false" />
+    <Property Name="Radni_staz" Type="String" Nullable="false" />
+    <NavigationProperty Name="Bolnica" Relationship="Model1.BolnicaOsoba" FromRole="Osoba" ToRole="Bolnica" />
+    <NavigationProperty Name="Mesto" Relationship="Model1.OsobaMesto" FromRole="Osoba" ToRole="Mesto" />
+    <Property Name="MestoP_Broj" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Radnik" BaseType="Model1.Osoba" />
+  <EntityType Name="Pacijent" BaseType="Model1.Osoba">
+    <NavigationProperty Name="Dolazis" Relationship="Model1.PacijentDolazi" FromRole="Pacijent" ToRole="Dolazi" />
+    <NavigationProperty Name="ZdravstveniKartons" Relationship="Model1.PacijentZdravstveniKarton" FromRole="Pacijent" ToRole="ZdravstveniKarton" />
+  </EntityType>
+  <EntityType Name="Lekar" BaseType="Model1.Radnik">
+    <NavigationProperty Name="Pregledas" Relationship="Model1.LekarPregleda" FromRole="Lekar" ToRole="Pregleda" />
+  </EntityType>
+  <EntityType Name="Recepcioner" BaseType="Model1.Radnik" />
+  <EntityType Name="Obezbedjenje" BaseType="Model1.Radnik" />
+  <EntityType Name="ZdravstveniKarton">
+    <Key>
+      <PropertyRef Name="Broj_K" />
+    </Key>
+    <Property Name="Broj_K" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rok_vazenja" Type="String" Nullable="false" />
+    <Property Name="Ime_pacijenta" Type="String" Nullable="false" />
+    <Property Name="Prezime_pacijenta" Type="String" Nullable="false" />
+    <NavigationProperty Name="Sadrzis" Relationship="Model1.ZdravstveniKartonSadrzi" FromRole="ZdravstveniKarton" ToRole="Sadrzi" />
+    <NavigationProperty Name="Posedujes" Relationship="Model1.ZdravstveniKartonPoseduje" FromRole="ZdravstveniKarton" ToRole="Poseduje" />
+    <NavigationProperty Name="Pacijent" Relationship="Model1.PacijentZdravstveniKarton" FromRole="ZdravstveniKarton" ToRole="Pacijent" />
+    <Property Name="PacijentJmbg" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dijagnoza">
+    <Key>
+      <PropertyRef Name="Oznaka_D" />
+    </Key>
+    <Property Name="Oznaka_D" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" Nullable="false" />
+    <Property Name="UspostavljaPregledBroj_P" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Lecenjes" Relationship="Model1.DijagnozaLecenje" FromRole="Dijagnoza" ToRole="Lecenje" />
+    <NavigationProperty Name="SeLecis" Relationship="Model1.SeLeciDijagnoza" FromRole="Dijagnoza" ToRole="SeLeci" />
+    <NavigationProperty Name="Sadrzis" Relationship="Model1.SadrziDijagnoza" FromRole="Dijagnoza" ToRole="Sadrzi" />
+    <NavigationProperty Name="Uspostavljas" Relationship="Model1.UspostavljaDijagnoza" FromRole="Dijagnoza" ToRole="Uspostavlja" />
+  </EntityType>
+  <EntityType Name="Lek">
+    <Key>
+      <PropertyRef Name="Id_Leka" />
+    </Key>
+    <Property Name="Id_Leka" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" Nullable="false" />
+    <Property Name="Kolicina" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="SeLecis" Relationship="Model1.LekSeLeci" FromRole="Lek" ToRole="SeLeci" />
+  </EntityType>
+  <EntityType Name="Terapija">
+    <Key>
+      <PropertyRef Name="Broj_T" />
+    </Key>
+    <Property Name="Broj_T" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" Nullable="false" />
+    <NavigationProperty Name="Lecenjes" Relationship="Model1.TerapijaLecenje" FromRole="Terapija" ToRole="Lecenje" />
+    <NavigationProperty Name="Posedujes" Relationship="Model1.PosedujeTerapija" FromRole="Terapija" ToRole="Poseduje" />
+  </EntityType>
+  <EntityType Name="Lecenje">
+    <Key>
+      <PropertyRef Name="TerapijaBroj_T" />
+      <PropertyRef Name="DijagnozaOznaka_D" />
+    </Key>
+    <Property Name="TerapijaBroj_T" Type="Int32" Nullable="false" />
+    <Property Name="DijagnozaOznaka_D" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Dijagnoza" Relationship="Model1.DijagnozaLecenje" FromRole="Lecenje" ToRole="Dijagnoza" />
+    <NavigationProperty Name="Terapija" Relationship="Model1.TerapijaLecenje" FromRole="Lecenje" ToRole="Terapija" />
+    <NavigationProperty Name="Uspostavljas" Relationship="Model1.UspostavljaLecenje" FromRole="Lecenje" ToRole="Uspostavlja" />
+  </EntityType>
+  <EntityType Name="Pregled">
+    <Key>
+      <PropertyRef Name="Broj_P" />
+    </Key>
+    <Property Name="Broj_P" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" Nullable="false" />
+    <Property Name="Ime_pacijenta" Type="String" Nullable="false" />
+    <Property Name="Prezime_pacijenta" Type="String" Nullable="false" />
+    <NavigationProperty Name="Uspostavljas" Relationship="Model1.PregledUspostavlja" FromRole="Pregled" ToRole="Uspostavlja" />
+    <NavigationProperty Name="Pregledas" Relationship="Model1.PregledaPregled" FromRole="Pregled" ToRole="Pregleda" />
+    <NavigationProperty Name="Dolazis" Relationship="Model1.DolaziPregled" FromRole="Pregled" ToRole="Dolazi" />
+  </EntityType>
+  <EntityType Name="Uspostavlja">
+    <Key>
+      <PropertyRef Name="PregledBroj_P" />
+      <PropertyRef Name="DijagnozaOznaka_D" />
+    </Key>
+    <Property Name="PregledBroj_P" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pregled" Relationship="Model1.PregledUspostavlja" FromRole="Uspostavlja" ToRole="Pregled" />
+    <NavigationProperty Name="Lecenje" Relationship="Model1.UspostavljaLecenje" FromRole="Uspostavlja" ToRole="Lecenje" />
+    <Property Name="LecenjeTerapijaBroj_T" Type="Int32" Nullable="false" />
+    <Property Name="LecenjeDijagnozaOznaka_D" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Dijagnoza" Relationship="Model1.UspostavljaDijagnoza" FromRole="Uspostavlja" ToRole="Dijagnoza" />
+    <Property Name="DijagnozaOznaka_D" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Izdajes" Relationship="Model1.UspostavljaIzdaje" FromRole="Uspostavlja" ToRole="Izdaje" />
+  </EntityType>
+  <EntityType Name="Recept">
+    <Key>
+      <PropertyRef Name="Oznaka_R" />
+    </Key>
+    <Property Name="Oznaka_R" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" Nullable="false" />
+    <NavigationProperty Name="Izdajes" Relationship="Model1.IzdajeRecept" FromRole="Recept" ToRole="Izdaje" />
+  </EntityType>
+  <EntityType Name="SeLeci">
+    <Key>
+      <PropertyRef Name="LekId_Leka" />
+      <PropertyRef Name="DijagnozaOznaka_D" />
+    </Key>
+    <Property Name="LekId_Leka" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Lek" Relationship="Model1.LekSeLeci" FromRole="SeLeci" ToRole="Lek" />
+    <NavigationProperty Name="Dijagnoza" Relationship="Model1.SeLeciDijagnoza" FromRole="SeLeci" ToRole="Dijagnoza" />
+    <Property Name="DijagnozaOznaka_D" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sadrzi">
+    <Key>
+      <PropertyRef Name="ZdravstveniKartonBroj_K" />
+      <PropertyRef Name="DijagnozaOznaka_D" />
+    </Key>
+    <Property Name="ZdravstveniKartonBroj_K" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ZdravstveniKarton" Relationship="Model1.ZdravstveniKartonSadrzi" FromRole="Sadrzi" ToRole="ZdravstveniKarton" />
+    <NavigationProperty Name="Dijagnoza" Relationship="Model1.SadrziDijagnoza" FromRole="Sadrzi" ToRole="Dijagnoza" />
+    <Property Name="DijagnozaOznaka_D" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Poseduje">
+    <Key>
+      <PropertyRef Name="ZdravstveniKartonBroj_K" />
+      <PropertyRef Name="TerapijaBroj_T" />
+    </Key>
+    <Property Name="ZdravstveniKartonBroj_K" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ZdravstveniKarton" Relationship="Model1.ZdravstveniKartonPoseduje" FromRole="Poseduje" ToRole="ZdravstveniKarton" />
+    <NavigationProperty Name="Terapija" Relationship="Model1.PosedujeTerapija" FromRole="Poseduje" ToRole="Terapija" />
+    <Property Name="TerapijaBroj_T" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Izdaje">
+    <Key>
+      <PropertyRef Name="ReceptOznaka_R" />
+      <PropertyRef Name="UspostavljaPregledBroj_P" />
+      <PropertyRef Name="UspostavljaDijagnozaOznaka_D" />
+    </Key>
+    <NavigationProperty Name="Recept" Relationship="Model1.IzdajeRecept" FromRole="Izdaje" ToRole="Recept" />
+    <Property Name="ReceptOznaka_R" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Uspostavlja" Relationship="Model1.UspostavljaIzdaje" FromRole="Izdaje" ToRole="Uspostavlja" />
+    <Property Name="UspostavljaPregledBroj_P" Type="Int32" Nullable="false" />
+    <Property Name="UspostavljaDijagnozaOznaka_D" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dolazi">
+    <Key>
+      <PropertyRef Name="PacijentJmbg" />
+      <PropertyRef Name="PregledBroj_P" />
+    </Key>
+    <NavigationProperty Name="Pacijent" Relationship="Model1.PacijentDolazi" FromRole="Dolazi" ToRole="Pacijent" />
+    <Property Name="PacijentJmbg" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pregled" Relationship="Model1.DolaziPregled" FromRole="Dolazi" ToRole="Pregled" />
+    <Property Name="PregledBroj_P" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pregleda">
+    <Key>
+      <PropertyRef Name="LekarJmbg" />
+      <PropertyRef Name="PregledBroj_P" />
+    </Key>
+    <NavigationProperty Name="Lekar" Relationship="Model1.LekarPregleda" FromRole="Pregleda" ToRole="Lekar" />
+    <Property Name="LekarJmbg" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pregled" Relationship="Model1.PregledaPregled" FromRole="Pregleda" ToRole="Pregled" />
+    <Property Name="PregledBroj_P" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="BolnicaOsoba">
+    <End Type="Model1.Bolnica" Role="Bolnica" Multiplicity="1" />
+    <End Type="Model1.Osoba" Role="Osoba" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bolnica">
+        <PropertyRef Name="Oznaka_B" />
+      </Principal>
+      <Dependent Role="Osoba">
+        <PropertyRef Name="BolnicaOznaka_B" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DijagnozaLecenje">
+    <End Type="Model1.Dijagnoza" Role="Dijagnoza" Multiplicity="1" />
+    <End Type="Model1.Lecenje" Role="Lecenje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dijagnoza">
+        <PropertyRef Name="Oznaka_D" />
+      </Principal>
+      <Dependent Role="Lecenje">
+        <PropertyRef Name="DijagnozaOznaka_D" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LekSeLeci">
+    <End Type="Model1.Lek" Role="Lek" Multiplicity="1" />
+    <End Type="Model1.SeLeci" Role="SeLeci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lek">
+        <PropertyRef Name="Id_Leka" />
+      </Principal>
+      <Dependent Role="SeLeci">
+        <PropertyRef Name="LekId_Leka" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TerapijaLecenje">
+    <End Type="Model1.Terapija" Role="Terapija" Multiplicity="1" />
+    <End Type="Model1.Lecenje" Role="Lecenje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Terapija">
+        <PropertyRef Name="Broj_T" />
+      </Principal>
+      <Dependent Role="Lecenje">
+        <PropertyRef Name="TerapijaBroj_T" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PregledUspostavlja">
+    <End Type="Model1.Pregled" Role="Pregled" Multiplicity="1" />
+    <End Type="Model1.Uspostavlja" Role="Uspostavlja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pregled">
+        <PropertyRef Name="Broj_P" />
+      </Principal>
+      <Dependent Role="Uspostavlja">
+        <PropertyRef Name="PregledBroj_P" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ZdravstveniKartonSadrzi">
+    <End Type="Model1.ZdravstveniKarton" Role="ZdravstveniKarton" Multiplicity="1" />
+    <End Type="Model1.Sadrzi" Role="Sadrzi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ZdravstveniKarton">
+        <PropertyRef Name="Broj_K" />
+      </Principal>
+      <Dependent Role="Sadrzi">
+        <PropertyRef Name="ZdravstveniKartonBroj_K" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ZdravstveniKartonPoseduje">
+    <End Type="Model1.ZdravstveniKarton" Role="ZdravstveniKarton" Multiplicity="1" />
+    <End Type="Model1.Poseduje" Role="Poseduje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ZdravstveniKarton">
+        <PropertyRef Name="Broj_K" />
+      </Principal>
+      <Dependent Role="Poseduje">
+        <PropertyRef Name="ZdravstveniKartonBroj_K" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UspostavljaLecenje">
+    <End Type="Model1.Uspostavlja" Role="Uspostavlja" Multiplicity="*" />
+    <End Type="Model1.Lecenje" Role="Lecenje" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Lecenje">
+        <PropertyRef Name="TerapijaBroj_T" />
+        <PropertyRef Name="DijagnozaOznaka_D" />
+      </Principal>
+      <Dependent Role="Uspostavlja">
+        <PropertyRef Name="LecenjeTerapijaBroj_T" />
+        <PropertyRef Name="LecenjeDijagnozaOznaka_D" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SeLeciDijagnoza">
+    <End Type="Model1.SeLeci" Role="SeLeci" Multiplicity="*" />
+    <End Type="Model1.Dijagnoza" Role="Dijagnoza" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Dijagnoza">
+        <PropertyRef Name="Oznaka_D" />
+      </Principal>
+      <Dependent Role="SeLeci">
+        <PropertyRef Name="DijagnozaOznaka_D" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SadrziDijagnoza">
+    <End Type="Model1.Sadrzi" Role="Sadrzi" Multiplicity="*" />
+    <End Type="Model1.Dijagnoza" Role="Dijagnoza" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Dijagnoza">
+        <PropertyRef Name="Oznaka_D" />
+      </Principal>
+      <Dependent Role="Sadrzi">
+        <PropertyRef Name="DijagnozaOznaka_D" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PosedujeTerapija">
+    <End Type="Model1.Poseduje" Role="Poseduje" Multiplicity="*" />
+    <End Type="Model1.Terapija" Role="Terapija" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Terapija">
+        <PropertyRef Name="Broj_T" />
+      </Principal>
+      <Dependent Role="Poseduje">
+        <PropertyRef Name="TerapijaBroj_T" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LekarPregleda">
+    <End Type="Model1.Lekar" Role="Lekar" Multiplicity="1" />
+    <End Type="Model1.Pregleda" Role="Pregleda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lekar">
+        <PropertyRef Name="Jmbg" />
+      </Principal>
+      <Dependent Role="Pregleda">
+        <PropertyRef Name="LekarJmbg" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PregledaPregled">
+    <End Type="Model1.Pregleda" Role="Pregleda" Multiplicity="*" />
+    <End Type="Model1.Pregled" Role="Pregled" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Pregled">
+        <PropertyRef Name="Broj_P" />
+      </Principal>
+      <Dependent Role="Pregleda">
+        <PropertyRef Name="PregledBroj_P" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IzdajeRecept">
+    <End Type="Model1.Izdaje" Role="Izdaje" Multiplicity="*" />
+    <End Type="Model1.Recept" Role="Recept" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Recept">
+        <PropertyRef Name="Oznaka_R" />
+      </Principal>
+      <Dependent Role="Izdaje">
+        <PropertyRef Name="ReceptOznaka_R" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UspostavljaDijagnoza">
+    <End Type="Model1.Uspostavlja" Role="Uspostavlja" Multiplicity="*" />
+    <End Type="Model1.Dijagnoza" Role="Dijagnoza" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Dijagnoza">
+        <PropertyRef Name="Oznaka_D" />
+      </Principal>
+      <Dependent Role="Uspostavlja">
+        <PropertyRef Name="DijagnozaOznaka_D" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BolnicaMesto">
+    <End Type="Model1.Bolnica" Role="Bolnica" Multiplicity="*" />
+    <End Type="Model1.Mesto" Role="Mesto" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Mesto">
+        <PropertyRef Name="P_Broj" />
+      </Principal>
+      <Dependent Role="Bolnica">
+        <PropertyRef Name="MestoP_Broj" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PacijentDolazi">
+    <End Type="Model1.Pacijent" Role="Pacijent" Multiplicity="1" />
+    <End Type="Model1.Dolazi" Role="Dolazi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pacijent">
+        <PropertyRef Name="Jmbg" />
+      </Principal>
+      <Dependent Role="Dolazi">
+        <PropertyRef Name="PacijentJmbg" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DolaziPregled">
+    <End Type="Model1.Dolazi" Role="Dolazi" Multiplicity="*" />
+    <End Type="Model1.Pregled" Role="Pregled" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Pregled">
+        <PropertyRef Name="Broj_P" />
+      </Principal>
+      <Dependent Role="Dolazi">
+        <PropertyRef Name="PregledBroj_P" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UspostavljaIzdaje">
+    <End Type="Model1.Uspostavlja" Role="Uspostavlja" Multiplicity="1" />
+    <End Type="Model1.Izdaje" Role="Izdaje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uspostavlja">
+        <PropertyRef Name="PregledBroj_P" />
+        <PropertyRef Name="DijagnozaOznaka_D" />
+      </Principal>
+      <Dependent Role="Izdaje">
+        <PropertyRef Name="UspostavljaPregledBroj_P" />
+        <PropertyRef Name="UspostavljaDijagnozaOznaka_D" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PacijentZdravstveniKarton">
+    <End Type="Model1.Pacijent" Role="Pacijent" Multiplicity="1" />
+    <End Type="Model1.ZdravstveniKarton" Role="ZdravstveniKarton" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pacijent">
+        <PropertyRef Name="Jmbg" />
+      </Principal>
+      <Dependent Role="ZdravstveniKarton">
+        <PropertyRef Name="PacijentJmbg" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OsobaMesto">
+    <End Type="Model1.Osoba" Role="Osoba" Multiplicity="*" />
+    <End Type="Model1.Mesto" Role="Mesto" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Mesto">
+        <PropertyRef Name="P_Broj" />
+      </Principal>
+      <Dependent Role="Osoba">
+        <PropertyRef Name="MestoP_Broj" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -93,17 +93,22 @@ namespace Servis.InterfejsServisi
         public bool DeleteLecenje(int id1, int id2)
         {
             List<Uspostavlja> lista = new List<Uspostavlja>();
+            IzdajeServis izs = new IzdajeServis();
             using (var db = new Model1Container())
             {
                 try
                 {
 
-                    lista = db.Set<Uspostavlja>().Where(x => x.LecenjeDijagnozaOznaka_D == id1 && x.LecenjeTerapijaBroj_T == id2).ToList();
+                    lista = db.Set<Uspostavlja>().ToList();
                     if (lista.Count != 0)
                     {
                         foreach (var v in lista)
                         {
-                            db.Set<Uspostavlja>().Remove(v);
+                            if (v.LecenjeDijagnozaOznaka_D == id1 && v.LecenjeTerapijaBroj_T == id2)
+                            {
+                                izs.DeleteUspostavlja(v.DijagnozaOznaka_D, v.PregledBroj_P);
+                                db.Set<Uspostavlja>().Remove(v);
+                            }
                         }
                         db.SaveChanges();
                         return true;
@@ -124,16 +129,21 @@ namespace Servis.InterfejsServisi
         public bool DeletePregled(int id)
         {
             List<Uspostavlja> lista = new List<Uspostavlja>();
+            IzdajeServis izs = new IzdajeServis();
             using (var db = new Model1Container())
             {
                 try
                 {
-                    lista = db.Set<Uspostavlja>().Where(x => x.PregledBroj_P == id).ToList();
+                    lista = db.Set<Uspostavlja>().ToList();
                     if (lista.Count != 0)
                     {
                         foreach (var v in lista)
                         {
-                            db.Set<Uspostavlja>().Remove(v);
+                            if (v.PregledBroj_P == id)
+                            {
+                                izs.DeleteUspostavlja(v.DijagnozaOznaka_D, v.PregledBroj_P);
+                                db.Set<Uspostavlja>().Remove(v);
+                            }
                         }
                         db.SaveChanges();
                         return true;
@@ -154,16 +164,21 @@ namespace Servis.InterfejsServisi
         public bool DeleteDijagnoza(int id)
         {
             List<Uspostavlja> lista = new List<Uspostavlja>();
+            IzdajeServis izs = new IzdajeServis();
             using (var db = new Model1Container())
             {
                 try
                 {
-                    lista = db.Set<Uspostavlja>().Where(x => x.DijagnozaOznaka_D == id).ToList();
+                    lista = db.Set<Uspostavlja>().ToList();
                     if (lista.Count != 0)
                     {
                         foreach (var v in lista)
                         {
-                            db.Set<Uspostavlja>().Remove(v);
+                            if (v.DijagnozaOznaka_D == id)
+                            {
+                                izs.DeleteUspostavlja(v.DijagnozaOznaka_D, v.PregledBroj_P);
+                                db.Set<Uspostavlja>().Remove(v);
+                            }
                         }
                         db.SaveChanges();
                         return true;

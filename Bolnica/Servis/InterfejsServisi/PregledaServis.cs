@@ -97,12 +97,13 @@ namespace Servis.InterfejsServisi
             {
                 try
                 {
-                    lista = db.Set<Pregleda>().Where(x => x.PregledBroj_P == id).ToList();
+                    lista = db.Set<Pregleda>().ToList();
                     if (lista.Count != 0)
                     {
                         foreach (var v in lista)
                         {
-                            db.Set<Pregleda>().Remove(v);
+                            if(v.PregledBroj_P == id)
+                                db.Set<Pregleda>().Remove(v);
                         }
                         db.SaveChanges();
                         return true;

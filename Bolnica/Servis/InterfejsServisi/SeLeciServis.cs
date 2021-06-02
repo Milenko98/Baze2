@@ -97,12 +97,15 @@ namespace Servis.InterfejsServisi
             {
                 try
                 {
-                    lista = db.Set<SeLeci>().Where(x => x.DijagnozaOznaka_D == id).ToList();
+                    lista = db.Set<SeLeci>().ToList();
                     if (lista.Count != 0)
                     {
                         foreach (var v in lista)
                         {
-                            db.Set<SeLeci>().Remove(v);
+                            if (v.DijagnozaOznaka_D == id)
+                            {
+                                db.Set<SeLeci>().Remove(v);
+                            }
                         }
                         db.SaveChanges();
                         return true;
@@ -127,12 +130,15 @@ namespace Servis.InterfejsServisi
             {
                 try
                 {
-                    lista = db.Set<SeLeci>().Where(x => x.LekId_Leka == id).ToList();
+                    lista = db.Set<SeLeci>().ToList();
                     if (lista.Count != 0)
                     {
                         foreach (var v in lista)
                         {
-                            db.Set<SeLeci>().Remove(v);
+                            if (v.LekId_Leka == id)
+                            {
+                                db.Set<SeLeci>().Remove(v);
+                            }
                         }
                         db.SaveChanges();
                         return true;

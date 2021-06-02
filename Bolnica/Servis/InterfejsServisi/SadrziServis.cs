@@ -97,12 +97,16 @@ namespace Servis.InterfejsServisi
             {
                 try
                 {
-                    lista = db.Set<Sadrzi>().Where(x => x.DijagnozaOznaka_D == id).ToList();
+                    lista = db.Set<Sadrzi>().ToList();
                     if (lista.Count != 0)
                     {
                         foreach (var v in lista)
                         {
-                            db.Set<Sadrzi>().Remove(v);
+                            if (v.DijagnozaOznaka_D == id)
+                            {
+
+                                db.Set<Sadrzi>().Remove(v);
+                            }
                         }
                         db.SaveChanges();
                         return true;

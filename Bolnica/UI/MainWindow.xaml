@@ -1030,6 +1030,14 @@
         <Button Content="Create" Command="{Binding CreatePregledaCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="521,464,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="Update" Command="{Binding UpdatePregledaCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="521,489,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="Delete" Command="{Binding DeletePregledaCommand}" FontWeight="Bold" HorizontalAlignment="Left" Margin="521,514,0,0" VerticalAlignment="Top" Width="75"/>
-        <Label Content="Pregleda:" FontWeight="Bold" HorizontalAlignment="Left" Margin="521,433,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+        <Label Content="Pregleda:"  FontWeight="Bold" HorizontalAlignment="Left" Margin="521,433,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+        <Button Content="Button" Command="{Binding ProceduraCommand}" HorizontalAlignment="Left" Margin="660,335,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Button" Command="{Binding FunkcijaCommand}" HorizontalAlignment="Left" Margin="660,398,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.56,-0.05"/>
+        <Button Content="Button" Command="{Binding TrigerCommand}" HorizontalAlignment="Left" Margin="660,454,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Button" Command="{Binding IndeksCommand}" HorizontalAlignment="Left" Margin="660,505,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Procedura:" FontWeight="Bold" HorizontalAlignment="Left" Margin="660,304,0,0" VerticalAlignment="Top"/>
+        <Label Content="Funkcija:" FontWeight="Bold" HorizontalAlignment="Left" Margin="660,367,0,0" VerticalAlignment="Top"/>
+        <Label Content="Triger:" FontWeight="Bold" HorizontalAlignment="Left" Margin="660,423,0,0" VerticalAlignment="Top"/>
+        <Label Content="Indeks:" FontWeight="Bold" HorizontalAlignment="Left" Margin="660,479,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

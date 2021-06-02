@@ -93,16 +93,21 @@ namespace Servis.InterfejsServisi
         public bool DeleteDijagnoza(int id)
         {
             List<Lecenje> lista = new List<Lecenje>();
+            UspostavljaServis us = new UspostavljaServis();
             using (var db = new Model1Container())
             {
                 try
                 {
-                    lista = db.Set<Lecenje>().Where(x => x.DijagnozaOznaka_D == id).ToList();
+                    lista = db.Set<Lecenje>().ToList();
                     if (lista.Count != 0)
                     {
                         foreach (var v in lista)
                         {
-                            db.Set<Lecenje>().Remove(v);
+                            if (v.DijagnozaOznaka_D == id)
+                            {
+                                us.DeleteLecenje(v.DijagnozaOznaka_D, v.TerapijaBroj_T);
+                                db.Set<Lecenje>().Remove(v);
+                            }
                         }
                         db.SaveChanges();
                         return true;
@@ -123,16 +128,21 @@ namespace Servis.InterfejsServisi
         public bool DeleteTerapija(int id)
         {
             List<Lecenje> lista = new List<Lecenje>();
+            UspostavljaServis us = new UspostavljaServis();
             using (var db = new Model1Container())
             {
                 try
                 {
-                    lista = db.Set<Lecenje>().Where(x => x.TerapijaBroj_T == id).ToList();
+                    lista = db.Set<Lecenje>().ToList();
                     if (lista.Count != 0)
                     {
                         foreach (var v in lista)
                         {
-                            db.Set<Lecenje>().Remove(v);
+                            if (v.TerapijaBroj_T == id)
+                            {
+                                us.DeleteLecenje(v.DijagnozaOznaka_D, v.TerapijaBroj_T);
+                                db.Set<Lecenje>().Remove(v);
+                            }
                         }
                         db.SaveChanges();
                         return true;

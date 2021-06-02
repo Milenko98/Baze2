@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/31/2021 17:33:30
--- Generated from EDMX file: C:\Users\Milenko\Desktop\BazeProj\Bolnica\Servis\Baza\Model1.edmx
+-- Date Created: 06/01/2021 23:38:10
+-- Generated from EDMX file: D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\Servis\Baza\Model1.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -19,9 +19,6 @@ GO
 
 IF OBJECT_ID(N'[dbo].[FK_BolnicaOsoba]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Osobas] DROP CONSTRAINT [FK_BolnicaOsoba];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PacijentZdravstveniKarton]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ZdravstveniKartons] DROP CONSTRAINT [FK_PacijentZdravstveniKarton];
 GO
 IF OBJECT_ID(N'[dbo].[FK_DijagnozaLecenje]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Lecenjes] DROP CONSTRAINT [FK_DijagnozaLecenje];
@@ -77,14 +74,17 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_UspostavljaIzdaje]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Izdajes] DROP CONSTRAINT [FK_UspostavljaIzdaje];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Pacijent_inherits_Osoba]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Osobas_Pacijent] DROP CONSTRAINT [FK_Pacijent_inherits_Osoba];
+IF OBJECT_ID(N'[dbo].[FK_PacijentZdravstveniKarton]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ZdravstveniKartons] DROP CONSTRAINT [FK_PacijentZdravstveniKarton];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Radnik_inherits_Osoba]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Osobas_Radnik] DROP CONSTRAINT [FK_Radnik_inherits_Osoba];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Lekar_inherits_Radnik]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Osobas_Lekar] DROP CONSTRAINT [FK_Lekar_inherits_Radnik];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Pacijent_inherits_Osoba]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Osobas_Pacijent] DROP CONSTRAINT [FK_Pacijent_inherits_Osoba];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Recepcioner_inherits_Radnik]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Osobas_Recepcioner] DROP CONSTRAINT [FK_Recepcioner_inherits_Radnik];
@@ -148,14 +148,14 @@ GO
 IF OBJECT_ID(N'[dbo].[Pregledas]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Pregledas];
 GO
-IF OBJECT_ID(N'[dbo].[Osobas_Pacijent]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Osobas_Pacijent];
-GO
 IF OBJECT_ID(N'[dbo].[Osobas_Radnik]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Osobas_Radnik];
 GO
 IF OBJECT_ID(N'[dbo].[Osobas_Lekar]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Osobas_Lekar];
+GO
+IF OBJECT_ID(N'[dbo].[Osobas_Pacijent]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Osobas_Pacijent];
 GO
 IF OBJECT_ID(N'[dbo].[Osobas_Recepcioner]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Osobas_Recepcioner];
@@ -189,8 +189,8 @@ CREATE TABLE [dbo].[Osobas] (
     [Ime] nvarchar(max)  NOT NULL,
     [Prezime] nvarchar(max)  NOT NULL,
     [BolnicaOznaka_B] int  NOT NULL,
-    [MestoP_Broj] int  NOT NULL,
-    [Radni_staz] nvarchar(max)  NOT NULL
+    [Radni_staz] nvarchar(max)  NOT NULL,
+    [MestoP_Broj] int  NOT NULL
 );
 GO
 
@@ -722,6 +722,21 @@ GO
 CREATE INDEX [IX_FK_PacijentZdravstveniKarton]
 ON [dbo].[ZdravstveniKartons]
     ([PacijentJmbg]);
+GO
+
+-- Creating foreign key on [MestoP_Broj] in table 'Osobas'
+ALTER TABLE [dbo].[Osobas]
+ADD CONSTRAINT [FK_OsobaMesto]
+    FOREIGN KEY ([MestoP_Broj])
+    REFERENCES [dbo].[Mestoes]
+        ([P_Broj])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_OsobaMesto'
+CREATE INDEX [IX_FK_OsobaMesto]
+ON [dbo].[Osobas]
+    ([MestoP_Broj]);
 GO
 
 -- Creating foreign key on [Jmbg] in table 'Osobas_Radnik'

@@ -102,8 +102,8 @@ namespace UI.ViewModel
             AddLecenjeCommand = new MyICommand(OnAddLecenje);
             if (lecenje != null)
             {
-                SelectedTerapija = lecenje.Terapija.Naziv;
-                SelectedDijagnoza = lecenje.Dijagnoza.Naziv;
+                SelectedTerapija = ts.FindById(lecenje.TerapijaBroj_T).Naziv;
+                //SelectedDijagnoza = lecenje.Dijagnoza.Naziv;
                 AddButtonContent = "Izmeni";
             }
             else

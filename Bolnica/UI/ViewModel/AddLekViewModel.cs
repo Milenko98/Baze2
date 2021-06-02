@@ -132,7 +132,7 @@ namespace UI.ViewModel
                     Nazivlbl = "Naziv ne moze biti broj!";
                 else if (String.IsNullOrWhiteSpace(Kolicina))
                     Kolicinalbl = "Morate uneti kolicinu leka!";
-                else if (int.TryParse(Kolicina, out _))
+                else if (!int.TryParse(Kolicina, out _))
                     Kolicinalbl = "Kolicina mora biti broj!";
                 else
                 {

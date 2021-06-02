@@ -149,5 +149,35 @@ namespace Servis.InterfejsServisi
                 }
             }
         }
+        public bool DeleteMestoo(int id)
+        {
+            List<Obezbedjenje> lista = new List<Obezbedjenje>();
+            using (var db = new Model1Container())
+            {
+                try
+                {
+                    lista = db.Set<Obezbedjenje>().ToList();
+                    if (lista.Count != 0)
+                    {
+                        foreach (var v in lista)
+                        {
+                            if (v.MestoP_Broj == id)
+                                db.Set<Obezbedjenje>().Remove(v);
+                        }
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Message:\n" + e.Message);
+                    return false;
+                }
+            }
+        }
     }
 }

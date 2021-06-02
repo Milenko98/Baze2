@@ -94,7 +94,6 @@ namespace Servis.InterfejsServisi
             List<ZdravstveniKarton> lista = new List<ZdravstveniKarton>();
             SadrziServis ss = new SadrziServis();
             PosedujeServis ps = new PosedujeServis();
-            bool b1 = false, b2 = false;
             using (var db = new Model1Container())
             {
                 try
@@ -106,14 +105,9 @@ namespace Servis.InterfejsServisi
                         {
                             if (v.PacijentJmbg == id)
                             {
-                                if (ss.DeleteZdravstveniKarton(v.Broj_K))
-                                    b1 = true;
-                                if (ps.DeleteZdravstveniKarton(v.Broj_K))
-                                    b2 = true;
-                                if (b1 || b2)
-                                    db.Set<ZdravstveniKarton>().Remove(v);
-                                else
-                                    db.Set<ZdravstveniKarton>().Remove(v);
+                                ss.DeleteZdravstveniKarton(v.Broj_K);
+                                ps.DeleteZdravstveniKarton(v.Broj_K);
+                                db.Set<ZdravstveniKarton>().Remove(v);
                             }
                         }
                         db.SaveChanges();

@@ -52,6 +52,7 @@
         <AssociationConnector Association="Model1.DolaziPregled" />
         <AssociationConnector Association="Model1.UspostavljaIzdaje" />
         <AssociationConnector Association="Model1.PacijentZdravstveniKarton" />
+        <AssociationConnector Association="Model1.OsobaMesto" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

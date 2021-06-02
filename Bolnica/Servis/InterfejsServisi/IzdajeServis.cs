@@ -127,12 +127,15 @@ namespace Servis.InterfejsServisi
             {
                 try
                 {
-                    lista = db.Set<Izdaje>().Where(x => x.UspostavljaDijagnozaOznaka_D == id1 && x.UspostavljaPregledBroj_P == id2).ToList();
+                    lista = db.Set<Izdaje>().ToList();
                     if (lista.Count != 0)
                     {
                         foreach (var v in lista)
                         {
-                            db.Set<Izdaje>().Remove(v);
+                            if (v.UspostavljaDijagnozaOznaka_D == id1 && v.UspostavljaPregledBroj_P == id2)
+                            {
+                                db.Set<Izdaje>().Remove(v);
+                            }
                         }
                         db.SaveChanges();
                         return true;

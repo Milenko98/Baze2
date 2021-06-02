@@ -18,6 +18,7 @@ namespace Servis.Baza
         public Mesto()
         {
             this.Bolnicas = new HashSet<Bolnica>();
+            this.Osobas = new HashSet<Osoba>();
         }
     
         public int P_Broj { get; set; }
@@ -25,5 +26,7 @@ namespace Servis.Baza
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bolnica> Bolnicas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Osoba> Osobas { get; set; }
     }
 }

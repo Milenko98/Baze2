@@ -165,5 +165,40 @@ namespace Servis.InterfejsServisi
                 }
             }
         }
+
+        public bool DeleteMestoo(int id)
+        {
+            List<Lekar> lista = new List<Lekar>();
+            PregledaServis ps = new PregledaServis();
+            using (var db = new Model1Container())
+            {
+                try
+                {
+                    lista = db.Set<Lekar>().ToList();
+                    if (lista.Count != 0)
+                    {
+                        foreach (var v in lista)
+                        {
+                            if (v.MestoP_Broj == id)
+                            {
+                                ps.DeleteLekar(v.Jmbg);
+                                db.Set<Lekar>().Remove(v);
+                            }
+                        }
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Message:\n" + e.Message);
+                    return false;
+                }
+            }
+        }
     }
 }

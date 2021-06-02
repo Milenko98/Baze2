@@ -97,12 +97,13 @@ namespace Servis.InterfejsServisi
             {
                 try
                 {
-                    lista = db.Set<Dolazi>().Where(x => x.PregledBroj_P == id).ToList();
+                    lista = db.Set<Dolazi>().ToList();
                     if (lista.Count != 0)
                     {
                         foreach (var v in lista)
                         {
-                            db.Set<Dolazi>().Remove(v);
+                            if(v.PregledBroj_P == id)
+                                db.Set<Dolazi>().Remove(v);
                         }
                         db.SaveChanges();
                         return true;
@@ -133,8 +134,10 @@ namespace Servis.InterfejsServisi
                     {
                         foreach (var v in lista)
                         {
-                            if(v.PacijentJmbg == id)
+                            if (v.PacijentJmbg == id)
+                            {
                                 db.Set<Dolazi>().Remove(v);
+                            }
                         }
                         db.SaveChanges();
                         return true;

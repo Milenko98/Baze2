@@ -18,9 +18,10 @@ namespace Servis.Baza
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public int BolnicaOznaka_B { get; set; }
-        public int MestoP_Broj { get; set; }
         public string Radni_staz { get; set; }
+        public int MestoP_Broj { get; set; }
     
         public virtual Bolnica Bolnica { get; set; }
+        public virtual Mesto Mesto { get; set; }
     }
 }

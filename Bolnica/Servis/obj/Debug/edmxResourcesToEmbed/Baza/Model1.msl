@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="Bolnicas">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Bolnica)">
+        <MappingFragment StoreEntitySet="Bolnicas">
+          <ScalarProperty Name="Oznaka_B" ColumnName="Oznaka_B" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="MestoP_Broj" ColumnName="MestoP_Broj" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mestoes">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Mesto)">
+        <MappingFragment StoreEntitySet="Mestoes">
+          <ScalarProperty Name="P_Broj" ColumnName="P_Broj" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Osobas">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Osoba)">
+        <MappingFragment StoreEntitySet="Osobas">
+          <ScalarProperty Name="Jmbg" ColumnName="Jmbg" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="BolnicaOznaka_B" ColumnName="BolnicaOznaka_B" />
+          <ScalarProperty Name="Radni_staz" ColumnName="Radni_staz" />
+          <ScalarProperty Name="MestoP_Broj" ColumnName="MestoP_Broj" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Radnik)">
+        <MappingFragment StoreEntitySet="Osobas_Radnik">
+          <ScalarProperty Name="Jmbg" ColumnName="Jmbg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Lekar)">
+        <MappingFragment StoreEntitySet="Osobas_Lekar">
+          <ScalarProperty Name="Jmbg" ColumnName="Jmbg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Pacijent)">
+        <MappingFragment StoreEntitySet="Osobas_Pacijent">
+          <ScalarProperty Name="Jmbg" ColumnName="Jmbg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Recepcioner)">
+        <MappingFragment StoreEntitySet="Osobas_Recepcioner">
+          <ScalarProperty Name="Jmbg" ColumnName="Jmbg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Obezbedjenje)">
+        <MappingFragment StoreEntitySet="Osobas_Obezbedjenje">
+          <ScalarProperty Name="Jmbg" ColumnName="Jmbg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ZdravstveniKartons">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.ZdravstveniKarton)">
+        <MappingFragment StoreEntitySet="ZdravstveniKartons">
+          <ScalarProperty Name="Broj_K" ColumnName="Broj_K" />
+          <ScalarProperty Name="Rok_vazenja" ColumnName="Rok_vazenja" />
+          <ScalarProperty Name="Ime_pacijenta" ColumnName="Ime_pacijenta" />
+          <ScalarProperty Name="Prezime_pacijenta" ColumnName="Prezime_pacijenta" />
+          <ScalarProperty Name="PacijentJmbg" ColumnName="PacijentJmbg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dijagnozas">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Dijagnoza)">
+        <MappingFragment StoreEntitySet="Dijagnozas">
+          <ScalarProperty Name="Oznaka_D" ColumnName="Oznaka_D" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="UspostavljaPregledBroj_P" ColumnName="UspostavljaPregledBroj_P" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Leks">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Lek)">
+        <MappingFragment StoreEntitySet="Leks">
+          <ScalarProperty Name="Id_Leka" ColumnName="Id_Leka" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Terapijas">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Terapija)">
+        <MappingFragment StoreEntitySet="Terapijas">
+          <ScalarProperty Name="Broj_T" ColumnName="Broj_T" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lecenjes">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Lecenje)">
+        <MappingFragment StoreEntitySet="Lecenjes">
+          <ScalarProperty Name="TerapijaBroj_T" ColumnName="TerapijaBroj_T" />
+          <ScalarProperty Name="DijagnozaOznaka_D" ColumnName="DijagnozaOznaka_D" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pregleds">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Pregled)">
+        <MappingFragment StoreEntitySet="Pregleds">
+          <ScalarProperty Name="Broj_P" ColumnName="Broj_P" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Ime_pacijenta" ColumnName="Ime_pacijenta" />
+          <ScalarProperty Name="Prezime_pacijenta" ColumnName="Prezime_pacijenta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uspostavljas">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Uspostavlja)">
+        <MappingFragment StoreEntitySet="Uspostavljas">
+          <ScalarProperty Name="PregledBroj_P" ColumnName="PregledBroj_P" />
+          <ScalarProperty Name="DijagnozaOznaka_D" ColumnName="DijagnozaOznaka_D" />
+          <ScalarProperty Name="LecenjeTerapijaBroj_T" ColumnName="LecenjeTerapijaBroj_T" />
+          <ScalarProperty Name="LecenjeDijagnozaOznaka_D" ColumnName="LecenjeDijagnozaOznaka_D" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recepts">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Recept)">
+        <MappingFragment StoreEntitySet="Recepts">
+          <ScalarProperty Name="Oznaka_R" ColumnName="Oznaka_R" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SeLecis">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.SeLeci)">
+        <MappingFragment StoreEntitySet="SeLecis">
+          <ScalarProperty Name="LekId_Leka" ColumnName="LekId_Leka" />
+          <ScalarProperty Name="DijagnozaOznaka_D" ColumnName="DijagnozaOznaka_D" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sadrzis">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Sadrzi)">
+        <MappingFragment StoreEntitySet="Sadrzis">
+          <ScalarProperty Name="ZdravstveniKartonBroj_K" ColumnName="ZdravstveniKartonBroj_K" />
+          <ScalarProperty Name="DijagnozaOznaka_D" ColumnName="DijagnozaOznaka_D" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Posedujes">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Poseduje)">
+        <MappingFragment StoreEntitySet="Posedujes">
+          <ScalarProperty Name="ZdravstveniKartonBroj_K" ColumnName="ZdravstveniKartonBroj_K" />
+          <ScalarProperty Name="TerapijaBroj_T" ColumnName="TerapijaBroj_T" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Izdajes">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Izdaje)">
+        <MappingFragment StoreEntitySet="Izdajes">
+          <ScalarProperty Name="ReceptOznaka_R" ColumnName="ReceptOznaka_R" />
+          <ScalarProperty Name="UspostavljaPregledBroj_P" ColumnName="UspostavljaPregledBroj_P" />
+          <ScalarProperty Name="UspostavljaDijagnozaOznaka_D" ColumnName="UspostavljaDijagnozaOznaka_D" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dolazis">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Dolazi)">
+        <MappingFragment StoreEntitySet="Dolazis">
+          <ScalarProperty Name="PacijentJmbg" ColumnName="PacijentJmbg" />
+          <ScalarProperty Name="PregledBroj_P" ColumnName="PregledBroj_P" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pregledas">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Pregleda)">
+        <MappingFragment StoreEntitySet="Pregledas">
+          <ScalarProperty Name="LekarJmbg" ColumnName="LekarJmbg" />
+          <ScalarProperty Name="PregledBroj_P" ColumnName="PregledBroj_P" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
