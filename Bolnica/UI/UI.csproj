@@ -84,6 +84,7 @@
     <Compile Include="ViewModel\AddSeLeciViewModel.cs" />
     <Compile Include="ViewModel\AddTerapijaViewModel.cs" />
     <Compile Include="ViewModel\AddUspostavljaViewModel.cs" />
+    <Compile Include="ViewModel\ExecuteProcedureViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\AddZdravstveniKartonViewModel.cs" />
     <Compile Include="View\AddBolnica.xaml.cs">
@@ -145,6 +146,9 @@
     </Compile>
     <Compile Include="View\AddZdravstveniKarton.xaml.cs">
       <DependentUpon>AddZdravstveniKarton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ExecuteProcedure.xaml.cs">
+      <DependentUpon>ExecuteProcedure.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -235,6 +239,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddZdravstveniKarton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ExecuteProcedure.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

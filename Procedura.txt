@@ -1,0 +1,32 @@
+
+ALTER procedure [dbo].[PronadjiZdravstveniKarton] (@Jmbg int , @Mesto int, @Zk int out)
+
+as
+
+begin 
+declare kursor cursor
+	for select ZdravstveniKartons.Broj_K
+	from Osobas inner JOIN Mestoes
+	ON Osobas.MestoP_Broj = Mestoes.P_Broj
+	INNER JOIN ZdravstveniKartons
+	ON ZdravstveniKartons.PacijentJmbg = Osobas.Jmbg
+	where Osobas.MestoP_Broj = @Mesto and Osobas.Jmbg = @Jmbg
+declare @t int;
+begin
+	open kursor;
+	fetch next from kursor
+	into @t 
+	while @@FETCH_STATUS =0
+	begin
+		fetch next from kursor
+		into @t 	
+		print @t
+	end
+	if(@t = 0)
+		set @Zk = 1
+	else
+		set @Zk = @t
+	close kursor;
+	deallocate kursor;
+end
+end 

@@ -1,0 +1,16 @@
+ALTER function [dbo].[PronadjiLekara](@Jmbg int)
+returns varchar(20)
+
+as 
+begin
+	declare @ime varchar(20);
+	select @ime = Osobas.Ime
+	from Osobas inner join Pregledas
+	on Osobas.Jmbg = Pregledas.LekarJmbg
+	inner join Pregleds
+	on Pregledas.PregledBroj_P = Pregleds.Broj_P
+	inner join Uspostavljas
+	on Uspostavljas.PregledBroj_P = Pregleds.Broj_P
+	where Osobas.Jmbg = @Jmbg;
+	return @ime;
+end

@@ -1,0 +1,14 @@
+ALTER TRIGGER [dbo].[InsertBolnica]
+ON [dbo].[Bolnicas]
+after INSERT
+AS
+begin
+	declare @naziv varchar(50);
+	declare @mesto varchar(50);
+	declare @audit_action varchar(100);
+	select @naziv=i.Naziv from inserted i;
+	select @mesto = i.MestoP_Broj from inserted i;
+	set @audit_action='Inserted Record -- After Insert Trigger.';
+	insert into Bolnicas (Naziv, MestoP_Broj) values(@naziv, @mesto);
+	PRINT 'AFTER INSERT trigger fired.'
+end

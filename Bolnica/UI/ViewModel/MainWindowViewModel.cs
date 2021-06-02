@@ -384,36 +384,23 @@ namespace UI.ViewModel
 
         public void OnFunkcija()
         {
-            //set the connection string
             string connString = "data source=DESKTOP-F0GE8QS\\SQLEXPRESS; Integrated Security=SSPI; Initial Catalog=BolnicaDB";
-
-
             try
             {
-                //sql connection object
                 using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
-                    //define the query text
-                    // string query = @"SELECT [dbo].[fnGetTotalEmployees](@empID) AS TotalEmployees;";
 
-                    //define the SqlCommand object
+
                     SqlCommand cmd = new SqlCommand("select dbo.PronadjiLekara(@Jmbg)", conn);
 
-                    //parameter value will be set from command line
                     SqlParameter param1 = new SqlParameter();
-                    //cmd.Parameters.AddWithValue("Jmbg", 53);
                     param1.ParameterName = "@Jmbg";
                     param1.SqlDbType = SqlDbType.Int;
-                    param1.Value = "64";
+                    param1.Value = "53";
 
-                    //pass parameter to the SQL Command
                     cmd.Parameters.Add(param1);
 
-                    //open connection
-                    
-
-                    //execute the SQLCommand
                     string ime = cmd.ExecuteScalar().ToString();
 
                     if (!string.IsNullOrWhiteSpace(ime))
@@ -424,13 +411,11 @@ namespace UI.ViewModel
                     {
                         MessageBox.Show("Nema trazenog lekara.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                    //close connection
                     conn.Close();
                 }
             }
             catch (Exception ex)
             {
-                //display error message
                 Console.WriteLine("Exception: " + ex.Message);
             }
         }
@@ -465,26 +450,7 @@ namespace UI.ViewModel
 
         public void OnProcedura()
         {
-            SqlConnection myConn = new SqlConnection("data source=DESKTOP-F0GE8QS\\SQLEXPRESS; Integrated Security=SSPI; Initial Catalog=BolnicaDB");
-            myConn.Open();
-            SqlCommand myCmd = new SqlCommand("PronadjiPacijenta", myConn);
-            SqlParameter param = new SqlParameter();
-
-            myCmd.CommandType = CommandType.StoredProcedure;
-
-            myCmd.Parameters.AddWithValue("@Jmbg", 56);
-            myCmd.Parameters.AddWithValue("@Mesto", 7);
-            myCmd.Parameters.Add("@Ime", SqlDbType.VarChar, 20);
-            myCmd.Parameters["@Ime"].Direction = ParameterDirection.Output;
-                    
-            
-          
-            myCmd.ExecuteNonQuery();
-            string ime = myCmd.Parameters["@Ime"].Value.ToString();
-
-            MessageBox.Show(string.Format("Uspesno ste izvrsili proceduru, Ime pacijenta je {0}", ime), "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
-
-            myConn.Close();
+            new ExecuteProcedure().ShowDialog();
         }
 
         public void OnIndeks()

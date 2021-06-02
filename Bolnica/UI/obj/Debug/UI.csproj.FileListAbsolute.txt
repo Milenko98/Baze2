@@ -63,6 +63,7 @@ D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\UI\obj\Debug\
 D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\UI\obj\Debug\View\AddTerapija.g.cs
 D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\UI\obj\Debug\View\AddUspostavlja.g.cs
 D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\UI\obj\Debug\View\AddZdravstveniKarton.g.cs
+D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\UI\obj\Debug\View\ExecuteProcedure.g.cs
 D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\UI\obj\Debug\App.g.cs
 D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\UI\obj\Debug\UI_MarkupCompile.cache
 D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\UI\obj\Debug\UI_MarkupCompile.lref
@@ -87,6 +88,7 @@ D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\UI\obj\Debug\
 D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\UI\obj\Debug\View\AddTerapija.baml
 D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\UI\obj\Debug\View\AddUspostavlja.baml
 D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\UI\obj\Debug\View\AddZdravstveniKarton.baml
+D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\UI\obj\Debug\View\ExecuteProcedure.baml
 D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\UI\obj\Debug\UI.g.resources
 D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\UI\obj\Debug\UI.Properties.Resources.resources
 D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\UI\obj\Debug\UI.csproj.GenerateResource.cache

@@ -1,0 +1,19 @@
+﻿<Window x:Class="UI.View.ExecuteProcedure"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI.View"
+        mc:Ignorable="d"
+        Title="ExecuteProcedure" Height="400" Width="300">
+    <Grid>
+        <ComboBox HorizontalAlignment="Left" SelectedItem="{Binding SelectedOsoba}" ItemsSource="{Binding Osobe}" Margin="91,76,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" SelectedItem="{Binding SelectedMesto}" ItemsSource="{Binding Mesta}" Margin="91,157,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Button" Command="{Binding ExecuteProcedureCommand}" HorizontalAlignment="Left" Margin="106,216,0,0" VerticalAlignment="Top" Width="88" Height="28"/>
+        <Label Content="Izaberi osobu:" FontWeight="Bold" HorizontalAlignment="Left" Margin="91,50,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Izaberi mesto:" FontWeight="Bold" HorizontalAlignment="Left" Margin="91,131,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="42" Margin="29,317,0,0" TextWrapping="Wrap" Text="{Binding Rez, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top" Width="144"/>
+        <Label Content="Pronadjena osoba:" FontWeight="Bold" HorizontalAlignment="Left" Margin="29,291,0,0" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</Window>

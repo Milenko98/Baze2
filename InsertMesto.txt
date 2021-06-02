@@ -1,0 +1,12 @@
+ALTER TRIGGER [dbo].[InsertMesto]
+ON [dbo].[Mestoes]
+after INSERT
+AS
+begin
+	declare @naziv varchar(50);
+	declare @audit_action varchar(100);
+	select @naziv=i.Naziv from inserted i;
+	set @audit_action='Inserted Record -- After Insert Trigger.';
+	insert into Mestoes (Naziv) values(@naziv);
+	PRINT 'AFTER INSERT trigger fired.'
+end
