@@ -22,3 +22,15 @@ D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\Servis\obj\De
 D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\Servis\obj\Debug\Servis.csproj.CopyComplete
 D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\Servis\obj\Debug\Servis.dll
 D:\CETVRTA GOD.DRUGI SEMESTAR\Baze podataka2\Lokalni\Baze2\Bolnica\Servis\obj\Debug\Servis.pdb
+C:\Users\Asus\Desktop\New folder\Baze2\Bolnica\Servis\bin\Debug\Servis.dll.config
+C:\Users\Asus\Desktop\New folder\Baze2\Bolnica\Servis\bin\Debug\Servis.dll
+C:\Users\Asus\Desktop\New folder\Baze2\Bolnica\Servis\bin\Debug\Servis.pdb
+C:\Users\Asus\Desktop\New folder\Baze2\Bolnica\Servis\bin\Debug\EntityFramework.dll
+C:\Users\Asus\Desktop\New folder\Baze2\Bolnica\Servis\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Asus\Desktop\New folder\Baze2\Bolnica\Servis\bin\Debug\EntityFramework.xml
+C:\Users\Asus\Desktop\New folder\Baze2\Bolnica\Servis\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Asus\Desktop\New folder\Baze2\Bolnica\Servis\obj\Debug\Servis.csprojAssemblyReference.cache
+C:\Users\Asus\Desktop\New folder\Baze2\Bolnica\Servis\obj\Debug\Servis.csproj.CoreCompileInputs.cache
+C:\Users\Asus\Desktop\New folder\Baze2\Bolnica\Servis\obj\Debug\Servis.csproj.CopyComplete
+C:\Users\Asus\Desktop\New folder\Baze2\Bolnica\Servis\obj\Debug\Servis.dll
+C:\Users\Asus\Desktop\New folder\Baze2\Bolnica\Servis\obj\Debug\Servis.pdb
